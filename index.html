@@ -797,12 +797,15 @@ const PLATFORMS = [
 const isTouch = window.matchMedia('(hover: none), (pointer: coarse)').matches;
 
 /* ===== 1. CURTAIN ===== */
-window.addEventListener('load', function(){
-  setTimeout(function(){
-    document.getElementById('curtain').classList.add('open');
-    document.querySelectorAll('#hero .split').forEach(splitText);
-  }, 200);
-});
+var curtainOpened = false;
+function openCurtain(){
+  if (curtainOpened) return;
+  curtainOpened = true;
+  document.getElementById('curtain').classList.add('open');
+  document.querySelectorAll('#hero .split').forEach(splitText);
+}
+window.addEventListener('load', function(){ setTimeout(openCurtain, 200); });
+setTimeout(openCurtain, 2500);
 
 /* ===== 2. CUSTOM CURSOR ===== */
 if(!isTouch){
