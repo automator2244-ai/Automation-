@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>EZ.Path.AI פתרונות אוטומציה</title>
-<meta name="description" content="EZ.Path.AI — פתרונות אוטומציה עסקית וסוכני AI מותאמים אישית לעסקים קטנים ובינוניים בישראל. פחות עבודה ידנית, יותר לקוחות, ROI ברור מראש.">
+<meta name="description" content="EZ.Path.AI - פתרונות אוטומציה עסקית וסוכני AI מותאמים אישית לעסקים קטנים ובינוניים בישראל. פחות עבודה ידנית, יותר לקוחות, ROI ברור מראש.">
 <meta property="og:title" content="EZ.Path.AI פתרונות אוטומציה">
 <meta property="og:description" content="פתרונות אוטומציה עסקית וסוכני AI מותאמים אישית לעסקים קטנים ובינוניים בישראל.">
 <meta property="og:type" content="website">
@@ -152,10 +152,17 @@ section{padding:120px 0;position:relative}
   padding-top:72px;
 }
 .hero-canvas{position:absolute;inset:0;z-index:0;width:100%;height:100%}
-.hero-blob{position:absolute;border-radius:50%;filter:blur(80px);z-index:0;pointer-events:none}
-.blob-1{width:600px;height:600px;background:rgba(34,197,94,0.07);top:-150px;left:-150px}
-.blob-2{width:400px;height:400px;background:rgba(134,239,172,0.1);top:30%;right:5%}
-.blob-3{width:800px;height:800px;background:rgba(22,163,74,0.05);bottom:-300px;right:-200px}
+.hero-blob,.ambient-blob{position:absolute;border-radius:50%;filter:blur(80px);z-index:0;pointer-events:none;animation:blobDrift ease-in-out infinite alternate}
+@keyframes blobDrift{
+  0%{transform:translate(0,0) scale(1) rotate(0deg)}
+  50%{transform:translate(50px,-35px) scale(1.12) rotate(8deg)}
+  100%{transform:translate(-35px,45px) scale(0.92) rotate(-6deg)}
+}
+.blob-1{width:600px;height:600px;background:rgba(34,197,94,0.07);top:-150px;left:-150px;animation-duration:24s}
+.blob-2{width:400px;height:400px;background:rgba(134,239,172,0.1);top:30%;right:5%;animation-duration:19s;animation-delay:-4s}
+.blob-3{width:800px;height:800px;background:rgba(22,163,74,0.05);bottom:-300px;right:-200px;animation-duration:30s;animation-delay:-9s}
+.services .container,.whyus .container,.how .container,.form-section .container{position:relative;z-index:1}
+.services,.whyus,.how,.form-section{overflow:hidden}
 
 .hero-content{position:relative;z-index:2;max-width:1200px;margin:0 auto;padding:0 24px;width:100%}
 .hero-badge{
@@ -303,6 +310,17 @@ section{padding:120px 0;position:relative}
   background-size:26px 26px;animation:driftGrid 18s linear infinite;
 }
 @keyframes driftGrid{from{background-position:0 0}to{background-position:100px 100px}}
+.service-card.wide::before{
+  content:'';position:absolute;inset:-30%;pointer-events:none;z-index:0;
+  background:radial-gradient(circle,rgba(74,222,128,0.4),transparent 60%);
+  background-size:60% 60%;background-repeat:no-repeat;
+  animation:glowDrift 14s ease-in-out infinite alternate;
+}
+@keyframes glowDrift{
+  0%{background-position:10% 20%}
+  50%{background-position:85% 55%}
+  100%{background-position:35% 85%}
+}
 .badge-new{
   position:absolute;top:24px;left:24px;background:#fbbf24;color:#3a2a02;
   font-size:12px;font-weight:700;padding:5px 12px;border-radius:50px;z-index:1;
@@ -318,7 +336,7 @@ section{padding:120px 0;position:relative}
 .forwho{background:var(--white);text-align:center}
 .counter-wrap{margin-bottom:64px}
 .counter{
-  font-family:'Space Grotesk',sans-serif;font-weight:900;font-size:80px;color:var(--green-600);line-height:1;
+  font-family:'Space Grotesk',sans-serif;font-weight:900;font-size:80px;color:var(--green-600);line-height:1.25;padding-top:0.1em;
 }
 .counter-label{color:var(--text-muted);font-size:17px;margin-top:8px}
 .counter-q{font-size:18px;color:var(--text-main);margin-bottom:20px;font-weight:600}
@@ -454,8 +472,8 @@ section{padding:120px 0;position:relative}
 .form-msg.error p{color:#b91c1c;font-size:16px;font-weight:600}
 
 /* ============ FOOTER ============ */
-.footer{background:var(--dark);border-top:1px solid rgba(34,197,94,0.2);padding:48px 0;color:#fff}
-.footer-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px}
+.footer{background:var(--dark);border-top:1px solid rgba(34,197,94,0.2);padding:48px 0;color:#fff;position:relative;overflow:hidden}
+.footer-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px;position:relative;z-index:1}
 .footer-copy{color:#475569;font-size:14px}
 .footer-logo{
   font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:20px;
@@ -524,7 +542,7 @@ section{padding:120px 0;position:relative}
       <span class="split-line">תפסיקו לבזבז זמן</span>
       <span class="split-line">על משימות <span class="grad">ידניות</span></span>
     </h1>
-    <p class="subtitle">אני בניה, יועץ אוטומציה עסקית ובונה סוכני AI המתמחה בפתרונות מותאמים לעסקים קטנים ובינוניים בישראל. פחות עבודה ידנית, פחות טעויות, יותר לקוחות — עם ROI ברור מראש.</p>
+    <p class="subtitle">אני בניה, יועץ אוטומציה עסקית ובונה סוכני AI המתמחה בפתרונות מותאמים לעסקים קטנים ובינוניים בישראל. פחות עבודה ידנית, פחות טעויות, יותר לקוחות - עם ROI ברור מראש.</p>
     <div class="hero-buttons">
       <a href="#form" class="btn-primary magnetic">לשיחת ייעוץ בחינם ←</a>
       <a href="#how" class="btn-secondary">ראו איך זה עובד ↓</a>
@@ -551,12 +569,14 @@ section{padding:120px 0;position:relative}
 
 <!-- SERVICES -->
 <section class="services" id="services">
+  <div class="ambient-blob" style="width:500px;height:500px;background:rgba(34,197,94,0.08);top:-120px;right:-100px;animation-duration:21s"></div>
+  <div class="ambient-blob" style="width:380px;height:380px;background:rgba(134,239,172,0.09);bottom:-100px;left:-80px;animation-duration:26s;animation-delay:-7s"></div>
   <div class="container">
     <div class="section-head">
       <span class="tag-pill">השירותים שלנו</span>
       <h2>מה אנחנו בונים בשבילכם?</h2>
       <div class="underline reveal-underline"></div>
-      <p>כל פתרון בנוי בדיוק לפי הצרכים שלכם — לא קופסה, לא תבנית</p>
+      <p>כל פתרון בנוי בדיוק לפי הצרכים שלכם - לא קופסה, לא תבנית</p>
     </div>
     <div class="services-grid">
       <div class="service-card" style="animation-delay:0s">
@@ -588,7 +608,7 @@ section{padding:120px 0;position:relative}
         <div class="reveal-bg"></div>
         <div class="service-icon">📅</div>
         <h3>תיאום פגישות אוטומטי</h3>
-        <p>סנכרון יומן, תזכורות, אישורי הגעה — בלי טלפונים מיותרים</p>
+        <p>סנכרון יומן, תזכורות, אישורי הגעה - בלי טלפונים מיותרים</p>
       </div>
       <div class="service-card" style="animation-delay:0.5s">
         <div class="reveal-bg"></div>
@@ -598,8 +618,8 @@ section{padding:120px 0;position:relative}
       </div>
       <div class="service-card wide" style="animation-delay:0.6s">
         <span class="badge-new">🆕 חדש</span>
-        <h3>🤖 סוכני AI — העוזרים החכמים שעובדים בשבילכם 24/7</h3>
-        <p>אני בונה סוכני AI מותאמים אישית לעסק שלכם — סוכן שעונה ללקוחות, מסווג פניות, מחלק משימות, מנהל מו"מ ראשוני ואפילו מזמין תורים — הכל אוטומטית.</p>
+        <h3>🤖 סוכני AI - העוזרים החכמים שעובדים בשבילכם 24/7</h3>
+        <p>אני בונה סוכני AI מותאמים אישית לעסק שלכם - סוכן שעונה ללקוחות, מסווג פניות, מחלק משימות, מנהל מו"מ ראשוני ואפילו מזמין תורים - הכל אוטומטית.</p>
         <div class="wide-points">
           <span>🧠 למידה מהעסק שלכם</span>
           <span>⚡ תגובה תוך שניות</span>
@@ -634,22 +654,24 @@ section{padding:120px 0;position:relative}
 
 <!-- WHY US -->
 <section class="whyus" id="whyus">
+  <div class="ambient-blob" style="width:450px;height:450px;background:rgba(22,163,74,0.07);top:-100px;left:10%;animation-duration:23s;animation-delay:-3s"></div>
+  <div class="ambient-blob" style="width:340px;height:340px;background:rgba(74,222,128,0.1);bottom:-80px;right:5%;animation-duration:18s;animation-delay:-11s"></div>
   <div class="container">
     <div class="section-head">
       <h2>למה לעבוד איתי?</h2>
       <div class="underline reveal-underline"></div>
-      <p>גישה שונה — תוצאות אמיתיות</p>
+      <p>גישה שונה - תוצאות אמיתיות</p>
     </div>
     <div class="whyus-grid">
       <div class="why-card dark">
         <div class="why-icon">🤝</div>
         <h3>שותף לדרך, לא רק ספק</h3>
-        <p>אני לא בונה, שולח חשבונית ונעלם. אני כאן לאורך זמן — לתמיכה, שדרוגים והתאמות כשהעסק שלכם גדל</p>
+        <p>אני לא בונה, שולח חשבונית ונעלם. אני כאן לאורך זמן - לתמיכה, שדרוגים והתאמות כשהעסק שלכם גדל</p>
       </div>
       <div class="why-card">
         <div class="why-icon">💡</div>
         <h3>פתרונות חכמים, לא מסובכים</h3>
-        <p>מקסימום תוצאות עם מינימום סיבוכים. לפעמים אוטומציה פשוטה עושה פלאים — ואין צורך ביותר מזה</p>
+        <p>מקסימום תוצאות עם מינימום סיבוכים. לפעמים אוטומציה פשוטה עושה פלאים - ואין צורך ביותר מזה</p>
       </div>
       <div class="why-card">
         <div class="why-icon">🧠</div>
@@ -659,7 +681,7 @@ section{padding:120px 0;position:relative}
       <div class="why-card">
         <div class="why-icon">📋</div>
         <h3>שקיפות מלאה בתמחור</h3>
-        <p>אתם יודעים בדיוק מה אתם משלמים ועל מה — ללא הפתעות. פתרונות מדורגים שמתאימים לכל תקציב</p>
+        <p>אתם יודעים בדיוק מה אתם משלמים ועל מה - ללא הפתעות. פתרונות מדורגים שמתאימים לכל תקציב</p>
       </div>
     </div>
   </div>
@@ -667,6 +689,7 @@ section{padding:120px 0;position:relative}
 
 <!-- HOW IT WORKS -->
 <section class="how" id="how">
+  <div class="ambient-blob" style="width:420px;height:420px;background:rgba(34,197,94,0.06);top:20%;right:-120px;animation-duration:27s;animation-delay:-5s"></div>
   <div class="container">
     <div class="section-head">
       <h2>איך זה עובד?</h2>
@@ -690,7 +713,7 @@ section{padding:120px 0;position:relative}
           <div class="how-card">
             <div class="how-icon">📐</div>
             <h3>בניית הפתרון</h3>
-            <p>מתכננים אוטומציה מותאמת עם ROI ברור — לפני שמתחילים</p>
+            <p>מתכננים אוטומציה מותאמת עם ROI ברור - לפני שמתחילים</p>
           </div>
         </div>
         <div class="how-step" style="animation-delay:0.4s">
@@ -698,7 +721,7 @@ section{padding:120px 0;position:relative}
           <div class="how-card">
             <div class="how-icon">⚡</div>
             <h3>הקמה ובדיקות</h3>
-            <p>בונים, מחברים, בודקים — הכל פועל חלק לפני העברה אליכם</p>
+            <p>בונים, מחברים, בודקים - הכל פועל חלק לפני העברה אליכם</p>
           </div>
         </div>
         <div class="how-step" style="animation-delay:0.6s">
@@ -716,6 +739,8 @@ section{padding:120px 0;position:relative}
 
 <!-- FORM -->
 <section class="form-section" id="form">
+  <div class="ambient-blob" style="width:480px;height:480px;background:rgba(22,163,74,0.09);top:-140px;left:-100px;animation-duration:25s;animation-delay:-8s"></div>
+  <div class="ambient-blob" style="width:360px;height:360px;background:rgba(134,239,172,0.12);bottom:-100px;right:-80px;animation-duration:20s;animation-delay:-2s"></div>
   <div class="form-bg-grid"></div>
   <div class="container">
     <h2 class="split">פגישת אפיון ללא עלות</h2>
@@ -744,7 +769,7 @@ section{padding:120px 0;position:relative}
       </form>
       <div class="form-msg success" id="successMsg">
         <div class="icon">✅</div>
-        <p>תודה! קיבלנו את פנייתכם — נחזור אליכם בהקדם 🙌</p>
+        <p>תודה! קיבלנו את פנייתכם - נחזור אליכם בהקדם 🙌</p>
       </div>
       <div class="form-msg error" id="errorMsg">
         <p>❌ משהו השתבש, נסו שוב</p>
@@ -755,8 +780,9 @@ section{padding:120px 0;position:relative}
 
 <!-- FOOTER -->
 <footer class="footer">
+  <div class="ambient-blob" style="width:400px;height:400px;background:rgba(34,197,94,0.18);top:-180px;left:30%;animation-duration:22s"></div>
   <div class="container footer-inner">
-    <div class="footer-copy">© 2025 EZ.Path.AI — כל הזכויות שמורות</div>
+    <div class="footer-copy">© 2025 EZ.Path.AI - כל הזכויות שמורות</div>
     <div class="footer-logo eng">EZ.Path.AI</div>
     <div class="footer-contact">
       <a href="tel:0552716456">📞 0552716456</a>
