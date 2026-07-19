@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://automator2244-ai.github.io/Automation-/sitemap.xml
