@@ -213,6 +213,15 @@ section{padding:120px 0;position:relative}
   animation:badgeIn 0.7s var(--ease) 0.3s forwards;
 }
 @keyframes badgeIn{to{opacity:1;transform:translateY(0)}}
+.founder-badge{
+  display:flex;align-items:center;gap:14px;margin-bottom:20px;
+  opacity:0;transform:translateY(16px);animation:fadeUp 0.8s var(--ease) 0.55s forwards;
+}
+.founder-photo{
+  width:88px;height:88px;border-radius:50%;object-fit:cover;flex-shrink:0;
+  border:3px solid var(--white);box-shadow:0 6px 20px rgba(34,197,94,0.3),0 0 0 2px var(--green-400);
+}
+.founder-badge span{font-size:16px;font-weight:700;color:var(--text-main)}
 .hero h1{
   font-size:68px;font-weight:900;margin-bottom:28px;letter-spacing:-0.01em;
 }
@@ -584,6 +593,10 @@ section{padding:120px 0;position:relative}
       <span class="split-line">תפסיקו לבזבז זמן</span>
       <span class="split-line">על משימות <span class="grad">ידניות</span></span>
     </h1>
+    <div class="founder-badge">
+      <img src="bnaya.jpg" alt="בניה, מייסד EZ.Path.AI" class="founder-photo" width="88" height="88">
+      <span>בניה - מייסד EZ.Path.AI</span>
+    </div>
     <p class="subtitle">אני בניה, יועץ אוטומציה עסקית ובונה סוכני AI המתמחה בפתרונות מותאמים לעסקים קטנים ובינוניים בישראל. פחות עבודה ידנית, פחות טעויות, יותר לקוחות - עם ROI ברור מראש.</p>
     <div class="hero-buttons">
       <a href="#form" class="btn-primary magnetic">לשיחת ייעוץ בחינם ←</a>
