@@ -65,15 +65,25 @@ export async function listQuotes(): Promise<QuoteSummary[]> {
   return data.quotes;
 }
 
+export interface AdminSignatureInput {
+  adminField?: SignatureField | null;
+  adminSignatureDataUrl?: string | null;
+  adminMethod?: "draw" | "type";
+}
+
 export async function createQuote(
   file: File,
   title: string,
   field: SignatureField,
+  admin?: AdminSignatureInput,
 ): Promise<CreateQuoteResult> {
   const form = new FormData();
   form.append("file", file);
   form.append("title", title);
   form.append("field", JSON.stringify(field));
+  if (admin?.adminField) form.append("adminField", JSON.stringify(admin.adminField));
+  if (admin?.adminSignatureDataUrl) form.append("adminSignatureDataUrl", admin.adminSignatureDataUrl);
+  if (admin?.adminMethod) form.append("adminMethod", admin.adminMethod);
   return req<CreateQuoteResult>("/api/admin/quotes", { method: "POST", body: form });
 }
 

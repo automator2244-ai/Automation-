@@ -2,15 +2,20 @@ import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import TopBar from "../components/TopBar";
 import SignatureFieldPlacer from "../components/SignatureFieldPlacer";
+import SignaturePad from "../components/SignaturePad";
 import { createQuote } from "../lib/api";
-import type { FileType, SignatureField, CreateQuoteResult } from "../../shared/types";
+import type { FileType, SignatureField, SignMethod, CreateQuoteResult } from "../../shared/types";
 
-const DEFAULT_FIELD: SignatureField = { page: 1, x: 0.55, y: 0.82, w: 0.35, h: 0.1 };
+const DEFAULT_CLIENT: SignatureField = { page: 1, x: 0.55, y: 0.82, w: 0.35, h: 0.1 };
+const DEFAULT_ADMIN: SignatureField = { page: 1, x: 0.1, y: 0.82, w: 0.3, h: 0.1 };
 
 export default function AdminNew() {
   const [file, setFile] = useState<File | null>(null);
   const [title, setTitle] = useState("");
-  const [field, setField] = useState<SignatureField>(DEFAULT_FIELD);
+  const [clientField, setClientField] = useState<SignatureField>(DEFAULT_CLIENT);
+  const [adminField, setAdminField] = useState<SignatureField>(DEFAULT_ADMIN);
+  const [adminSig, setAdminSig] = useState<{ dataUrl: string; method: SignMethod } | null>(null);
+  const [pad, setPad] = useState(false);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<CreateQuoteResult | null>(null);
@@ -26,7 +31,9 @@ export default function AdminNew() {
       return;
     }
     setError(null);
-    setField(DEFAULT_FIELD);
+    setClientField(DEFAULT_CLIENT);
+    setAdminField(DEFAULT_ADMIN);
+    setAdminSig(null);
     setFile(f);
     if (!title) setTitle(f.name.replace(/\.[^.]+$/, ""));
   }
@@ -39,7 +46,11 @@ export default function AdminNew() {
     setBusy(true);
     setError(null);
     try {
-      const res = await createQuote(file, title.trim(), field);
+      const res = await createQuote(file, title.trim(), clientField, {
+        adminField: adminSig ? adminField : null,
+        adminSignatureDataUrl: adminSig?.dataUrl ?? null,
+        adminMethod: adminSig?.method,
+      });
       setResult(res);
     } catch (e) {
       setError(e instanceof Error ? e.message : "שגיאה ביצירת ההצעה");
@@ -109,16 +120,31 @@ export default function AdminNew() {
 
         {fileUrl && (
           <div className="card">
-            <h2 style={{ marginBottom: 6 }}>מקם את שדה החתימה</h2>
-            <p className="muted" style={{ marginBottom: 12, fontSize: 14 }}>
-              לחץ במקום הרצוי, גרור את התיבה, ושנה גודל מהפינה.
+            <h2 style={{ marginBottom: 6 }}>מיקום החתימות</h2>
+            <p className="muted" style={{ marginBottom: 10, fontSize: 14 }}>
+              גרור כל משבצת למקומה ושנה גודל מהפינה. <br />
+              🔵 <b>המשבצת שלך</b> (המנהל) · 🟢 <b>משבצת הלקוח</b>
             </p>
+
+            <div className="row" style={{ marginBottom: 12 }}>
+              <button className="btn secondary small" onClick={() => setPad(true)}>
+                {adminSig ? "✍️ שנה את החתימה שלך" : "✍️ חתום במשבצת שלך"}
+              </button>
+              {adminSig && <span className="muted" style={{ fontSize: 13 }}>החתימה שלך נוספה ✓</span>}
+            </div>
+
             <SignatureFieldPlacer
               fileUrl={fileUrl}
               fileType={fileType}
-              field={field}
-              onChange={setField}
+              clientField={clientField}
+              onClientChange={setClientField}
+              adminField={adminField}
+              onAdminChange={setAdminField}
+              adminSignatureDataUrl={adminSig?.dataUrl ?? null}
             />
+            <p className="muted" style={{ marginTop: 10, fontSize: 13 }}>
+              חתימת המנהל היא אופציונלית — אם לא תחתום, רק משבצת הלקוח תופיע בהצעה.
+            </p>
           </div>
         )}
 
@@ -130,6 +156,16 @@ export default function AdminNew() {
           </button>
         </div>
       </div>
+
+      {pad && (
+        <SignaturePad
+          onCancel={() => setPad(false)}
+          onDone={(dataUrl, method) => {
+            setAdminSig({ dataUrl, method });
+            setPad(false);
+          }}
+        />
+      )}
     </>
   );
 }

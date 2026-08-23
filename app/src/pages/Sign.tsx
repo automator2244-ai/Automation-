@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type CSSProperties } from "react";
 import { useParams } from "react-router-dom";
 import TopBar from "../components/TopBar";
 import QuoteViewer from "../components/QuoteViewer";
 import SignaturePad from "../components/SignaturePad";
 import { getPublicQuote, submitSignature, sendCopy, ApiError } from "../lib/api";
-import type { PublicQuote, SignMethod } from "../../shared/types";
+import type { PublicQuote, SignMethod, SignatureField } from "../../shared/types";
 import { isEmail } from "../lib/validate";
 
-type Stage = "loading" | "email" | "view" | "done" | "already";
+type Stage = "loading" | "view" | "done" | "already";
 
 export default function Sign() {
   const { token = "" } = useParams();
@@ -15,13 +15,13 @@ export default function Sign() {
   const [quote, setQuote] = useState<PublicQuote | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  const [email, setEmail] = useState("");
   const [pad, setPad] = useState(false);
   const [sig, setSig] = useState<{ dataUrl: string; method: SignMethod; name?: string } | null>(null);
   const [consent, setConsent] = useState(false);
   const [busy, setBusy] = useState(false);
 
-  // copy step
+  // final optional email step
+  const [email, setEmail] = useState("");
   const [copySent, setCopySent] = useState(false);
   const [copyBusy, setCopyBusy] = useState(false);
 
@@ -29,19 +29,10 @@ export default function Sign() {
     getPublicQuote(token)
       .then((q) => {
         setQuote(q);
-        setStage(q.status === "signed" ? "already" : "email");
+        setStage(q.status === "signed" ? "already" : "view");
       })
       .catch(() => setError("ההצעה לא נמצאה או שהקישור אינו תקין"));
   }, [token]);
-
-  function openDoc() {
-    if (!isEmail(email)) {
-      setError("נא להזין כתובת מייל תקינה");
-      return;
-    }
-    setError(null);
-    setStage("view");
-  }
 
   async function confirmSign() {
     if (!sig || !consent) return;
@@ -50,7 +41,6 @@ export default function Sign() {
     try {
       await submitSignature({
         token,
-        signerEmail: email.trim(),
         signerName: sig.name,
         method: sig.method,
         signatureDataUrl: sig.dataUrl,
@@ -66,6 +56,11 @@ export default function Sign() {
   }
 
   async function requestCopy() {
+    if (!isEmail(email)) {
+      setError("נא להזין כתובת מייל תקינה");
+      return;
+    }
+    setError(null);
     setCopyBusy(true);
     try {
       await sendCopy(token, email.trim());
@@ -77,7 +72,7 @@ export default function Sign() {
     }
   }
 
-  // ---------- render ----------
+  // ---------- simple states ----------
   if (error && !quote) {
     return (
       <>
@@ -119,36 +114,6 @@ export default function Sign() {
     );
   }
 
-  if (stage === "email") {
-    return (
-      <>
-        <TopBar />
-        <div className="center-screen">
-          <div className="card" style={{ maxWidth: 440, width: "100%", textAlign: "center" }}>
-            <div style={{ fontSize: 40 }}>📄</div>
-            <h1 style={{ margin: "8px 0" }}>הצעת מחיר עבורך</h1>
-            <p className="muted" style={{ marginBottom: 20 }}>{quote.title}</p>
-            <div className="field" style={{ textAlign: "start" }}>
-              <label>המייל שלך</label>
-              <input
-                type="email"
-                inputMode="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="name@example.com"
-                onKeyDown={(e) => e.key === "Enter" && openDoc()}
-              />
-            </div>
-            {error && <div className="error">{error}</div>}
-            <button className="btn block" onClick={openDoc} style={{ marginTop: 6 }}>
-              צפייה בהצעה
-            </button>
-          </div>
-        </div>
-      </>
-    );
-  }
-
   if (stage === "done") {
     return (
       <>
@@ -164,48 +129,68 @@ export default function Sign() {
               <div className="notice">📧 העותק נשלח אל {email}</div>
             ) : (
               <div className="stack">
-                <div className="notice" style={{ textAlign: "start" }}>יישלח אל: {email}</div>
+                <div className="field" style={{ textAlign: "start", marginBottom: 0 }}>
+                  <label>המייל שלך (לא חובה)</label>
+                  <input
+                    type="email"
+                    inputMode="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="name@example.com"
+                  />
+                </div>
+                {error && <div className="error">{error}</div>}
                 <button className="btn block" onClick={requestCopy} disabled={copyBusy}>
                   {copyBusy ? "שולח…" : "שלח לי עותק למייל"}
                 </button>
+                <button className="btn ghost block" onClick={() => setCopySent(true)}>
+                  לא תודה, סיום
+                </button>
               </div>
             )}
-            {error && <div className="error">{error}</div>}
           </div>
         </div>
       </>
     );
   }
 
-  // stage === "view"
+  // ---------- stage === "view" ----------
+  function overlay(pageNumber: number, _dims: { wPx: number; hPx: number }) {
+    if (!quote) return null;
+    const nodes = [];
+    // admin signature (read-only) — shows the business already signed
+    if (quote.adminField && quote.adminSignatureUrl && quote.adminField.page === pageNumber) {
+      nodes.push(
+        <div key="admin" className="sig-box readonly" style={boxStyle(quote.adminField)}>
+          <img src={quote.adminSignatureUrl} alt="חתימת המנהל" />
+        </div>,
+      );
+    }
+    // client signature box
+    if (quote.field.page === pageNumber) {
+      nodes.push(
+        <div
+          key="client"
+          className={`sig-box signable client ${sig ? "done" : ""}`}
+          style={boxStyle(quote.field)}
+          onClick={() => setPad(true)}
+        >
+          {sig ? <img src={sig.dataUrl} alt="חתימה" /> : <span className="sign-pill">✍️ חתום כאן</span>}
+        </div>,
+      );
+    }
+    return <>{nodes}</>;
+  }
+
   return (
     <>
       <TopBar />
       <div className="container">
         <div className="notice" style={{ marginBottom: 12 }}>
-          {sig ? "בדוק את החתימה ואשר למטה 👇" : "עבור על ההצעה ולחץ על תיבת החתימה כדי לחתום"}
+          {sig ? "בדוק את החתימה ואשר למטה 👇" : "עבור על ההצעה ולחץ על 'חתום כאן' כדי לחתום"}
         </div>
 
-        <QuoteViewer
-          fileUrl={quote.fileUrl}
-          fileType={quote.fileType}
-          renderOverlay={(pageNumber) =>
-            quote.field.page === pageNumber ? (
-              <div
-                className="sig-box clickable"
-                style={{
-                  left: `${quote.field.x * 100}%`,
-                  top: `${quote.field.y * 100}%`,
-                  width: `${quote.field.w * 100}%`,
-                  height: `${quote.field.h * 100}%`,
-                }}
-                onClick={() => setPad(true)}
-              >
-                {sig ? <img src={sig.dataUrl} alt="חתימה" /> : "לחץ לחתימה"}
-              </div>
-            ) : null
-          }
-        />
+        <QuoteViewer fileUrl={quote.fileUrl} fileType={quote.fileType} renderOverlay={overlay} />
 
         {sig && (
           <div className="card" style={{ marginTop: 16 }}>
@@ -237,4 +222,13 @@ export default function Sign() {
       )}
     </>
   );
+}
+
+function boxStyle(f: SignatureField): CSSProperties {
+  return {
+    left: `${f.x * 100}%`,
+    top: `${f.y * 100}%`,
+    width: `${f.w * 100}%`,
+    height: `${f.h * 100}%`,
+  };
 }

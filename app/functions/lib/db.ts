@@ -13,6 +13,13 @@ export interface QuoteRow {
   sig_y: number;
   sig_w: number;
   sig_h: number;
+  admin_sig_page: number | null;
+  admin_sig_x: number | null;
+  admin_sig_y: number | null;
+  admin_sig_w: number | null;
+  admin_sig_h: number | null;
+  admin_signature_key: string | null;
+  admin_sig_method: string | null;
   status: QuoteStatus;
   notify_email: string;
   created_at: string;

@@ -32,7 +32,10 @@ export interface PublicQuote {
   title: string;
   fileType: FileType;
   fileUrl: string; // served through the Worker
-  field: SignatureField;
+  field: SignatureField; // the CLIENT's signature box
+  // The admin's own signature, applied at creation time, shown read-only.
+  adminField: SignatureField | null;
+  adminSignatureUrl: string | null;
   status: QuoteStatus;
 }
 
@@ -44,7 +47,7 @@ export interface CreateQuoteResult {
 
 export interface SubmitSignaturePayload {
   token: string;
-  signerEmail: string;
+  signerEmail?: string; // optional — collected only after signing, if at all
   signerName?: string;
   method: SignMethod;
   signatureDataUrl: string; // PNG data URL of the signature image

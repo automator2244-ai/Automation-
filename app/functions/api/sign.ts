@@ -5,7 +5,7 @@ import { json, apiError, uuid, nowIso, isValidEmail, dataUrlToBytes } from "../l
 import { getQuoteByToken, getSignatureByQuoteId } from "../lib/db";
 import { buildSignedPdf } from "../lib/pdf";
 import { sendEmail, ownerSignedHtml } from "../lib/email";
-import type { SubmitSignaturePayload, SubmitSignatureResult } from "../../shared/types";
+import type { SubmitSignaturePayload, SubmitSignatureResult, SignatureField } from "../../shared/types";
 
 export const onRequestPost: PagesFunction<Env> = async ({ env, request }) => {
   let body: SubmitSignaturePayload;
@@ -16,7 +16,9 @@ export const onRequestPost: PagesFunction<Env> = async ({ env, request }) => {
   }
 
   if (!body.token) return apiError("missing token");
-  if (!isValidEmail(body.signerEmail || "")) return apiError("invalid email");
+  // Email is optional now; validate only if one was provided.
+  const signerEmail = (body.signerEmail ?? "").trim();
+  if (signerEmail && !isValidEmail(signerEmail)) return apiError("invalid email");
   if (body.consent !== true) return apiError("consent required");
   if (body.method !== "draw" && body.method !== "type") return apiError("invalid method");
   if (!body.signatureDataUrl?.startsWith("data:image/")) return apiError("invalid signature");
@@ -43,21 +45,36 @@ export const onRequestPost: PagesFunction<Env> = async ({ env, request }) => {
   if (!original) return apiError("quote file missing", 500);
   const originalBytes = new Uint8Array(await original.arrayBuffer());
 
-  const auditLine = `Signed by ${body.signerEmail} on ${signedAt} | method:${body.method}${
+  const auditLine = `Signed by ${signerEmail || "client"} on ${signedAt} | method:${body.method}${
     signerIp ? ` | IP:${signerIp}` : ""
   }`;
+
+  // Stamp the admin's signature first (if present), then the client's.
+  const stamps: { signaturePng: Uint8Array; field: SignatureField }[] = [];
+  if (quote.admin_signature_key && quote.admin_sig_x != null) {
+    const adminObj = await env.FILES.get(quote.admin_signature_key);
+    if (adminObj) {
+      stamps.push({
+        signaturePng: new Uint8Array(await adminObj.arrayBuffer()),
+        field: {
+          page: quote.admin_sig_page ?? 1,
+          x: quote.admin_sig_x,
+          y: quote.admin_sig_y as number,
+          w: quote.admin_sig_w as number,
+          h: quote.admin_sig_h as number,
+        },
+      });
+    }
+  }
+  stamps.push({
+    signaturePng: sigBytes,
+    field: { page: quote.sig_page, x: quote.sig_x, y: quote.sig_y, w: quote.sig_w, h: quote.sig_h },
+  });
 
   const signedPdf = await buildSignedPdf({
     originalBytes,
     fileType: quote.file_type,
-    signaturePng: sigBytes,
-    field: {
-      page: quote.sig_page,
-      x: quote.sig_x,
-      y: quote.sig_y,
-      w: quote.sig_w,
-      h: quote.sig_h,
-    },
+    stamps,
     auditLine,
   });
 
@@ -75,7 +92,7 @@ export const onRequestPost: PagesFunction<Env> = async ({ env, request }) => {
     .bind(
       uuid(),
       quote.id,
-      body.signerEmail.trim(),
+      signerEmail,
       body.signerName?.trim() || null,
       body.method,
       signatureKey,
@@ -97,7 +114,7 @@ export const onRequestPost: PagesFunction<Env> = async ({ env, request }) => {
       subject: `נחתמה הצעת מחיר: ${quote.title}`,
       html: ownerSignedHtml({
         title: quote.title,
-        signerEmail: body.signerEmail,
+        signerEmail: signerEmail || "לא נמסר",
         signerName: body.signerName,
         signedAt,
         ip: signerIp,

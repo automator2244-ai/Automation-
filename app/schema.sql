@@ -8,10 +8,18 @@ CREATE TABLE IF NOT EXISTS quotes (
   file_key      TEXT NOT NULL,              -- R2 key of the uploaded quote
   file_type     TEXT NOT NULL,             -- 'pdf' | 'image'
   sig_page      INTEGER NOT NULL DEFAULT 1, -- 1-based page for the signature (PDF)
-  sig_x         REAL NOT NULL,              -- signature box, % of page width (0..1)
+  sig_x         REAL NOT NULL,              -- CLIENT signature box, % of page width (0..1)
   sig_y         REAL NOT NULL,              -- % of page height, from top (0..1)
   sig_w         REAL NOT NULL,              -- width as % of page width
   sig_h         REAL NOT NULL,              -- height as % of page height
+  -- Optional ADMIN signature box (the business owner signs at creation time).
+  admin_sig_page       INTEGER,
+  admin_sig_x          REAL,
+  admin_sig_y          REAL,
+  admin_sig_w          REAL,
+  admin_sig_h          REAL,
+  admin_signature_key  TEXT,               -- R2 key of the admin's signature PNG
+  admin_sig_method     TEXT,               -- 'draw' | 'type'
   status        TEXT NOT NULL DEFAULT 'sent', -- 'sent' | 'viewed' | 'signed'
   notify_email  TEXT NOT NULL,             -- owner address that gets the alert
   created_at    TEXT NOT NULL,

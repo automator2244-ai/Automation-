@@ -19,6 +19,7 @@ export const onRequestGet: PagesFunction<Env> = async ({ env, request }) => {
   }
 
   const base = baseUrl(env, request);
+  const hasAdmin = quote.admin_signature_key != null && quote.admin_sig_x != null;
   const payload: PublicQuote = {
     token: quote.token,
     title: quote.title,
@@ -31,6 +32,16 @@ export const onRequestGet: PagesFunction<Env> = async ({ env, request }) => {
       w: quote.sig_w,
       h: quote.sig_h,
     },
+    adminField: hasAdmin
+      ? {
+          page: quote.admin_sig_page ?? 1,
+          x: quote.admin_sig_x as number,
+          y: quote.admin_sig_y as number,
+          w: quote.admin_sig_w as number,
+          h: quote.admin_sig_h as number,
+        }
+      : null,
+    adminSignatureUrl: hasAdmin ? `${base}/api/file?token=${quote.token}&kind=admin-sig` : null,
     status: quote.status === "sent" ? "viewed" : quote.status,
   };
   return json(payload);

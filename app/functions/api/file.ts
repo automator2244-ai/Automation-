@@ -11,7 +11,11 @@ export const onRequestGet: PagesFunction<Env> = async ({ env, request }) => {
   const quote = await getQuoteByToken(env, token);
   if (!quote) return apiError("not found", 404);
 
-  const obj = await env.FILES.get(quote.file_key);
+  const kind = new URL(request.url).searchParams.get("kind");
+  const key = kind === "admin-sig" ? quote.admin_signature_key : quote.file_key;
+  if (!key) return apiError("not found", 404);
+
+  const obj = await env.FILES.get(key);
   if (!obj) return apiError("file missing", 404);
 
   const headers = new Headers();
