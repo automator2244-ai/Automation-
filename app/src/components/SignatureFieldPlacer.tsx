@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import QuoteViewer from "./QuoteViewer";
 import type { FileType, SignatureField } from "../../shared/types";
 
@@ -32,10 +32,16 @@ export default function SignatureFieldPlacer({
 }: Props) {
   const mode = useRef<null | { kind: "drag" | "resize"; target: Target }>(null);
   const grab = useRef({ dx: 0, dy: 0 });
+  const [pageCount, setPageCount] = useState(1);
 
   const getField = (t: Target) => (t === "client" ? clientField : adminField);
   const setField = (t: Target, f: SignatureField) =>
     (t === "client" ? onClientChange : onAdminChange)(f);
+
+  function setPage(t: Target, page: number) {
+    const p = Math.min(Math.max(page, 1), pageCount);
+    setField(t, { ...getField(t), page: p });
+  }
 
   function frac(layer: HTMLElement, cx: number, cy: number) {
     const r = layer.getBoundingClientRect();
@@ -123,16 +129,41 @@ export default function SignatureFieldPlacer({
     );
   }
 
+  function pageControl(t: Target, label: string) {
+    const f = getField(t);
+    return (
+      <div className="page-control">
+        <span>{label}</span>
+        <button type="button" onClick={() => setPage(t, f.page - 1)} disabled={f.page <= 1}>
+          ‹
+        </button>
+        <b>עמוד {f.page}</b>
+        <button type="button" onClick={() => setPage(t, f.page + 1)} disabled={f.page >= pageCount}>
+          ›
+        </button>
+      </div>
+    );
+  }
+
   return (
-    <QuoteViewer
-      fileUrl={fileUrl}
-      fileType={fileType}
-      renderOverlay={(pageNumber) => (
-        <div style={{ position: "absolute", inset: 0 }}>
-          {box("admin", pageNumber)}
-          {box("client", pageNumber)}
+    <>
+      {pageCount > 1 && (
+        <div className="page-controls">
+          {pageControl("admin", "🔵 המנהל")}
+          {pageControl("client", "🟢 הלקוח")}
         </div>
       )}
-    />
+      <QuoteViewer
+        fileUrl={fileUrl}
+        fileType={fileType}
+        onPageCount={setPageCount}
+        renderOverlay={(pageNumber) => (
+          <div style={{ position: "absolute", inset: 0 }}>
+            {box("admin", pageNumber)}
+            {box("client", pageNumber)}
+          </div>
+        )}
+      />
+    </>
   );
 }

@@ -18,9 +18,10 @@ interface Props {
   // Draw an overlay layer on top of a given page (e.g. the signature box).
   renderOverlay?: (pageNumber: number, dims: { wPx: number; hPx: number }) => ReactNode;
   onReady?: () => void;
+  onPageCount?: (count: number) => void;
 }
 
-export default function QuoteViewer({ fileUrl, fileType, renderOverlay, onReady }: Props) {
+export default function QuoteViewer({ fileUrl, fileType, renderOverlay, onReady, onPageCount }: Props) {
   const [pages, setPages] = useState<PageImage[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
@@ -39,6 +40,7 @@ export default function QuoteViewer({ fileUrl, fileType, renderOverlay, onReady 
           const dims = await imageSize(fileUrl);
           if (cancelled) return;
           setPages([{ pageNumber: 1, src: fileUrl, wPx: dims.w, hPx: dims.h }]);
+          onPageCount?.(1);
         } else {
           const buf = await (await fetch(fileUrl)).arrayBuffer();
           const pdf = await pdfjsLib.getDocument({ data: buf }).promise;
@@ -60,6 +62,7 @@ export default function QuoteViewer({ fileUrl, fileType, renderOverlay, onReady 
           }
           if (cancelled) return;
           setPages(out);
+          onPageCount?.(out.length);
         }
       } catch (e) {
         if (!cancelled) setError("שגיאה בטעינת הקובץ");
