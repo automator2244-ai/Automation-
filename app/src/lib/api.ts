@@ -31,6 +31,34 @@ export class ApiError extends Error {
   }
 }
 
+// ---- auth ----
+export async function checkAuth(): Promise<boolean> {
+  const res = await fetch("/api/admin/me");
+  return res.ok;
+}
+
+export async function login(password: string): Promise<void> {
+  const res = await fetch("/api/login", {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ password }),
+  });
+  if (!res.ok) {
+    let msg = "התחברות נכשלה";
+    try {
+      const b = (await res.json()) as { error?: string };
+      if (b?.error) msg = b.error;
+    } catch {
+      /* ignore */
+    }
+    throw new ApiError(msg, res.status);
+  }
+}
+
+export async function logout(): Promise<void> {
+  await fetch("/api/logout", { method: "POST" });
+}
+
 // ---- admin ----
 export async function listQuotes(): Promise<QuoteSummary[]> {
   const data = await req<{ quotes: QuoteSummary[] }>("/api/admin/quotes");

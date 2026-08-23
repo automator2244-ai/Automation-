@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import TopBar from "../components/TopBar";
-import { listQuotes } from "../lib/api";
+import { listQuotes, logout } from "../lib/api";
 import type { QuoteSummary } from "../../shared/types";
 
 const STATUS_LABEL: Record<QuoteSummary["status"], string> = {
@@ -41,9 +41,21 @@ export default function Admin() {
     <>
       <TopBar
         right={
-          <button className="btn small" onClick={() => navigate("/admin/new")}>
-            + הצעה חדשה
-          </button>
+          <div className="row" style={{ gap: 8 }}>
+            <button className="btn small" onClick={() => navigate("/admin/new")}>
+              + הצעה חדשה
+            </button>
+            <button
+              className="btn ghost small"
+              style={{ color: "#fff", borderColor: "rgba(255,255,255,0.5)" }}
+              onClick={async () => {
+                await logout();
+                location.reload();
+              }}
+            >
+              יציאה
+            </button>
+          </div>
         }
       />
       <div className="container">

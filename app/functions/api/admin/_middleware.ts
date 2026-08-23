@@ -1,12 +1,12 @@
-// Gate for every /api/admin/* route. In production Cloudflare Access verifies
-// identity and injects Cf-Access-Authenticated-User-Email; here we enforce that
-// the resolved admin is on the allow-list. In DEV_MODE this passes through.
+// Gate for every /api/admin/* route. Validates the signed session cookie set by
+// /api/login. DEV_MODE bypasses for local development.
 import type { Env } from "../../lib/util";
-import { adminEmail, apiError } from "../../lib/util";
+import { apiError } from "../../lib/util";
+import { getCookie, verifySessionToken, ADMIN_COOKIE } from "../../lib/auth";
 
-export const onRequest: PagesFunction<Env> = async ({ request, env, next, data }) => {
-  const email = adminEmail(env, request);
-  if (!email) return apiError("unauthorized", 401);
-  (data as Record<string, unknown>).adminEmail = email;
-  return next();
+export const onRequest: PagesFunction<Env> = async ({ request, env, next }) => {
+  if (env.DEV_MODE) return next();
+  const token = getCookie(request, ADMIN_COOKIE);
+  if (await verifySessionToken(env.ADMIN_PASSWORD ?? "", token)) return next();
+  return apiError("unauthorized", 401);
 };

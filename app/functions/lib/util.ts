@@ -4,6 +4,7 @@ export interface Env {
   DB: D1Database;
   FILES: R2Bucket;
   RESEND_API_KEY?: string;
+  ADMIN_PASSWORD?: string;
   NOTIFY_EMAIL: string;
   MAIL_FROM: string;
   MAIL_FROM_NAME: string;
