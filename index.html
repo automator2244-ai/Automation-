@@ -670,7 +670,7 @@ section{padding:120px 0;position:relative}
       </div>
       <div class="service-card wide" style="animation-delay:0.6s">
         <span class="badge-new">🆕 חדש</span>
-        <h3>🤖 סוכני AI - העוזרים החכמים שעובדים בשבילכם 24/7</h3>
+        <h3>🤖 סוכן חכם שעובד בשבילך 24/7</h3>
         <p>פיתוח סוכני AI מותאמים אישית לעסק שלכם - סוכן שעונה ללקוחות, מסווג פניות, מחלק משימות, מנהל מו"מ ראשוני ואפילו מזמין תורים - הכל אוטומטית.</p>
         <div class="wide-points">
           <span>🧠 למידה מהעסק שלכם</span>
@@ -861,8 +861,8 @@ const PLATFORMS = [
   { name:"Make.com", domain:"make.com" },
   { name:"WhatsApp", domain:"whatsapp.com" },
   { name:"Airtable", domain:"airtable.com" },
-  { name:"Google Sheets", domain:"sheets.google.com" },
-  { name:"Google Calendar", domain:"calendar.google.com" },
+  { name:"Google Sheets", domain:"sheets.google.com", icon:"https://cdn.simpleicons.org/googlesheets" },
+  { name:"Google Calendar", domain:"calendar.google.com", icon:"https://cdn.simpleicons.org/googlecalendar" },
   { name:"Fillout", domain:"fillout.com" },
   { name:"ManyChat", domain:"manychat.com" },
   { name:"Green API", domain:"green-api.com" },
@@ -873,12 +873,12 @@ const PLATFORMS = [
   { name:"Lovable", domain:"lovable.dev" },
   { name:"Monday", domain:"monday.com" },
   { name:"Heyy", domain:"heyy.io" },
-  { name:"Looker Studio", domain:"lookerstudio.google.com" },
+  { name:"Looker Studio", domain:"lookerstudio.google.com", icon:"https://cdn.simpleicons.org/looker" },
   { name:"Cal.com", domain:"cal.com" },
   { name:"Facebook", domain:"facebook.com" }
 ];
 const isTouch = window.matchMedia('(hover: none), (pointer: coarse)').matches;
-function logoUrlPrimary(domain){ return 'https://logo.clearbit.com/'+domain+'?size=128'; }
+function logoUrlPrimary(p){ return p.icon || ('https://logo.clearbit.com/'+p.domain+'?size=128'); }
 function logoUrlFallback(domain){ return 'https://www.google.com/s2/favicons?sz=128&domain='+domain; }
 
 /* ===== 1. CURTAIN ===== */
@@ -982,7 +982,7 @@ function resizeCanvas(){
 function initParticles(){
   particles = PLATFORMS.map(function(p){
     const img = new Image();
-    img.src = logoUrlPrimary(p.domain);
+    img.src = logoUrlPrimary(p);
     img.onerror = function(){
       img.onerror = null;
       img.src = logoUrlFallback(p.domain);
@@ -1106,7 +1106,7 @@ function buildMarquee(rowEl){
     const card = document.createElement('div');
     card.className='logo-card';
     const img = document.createElement('img');
-    img.src = logoUrlPrimary(p.domain);
+    img.src = logoUrlPrimary(p);
     img.alt = p.name;
     img.onerror = function(){
       if (!img.dataset.triedFallback) {
