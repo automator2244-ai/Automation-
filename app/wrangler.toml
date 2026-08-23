@@ -10,7 +10,7 @@ pages_build_output_dir = "dist"
 [[d1_databases]]
 binding = "DB"
 database_name = "ezpath-sign"
-database_id = "REPLACE_WITH_D1_DATABASE_ID"   # set after `wrangler d1 create ezpath-sign`
+database_id = "53421797-21b1-49b6-af38-2b5be68c8411"
 
 # --- R2 bucket for quote files, signature images, signed PDFs ---
 [[r2_buckets]]
