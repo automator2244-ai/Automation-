@@ -1,0 +1,10 @@
+# Copy to `.dev.vars` for local development (never committed).
+# In production these are set as Pages secrets / vars in the dashboard.
+
+# Resend API key. If omitted locally, emails are logged to the console
+# instead of actually being sent (handy for testing the flow).
+RESEND_API_KEY=
+
+# Optional local overrides (defaults come from wrangler.toml [vars]).
+DEV_MODE=1
+NOTIFY_EMAIL=automator2244@gmail.com

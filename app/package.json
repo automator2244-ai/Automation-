@@ -1,0 +1,32 @@
+{
+  "name": "ezpath-sign",
+  "version": "1.0.0",
+  "private": true,
+  "description": "EZ.Path.AI - Digital signature app for price quotes",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "wrangler pages dev dist --d1=DB --r2=FILES --binding ADMIN_EMAIL=automator2244@gmail.com --binding NOTIFY_EMAIL=automator2244@gmail.com --binding DEV_MODE=1",
+    "db:init:local": "wrangler d1 execute ezpath-sign --local --file=./schema.sql",
+    "db:init:remote": "wrangler d1 execute ezpath-sign --remote --file=./schema.sql",
+    "deploy": "npm run build && wrangler pages deploy dist",
+    "typecheck": "tsc -b"
+  },
+  "dependencies": {
+    "pdf-lib": "^1.17.1",
+    "pdfjs-dist": "^4.7.76",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.26.2"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20241004.0",
+    "@types/react": "^18.3.11",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.2",
+    "typescript": "^5.6.2",
+    "vite": "^5.4.8",
+    "wrangler": "^3.80.0"
+  }
+}

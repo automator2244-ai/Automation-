@@ -1,0 +1,3 @@
+# SPA fallback: client-side routes (/admin, /s/:token, ...) serve index.html.
+# Pages Functions (/api/*) are matched first and are unaffected by this rule.
+/*    /index.html   200

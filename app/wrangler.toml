@@ -1,0 +1,32 @@
+# Cloudflare Pages configuration for EZ.Path.AI signature app.
+# The frontend (dist/) is served as static assets; the functions/ directory
+# is deployed automatically as Pages Functions (the server/API layer).
+name = "ezpath-sign"
+compatibility_date = "2024-10-04"
+compatibility_flags = ["nodejs_compat"]
+pages_build_output_dir = "dist"
+
+# --- D1 database (never sleeps) ---
+[[d1_databases]]
+binding = "DB"
+database_name = "ezpath-sign"
+database_id = "REPLACE_WITH_D1_DATABASE_ID"   # set after `wrangler d1 create ezpath-sign`
+
+# --- R2 bucket for quote files, signature images, signed PDFs ---
+[[r2_buckets]]
+binding = "FILES"
+bucket_name = "ezpath-sign-files"
+
+# --- Non-secret vars. Secrets (RESEND_API_KEY) are set via the dashboard /
+#     `wrangler pages secret put RESEND_API_KEY`, never committed. ---
+[vars]
+# Where signed-quote notifications are sent (the business owner).
+NOTIFY_EMAIL = "automator2244@gmail.com"
+# The "from" address for outgoing mail. Must be on a Resend-verified domain.
+MAIL_FROM = "hatimot@send.ezpath-ai.com"
+MAIL_FROM_NAME = "EZ.Path.AI"
+# Public base URL of the app (used to build links in emails).
+APP_BASE_URL = "https://sign.ezpath-ai.com"
+# Comma-separated list of emails allowed into /admin. Cloudflare Access is the
+# real gate in production; this is a second-layer check inside the app.
+ADMIN_EMAILS = "automator2244@gmail.com"
