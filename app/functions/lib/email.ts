@@ -15,10 +15,14 @@ interface SendArgs {
 
 export async function sendEmail(env: Env, args: SendArgs): Promise<void> {
   // In local dev without a key we skip real sending but log to the console so
-  // the flow can be exercised end-to-end.
+  // the flow can be exercised end-to-end. In production a missing key is a real
+  // error — surface it instead of pretending the mail was sent.
   if (!env.RESEND_API_KEY) {
-    console.log("[email:skipped-no-key]", args.subject, "->", args.to);
-    return;
+    if (env.DEV_MODE) {
+      console.log("[email:skipped-no-key]", args.subject, "->", args.to);
+      return;
+    }
+    throw new Error("RESEND_API_KEY not configured");
   }
   const res = await fetch("https://api.resend.com/emails", {
     method: "POST",
