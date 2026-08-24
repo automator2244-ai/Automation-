@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import TopBar from "../components/TopBar";
-import { listQuotes, logout } from "../lib/api";
+import { listQuotes, logout, deleteQuote } from "../lib/api";
 import type { QuoteSummary } from "../../shared/types";
 
 const STATUS_LABEL: Record<QuoteSummary["status"], string> = {
@@ -14,7 +14,21 @@ export default function Admin() {
   const [quotes, setQuotes] = useState<QuoteSummary[] | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [copied, setCopied] = useState<string | null>(null);
+  const [removing, setRemoving] = useState<string | null>(null);
   const navigate = useNavigate();
+
+  async function remove(q: QuoteSummary) {
+    if (!window.confirm(`למחוק את ההצעה "${q.title}"? הפעולה בלתי הפיכה.`)) return;
+    setRemoving(q.id);
+    try {
+      await deleteQuote(q.id);
+      setQuotes((prev) => (prev ? prev.filter((x) => x.id !== q.id) : prev));
+    } catch {
+      window.alert("מחיקה נכשלה. נסה שוב.");
+    } finally {
+      setRemoving(null);
+    }
+  }
 
   useEffect(() => {
     listQuotes()
@@ -103,6 +117,15 @@ export default function Admin() {
                   <Link className="btn secondary small" to={`/admin/q/${q.id}`}>
                     פרטים
                   </Link>
+                  <button
+                    className="btn ghost small"
+                    style={{ color: "var(--danger)" }}
+                    disabled={removing === q.id}
+                    onClick={() => remove(q)}
+                    title="מחק הצעה"
+                  >
+                    {removing === q.id ? "מוחק…" : "🗑 מחק"}
+                  </button>
                 </div>
               </div>
             ))}

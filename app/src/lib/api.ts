@@ -114,6 +114,10 @@ export async function getQuoteDetail(id: string): Promise<QuoteDetail> {
   return req<QuoteDetail>(`/api/admin/quote?id=${encodeURIComponent(id)}`);
 }
 
+export async function deleteQuote(id: string): Promise<void> {
+  await req<{ ok: true }>(`/api/admin/quote?id=${encodeURIComponent(id)}`, { method: "DELETE" });
+}
+
 // ---- public ----
 export async function getPublicQuote(token: string): Promise<PublicQuote> {
   return req<PublicQuote>(`/api/s?token=${encodeURIComponent(token)}`);
