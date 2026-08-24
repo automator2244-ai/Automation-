@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import QuoteViewer from "./QuoteViewer";
 import type { FileType, SignatureField } from "../../shared/types";
 
@@ -38,10 +38,13 @@ export default function SignatureFieldPlacer({
   const setField = (t: Target, f: SignatureField) =>
     (t === "client" ? onClientChange : onAdminChange)(f);
 
-  function setPage(t: Target, page: number) {
-    const p = Math.min(Math.max(page, 1), pageCount);
-    setField(t, { ...getField(t), page: p });
-  }
+  // Signatures always live on the LAST page. Once we know the page count, snap
+  // both boxes there.
+  useEffect(() => {
+    if (clientField.page !== pageCount) onClientChange({ ...clientField, page: pageCount });
+    if (adminField.page !== pageCount) onAdminChange({ ...adminField, page: pageCount });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pageCount]);
 
   function frac(layer: HTMLElement, cx: number, cy: number) {
     const r = layer.getBoundingClientRect();
@@ -129,28 +132,11 @@ export default function SignatureFieldPlacer({
     );
   }
 
-  function pageControl(t: Target, label: string) {
-    const f = getField(t);
-    return (
-      <div className="page-control">
-        <span>{label}</span>
-        <button type="button" onClick={() => setPage(t, f.page - 1)} disabled={f.page <= 1}>
-          ‹
-        </button>
-        <b>עמוד {f.page}</b>
-        <button type="button" onClick={() => setPage(t, f.page + 1)} disabled={f.page >= pageCount}>
-          ›
-        </button>
-      </div>
-    );
-  }
-
   return (
     <>
       {pageCount > 1 && (
-        <div className="page-controls">
-          {pageControl("admin", "🔵 המנהל")}
-          {pageControl("client", "🟢 הלקוח")}
+        <div className="notice" style={{ marginBottom: 10, fontSize: 13 }}>
+          החתימות ממוקמות אוטומטית בעמוד האחרון (עמוד {pageCount}).
         </div>
       )}
       <QuoteViewer

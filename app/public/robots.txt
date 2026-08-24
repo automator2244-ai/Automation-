@@ -1,0 +1,3 @@
+# This app hosts private quote-signing links; keep it out of search engines.
+User-agent: *
+Disallow: /

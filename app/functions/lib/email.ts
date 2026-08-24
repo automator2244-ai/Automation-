@@ -62,21 +62,23 @@ function shell(bodyHtml: string): string {
 // Sent to the business owner whenever a quote is signed.
 export function ownerSignedHtml(opts: {
   title: string;
-  signerEmail: string;
+  signerEmail?: string | null;
   signerName?: string | null;
   signedAt: string;
   ip?: string | null;
 }): string {
   const when = new Date(opts.signedAt).toLocaleString("he-IL", { timeZone: "Asia/Jerusalem" });
+  const row = (label: string, value: string) =>
+    `<tr><td style="padding:8px 0;color:#64748b">${label}</td><td style="padding:8px 0;font-weight:600">${escapeHtml(value)}</td></tr>`;
   return shell(`
     <h2 style="margin:0 0 8px;font-size:22px">✅ הצעת מחיר נחתמה</h2>
     <p style="margin:0 0 20px;color:#475569">לקוח חתם על הצעת מחיר. ה-PDF החתום מצורף להודעה זו.</p>
     <table style="width:100%;border-collapse:collapse;font-size:15px">
-      <tr><td style="padding:8px 0;color:#64748b">הצעה</td><td style="padding:8px 0;font-weight:600">${escapeHtml(opts.title)}</td></tr>
-      <tr><td style="padding:8px 0;color:#64748b">מייל החותם</td><td style="padding:8px 0;font-weight:600">${escapeHtml(opts.signerEmail)}</td></tr>
-      ${opts.signerName ? `<tr><td style="padding:8px 0;color:#64748b">שם</td><td style="padding:8px 0;font-weight:600">${escapeHtml(opts.signerName)}</td></tr>` : ""}
-      <tr><td style="padding:8px 0;color:#64748b">מועד החתימה</td><td style="padding:8px 0;font-weight:600">${escapeHtml(when)}</td></tr>
-      ${opts.ip ? `<tr><td style="padding:8px 0;color:#64748b">כתובת IP</td><td style="padding:8px 0;font-weight:600">${escapeHtml(opts.ip)}</td></tr>` : ""}
+      ${row("הצעה", opts.title)}
+      ${opts.signerName ? row("שם החותם", opts.signerName) : ""}
+      ${opts.signerEmail ? row("מייל החותם", opts.signerEmail) : ""}
+      ${row("מועד החתימה", when)}
+      ${opts.ip ? row("כתובת IP", opts.ip) : ""}
     </table>
   `);
 }

@@ -114,7 +114,7 @@ export const onRequestPost: PagesFunction<Env> = async ({ env, request }) => {
       subject: `נחתמה הצעת מחיר: ${quote.title}`,
       html: ownerSignedHtml({
         title: quote.title,
-        signerEmail: signerEmail || "לא נמסר",
+        signerEmail: signerEmail || null,
         signerName: body.signerName,
         signedAt,
         ip: signerIp,

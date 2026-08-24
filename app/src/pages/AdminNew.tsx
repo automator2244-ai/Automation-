@@ -6,8 +6,10 @@ import SignaturePad from "../components/SignaturePad";
 import { createQuote } from "../lib/api";
 import type { FileType, SignatureField, SignMethod, CreateQuoteResult } from "../../shared/types";
 
-const DEFAULT_CLIENT: SignatureField = { page: 1, x: 0.55, y: 0.82, w: 0.35, h: 0.1 };
-const DEFAULT_ADMIN: SignatureField = { page: 1, x: 0.1, y: 0.82, w: 0.3, h: 0.1 };
+// Boxes default to ~half the previous size; the placer snaps them to the last
+// page once the document's page count is known.
+const DEFAULT_CLIENT: SignatureField = { page: 1, x: 0.6, y: 0.85, w: 0.18, h: 0.06 };
+const DEFAULT_ADMIN: SignatureField = { page: 1, x: 0.15, y: 0.85, w: 0.18, h: 0.06 };
 
 export default function AdminNew() {
   const [file, setFile] = useState<File | null>(null);
