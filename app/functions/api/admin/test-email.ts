@@ -2,12 +2,13 @@
 // Attempts a real send to NOTIFY_EMAIL and returns the exact Resend response,
 // so misconfigurations surface with their real error message.
 import type { Env } from "../../lib/util";
-import { json } from "../../lib/util";
+import { json, resendApiKey } from "../../lib/util";
 
 export const onRequestGet: PagesFunction<Env> = async ({ env }) => {
+  const apiKey = resendApiKey(env);
   const info = {
-    hasResendKey: !!env.RESEND_API_KEY,
-    keyPrefix: env.RESEND_API_KEY ? env.RESEND_API_KEY.slice(0, 3) : null,
+    hasResendKey: !!apiKey,
+    keyPrefix: apiKey ? apiKey.slice(0, 3) : null,
     mailFrom: env.MAIL_FROM,
     mailFromName: env.MAIL_FROM_NAME,
     notifyEmail: env.NOTIFY_EMAIL,
@@ -15,7 +16,7 @@ export const onRequestGet: PagesFunction<Env> = async ({ env }) => {
     devMode: !!env.DEV_MODE,
   };
 
-  if (!env.RESEND_API_KEY) {
+  if (!apiKey) {
     return json({ ...info, send: "NO_KEY_AT_RUNTIME" });
   }
 
@@ -23,7 +24,7 @@ export const onRequestGet: PagesFunction<Env> = async ({ env }) => {
     const res = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${env.RESEND_API_KEY}`,
+        Authorization: `Bearer ${apiKey}`,
         "content-type": "application/json",
       },
       body: JSON.stringify({

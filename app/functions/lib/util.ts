@@ -80,3 +80,17 @@ export function adminEmail(env: Env, request: Request): string | null {
 export function firstAdmin(env: Env): string {
   return env.ADMIN_EMAILS.split(",")[0]?.trim() || env.NOTIFY_EMAIL;
 }
+
+// Resolve the Resend API key. Prefers the exact RESEND_API_KEY, but also accepts
+// any env var whose name starts with RESEND_API_KEY (e.g. a dashboard secret
+// accidentally named "RESEND_API_KEY_24_8_26"), so a naming slip doesn't break
+// email delivery.
+export function resendApiKey(env: Env): string | undefined {
+  const record = env as unknown as Record<string, unknown>;
+  const direct = record["RESEND_API_KEY"];
+  if (typeof direct === "string" && direct) return direct;
+  for (const [k, v] of Object.entries(record)) {
+    if (k.startsWith("RESEND_API_KEY") && typeof v === "string" && v) return v;
+  }
+  return undefined;
+}

@@ -1,5 +1,6 @@
 // Transactional email via Resend. Hebrew RTL templates.
 import type { Env } from "./util";
+import { resendApiKey } from "./util";
 
 interface Attachment {
   filename: string;
@@ -17,7 +18,8 @@ export async function sendEmail(env: Env, args: SendArgs): Promise<void> {
   // In local dev without a key we skip real sending but log to the console so
   // the flow can be exercised end-to-end. In production a missing key is a real
   // error — surface it instead of pretending the mail was sent.
-  if (!env.RESEND_API_KEY) {
+  const apiKey = resendApiKey(env);
+  if (!apiKey) {
     if (env.DEV_MODE) {
       console.log("[email:skipped-no-key]", args.subject, "->", args.to);
       return;
@@ -27,7 +29,7 @@ export async function sendEmail(env: Env, args: SendArgs): Promise<void> {
   const res = await fetch("https://api.resend.com/emails", {
     method: "POST",
     headers: {
-      Authorization: `Bearer ${env.RESEND_API_KEY}`,
+      Authorization: `Bearer ${apiKey}`,
       "content-type": "application/json",
     },
     body: JSON.stringify({
