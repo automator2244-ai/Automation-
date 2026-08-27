@@ -13,11 +13,16 @@
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&family=Space+Grotesk:wght@400;500;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet"></noscript>
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; frame-src 'none'; form-action 'none'; script-src 'sha256-6EQRsXCwK4I/XoA8b132lCL3OPoFJ0j+7AwGF4QTHzA='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://hook.us2.make.com">
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/heebo-hebrew.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/heebo-latin.woff2" crossorigin>
 <style>
+/* ============ SELF-HOSTED FONTS ============ */
+@font-face{font-family:'Heebo';font-style:normal;font-weight:100 900;font-display:swap;src:url(assets/fonts/heebo-hebrew.woff2) format('woff2');unicode-range:U+0307-0308, U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F}
+@font-face{font-family:'Heebo';font-style:normal;font-weight:100 900;font-display:swap;src:url(assets/fonts/heebo-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Space Grotesk';font-style:normal;font-weight:300 700;font-display:swap;src:url(assets/fonts/space-grotesk-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+
 /* ============ RESET & BASE ============ */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -484,6 +489,8 @@ section{padding:120px 0;position:relative}
 @keyframes formIn{to{opacity:1;transform:scale(1)}}
 @media(max-width:600px){.form-card{padding:32px 24px}}
 .field{position:relative;margin-bottom:22px}
+/* Honeypot: moved off-screen rather than display:none so naive bots still fill it */
+.hp-field{position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden;opacity:0;pointer-events:none}
 .field label{
   position:absolute;top:14px;right:18px;color:var(--text-muted);font-size:15px;
   transition:all 0.25s var(--ease);pointer-events:none;background:transparent;padding:0 4px;
@@ -799,20 +806,27 @@ section{padding:120px 0;position:relative}
     <p class="sub">השאירו פרטים ונחזור אליכם בהקדם</p>
     <div class="form-card" id="formCard">
       <form id="leadForm" novalidate>
+        <!-- Honeypot: hidden from humans, bots fill it in. Not display:none, which
+             some bots detect and skip. aria-hidden + tabindex keep it off screen
+             readers and out of the keyboard tab order. -->
+        <div class="hp-field" aria-hidden="true">
+          <label for="company_website">אל תמלאו שדה זה</label>
+          <input type="text" id="company_website" name="company_website" tabindex="-1" autocomplete="off">
+        </div>
         <div class="field">
-          <input type="text" id="name" name="name" required placeholder=" ">
+          <input type="text" id="name" name="name" required maxlength="100" autocomplete="name" placeholder=" ">
           <label for="name">שם מלא *</label>
         </div>
         <div class="field">
-          <input type="email" id="email" name="email" required placeholder=" ">
+          <input type="email" id="email" name="email" required maxlength="150" autocomplete="email" placeholder=" ">
           <label for="email">כתובת מייל *</label>
         </div>
         <div class="field">
-          <input type="tel" id="phone" name="phone" required placeholder=" ">
+          <input type="tel" id="phone" name="phone" required maxlength="30" autocomplete="tel" placeholder=" ">
           <label for="phone">מספר טלפון *</label>
         </div>
         <div class="field">
-          <textarea id="about" name="about" rows="4" placeholder=" "></textarea>
+          <textarea id="about" name="about" rows="4" maxlength="2000" placeholder=" "></textarea>
           <label for="about">ספרו לנו קצת על עצמכם</label>
         </div>
         <button type="submit" class="submit-btn magnetic" id="submitBtn">
@@ -857,29 +871,30 @@ section{padding:120px 0;position:relative}
 
 /* ===== CONFIG ===== */
 const WEBHOOK_URL = "https://hook.us2.make.com/wg072f1vfo6vkxfhac9863wjdsqthspp";
+/* All logos are self-hosted under assets/logos/ so the page makes zero
+   third-party requests. Anything without a file falls back to a lettermark. */
 const PLATFORMS = [
-  { name:"Make.com", domain:"make.com" },
-  { name:"WhatsApp", domain:"whatsapp.com" },
-  { name:"Airtable", domain:"airtable.com" },
-  { name:"Google Sheets", domain:"sheets.google.com", icon:"https://cdn.simpleicons.org/googlesheets" },
-  { name:"Google Calendar", domain:"calendar.google.com", icon:"https://cdn.simpleicons.org/googlecalendar" },
-  { name:"Fillout", domain:"fillout.com" },
-  { name:"ManyChat", domain:"manychat.com" },
-  { name:"Green API", domain:"green-api.com" },
-  { name:"SendPulse", domain:"sendpulse.com" },
-  { name:"n8n", domain:"n8n.io" },
-  { name:"ChatGPT", domain:"openai.com" },
-  { name:"Claude AI", domain:"anthropic.com" },
-  { name:"Lovable", domain:"lovable.dev" },
-  { name:"Monday", domain:"monday.com" },
-  { name:"Heyy", domain:"heyy.io" },
-  { name:"Looker Studio", domain:"lookerstudio.google.com", icon:"https://cdn.simpleicons.org/looker" },
-  { name:"Cal.com", domain:"cal.com" },
-  { name:"Facebook", domain:"facebook.com" }
+  { name:"Make.com", icon:"make.svg" },
+  { name:"WhatsApp", icon:"whatsapp.svg" },
+  { name:"Airtable", icon:"airtable.svg" },
+  { name:"Google Sheets", icon:"googlesheets.svg" },
+  { name:"Google Calendar", icon:"googlecalendar.svg" },
+  { name:"Fillout", icon:"fillout.svg" },
+  { name:"ManyChat", icon:"manychat.png" },
+  { name:"Green API", icon:"greenapi.png" },
+  { name:"SendPulse", icon:"sendpulse.png" },
+  { name:"n8n", icon:"n8n.svg" },
+  { name:"ChatGPT", icon:"openai.png" },
+  { name:"Claude AI", icon:"claude.svg" },
+  { name:"Lovable", icon:"lovable.png" },
+  { name:"Monday", icon:"monday.png" },
+  { name:"Heyy", icon:"heyy.png" },
+  { name:"Looker Studio", icon:"looker.svg" },
+  { name:"Cal.com", icon:"caldotcom.svg" },
+  { name:"Facebook", icon:"facebook.svg" }
 ];
 const isTouch = window.matchMedia('(hover: none), (pointer: coarse)').matches;
-function logoUrlPrimary(p){ return p.icon || ('https://logo.clearbit.com/'+p.domain+'?size=128'); }
-function logoUrlFallback(domain){ return 'https://www.google.com/s2/favicons?sz=128&domain='+domain; }
+function logoUrl(p){ return 'assets/logos/' + p.icon; }
 
 /* ===== 1. CURTAIN ===== */
 var curtainOpened = false;
@@ -982,11 +997,7 @@ function resizeCanvas(){
 function initParticles(){
   particles = PLATFORMS.map(function(p){
     const img = new Image();
-    img.src = logoUrlPrimary(p);
-    img.onerror = function(){
-      img.onerror = null;
-      img.src = logoUrlFallback(p.domain);
-    };
+    img.src = logoUrl(p);
     return {
       name:p.name,
       img:img,
@@ -1106,14 +1117,9 @@ function buildMarquee(rowEl){
     const card = document.createElement('div');
     card.className='logo-card';
     const img = document.createElement('img');
-    img.src = logoUrlPrimary(p);
+    img.src = logoUrl(p);
     img.alt = p.name;
     img.onerror = function(){
-      if (!img.dataset.triedFallback) {
-        img.dataset.triedFallback = '1';
-        img.src = logoUrlFallback(p.domain);
-        return;
-      }
       const fb = document.createElement('div');
       fb.className='logo-fallback';
       fb.textContent = p.name[0];
@@ -1259,14 +1265,60 @@ submitBtn.addEventListener('click', function(e){
   setTimeout(function(){ ripple.remove(); }, 650);
 });
 
+/* ===== FORM ABUSE PROTECTION =====
+   These checks stop naive bots and malformed payloads. They run in the browser
+   and are therefore bypassable by anyone reading this source — real enforcement
+   lives server-side (Turnstile + rate limiting at the Worker). Defence in depth,
+   not the last line of defence. */
+const FORM_LOADED_AT = Date.now();
+const MIN_FILL_MS = 3000;      // humans take longer than 3s to fill this form
+const RESUBMIT_COOLDOWN_MS = 60000;
+const LIMITS = { name:100, email:150, phone:30, about:2000 };
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/;
+const PHONE_RE = /^[0-9+()\-\s]{7,30}$/;
+
+const errorMsgText = errorMsg.querySelector('p');
+function showFormError(msg){
+  // textContent, never innerHTML — these strings must never be parsed as markup.
+  errorMsgText.textContent = '❌ ' + msg;
+  errorMsg.style.display = 'block';
+}
+
+function lastSubmitAt(){
+  try { return parseInt(sessionStorage.getItem('ez_last_submit') || '0', 10); }
+  catch(_){ return 0; }
+}
+function markSubmitted(){
+  try { sessionStorage.setItem('ez_last_submit', String(Date.now())); } catch(_){}
+}
+
 leadForm.addEventListener('submit', function(e){
   e.preventDefault();
   errorMsg.style.display = 'none';
-  const name = document.getElementById('name').value.trim();
+
+  // 1. Honeypot — only a bot fills this. Fail silently so it learns nothing.
+  if (document.getElementById('company_website').value !== '') return;
+
+  // 2. Timing — submitted implausibly fast.
+  if (Date.now() - FORM_LOADED_AT < MIN_FILL_MS) return;
+
+  // 3. Client-side rate limit.
+  if (Date.now() - lastSubmitAt() < RESUBMIT_COOLDOWN_MS) {
+    showFormError('כבר קיבלנו את הפנייה שלכם. נחזור אליכם בהקדם.');
+    return;
+  }
+
+  const name  = document.getElementById('name').value.trim();
   const email = document.getElementById('email').value.trim();
   const phone = document.getElementById('phone').value.trim();
   const about = document.getElementById('about').value.trim();
-  if(!name || !email || !phone) return;
+
+  // 4. Validation.
+  if (!name || !email || !phone) { showFormError('נא למלא שם, מייל וטלפון.'); return; }
+  if (name.length  > LIMITS.name)  { showFormError('השם ארוך מדי.'); return; }
+  if (email.length > LIMITS.email || !EMAIL_RE.test(email)) { showFormError('כתובת המייל אינה תקינה.'); return; }
+  if (phone.length > LIMITS.phone || !PHONE_RE.test(phone)) { showFormError('מספר הטלפון אינו תקין.'); return; }
+  if (about.length > LIMITS.about) { showFormError('הטקסט ארוך מדי.'); return; }
 
   submitBtn.disabled = true;
   submitText.innerHTML = 'שולח...<span class="spinner"></span>';
@@ -1280,13 +1332,14 @@ leadForm.addEventListener('submit', function(e){
     })
   }).then(function(res){
     if(res.ok){
+      markSubmitted();
       leadForm.style.display='none';
       successMsg.style.display='block';
     } else {
       throw new Error('bad status');
     }
   }).catch(function(){
-    errorMsg.style.display='block';
+    showFormError('משהו השתבש. נסו שוב או פנו אלינו בוואטסאפ.');
     submitBtn.disabled = false;
     submitText.textContent = 'לשיחת ייעוץ בחינם ←';
   });
