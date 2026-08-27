@@ -14,7 +14,7 @@
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; frame-src 'none'; form-action 'none'; script-src 'sha256-6EQRsXCwK4I/XoA8b132lCL3OPoFJ0j+7AwGF4QTHzA='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://hook.us2.make.com">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; frame-src 'none'; form-action 'none'; script-src 'sha256-UC36a7yiT8yqAVTfPGPJDez0uuXPrmszWvMdwbaPvxI='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://hook.us2.make.com; upgrade-insecure-requests">
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/heebo-hebrew.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/heebo-latin.woff2" crossorigin>
 <style>
@@ -523,6 +523,13 @@ section{padding:120px 0;position:relative}
 .form-msg.success{background:var(--green-100);border:1px solid var(--green-400)}
 .form-msg.error{background:#fef2f2;border:1px solid #f87171;margin-top:16px}
 .form-msg .icon{font-size:48px;animation:bounceIn 0.6s var(--ease) forwards}
+/* Rescue link shown when a submission fails, so the lead is not lost */
+.wa-fallback-btn{
+  display:inline-block;margin-top:16px;padding:14px 28px;border-radius:50px;
+  background:#25d366;color:#fff;font-weight:700;font-size:16px;text-decoration:none;
+  box-shadow:0 4px 14px rgba(37,211,102,0.35);transition:transform .2s var(--ease),box-shadow .2s var(--ease)
+}
+.wa-fallback-btn:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(37,211,102,0.45)}
 .form-msg.success p{color:var(--green-700);font-size:20px;font-weight:700;margin-top:12px}
 .form-msg.error p{color:#b91c1c;font-size:16px;font-weight:600}
 
@@ -868,6 +875,22 @@ section{padding:120px 0;position:relative}
 <script>
 (function(){
 'use strict';
+
+/* ===== CLICKJACKING DEFENCE =====
+   The real fix is a frame-ancestors / X-Frame-Options header, but GitHub Pages
+   cannot send headers and browsers ignore frame-ancestors in a meta tag. Until
+   the site sits behind Cloudflare this frame-buster is the only defence
+   available. A sandboxed iframe can neutralise it, so treat it as a speed bump,
+   not a guarantee. */
+try {
+  if (window.top !== window.self) {
+    window.top.location = window.self.location;
+  }
+} catch (_) {
+  // Cross-origin parent: we cannot read or redirect it. Hide the content so the
+  // page cannot be used as a convincing overlay.
+  document.documentElement.style.display = 'none';
+}
 
 /* ===== CONFIG ===== */
 const WEBHOOK_URL = "https://hook.us2.make.com/wg072f1vfo6vkxfhac9863wjdsqthspp";
@@ -1282,6 +1305,36 @@ function showFormError(msg){
   // textContent, never innerHTML — these strings must never be parsed as markup.
   errorMsgText.textContent = '❌ ' + msg;
   errorMsg.style.display = 'block';
+  hideWhatsAppFallback();
+}
+
+/* If the submission itself fails, the lead is otherwise lost: the visitor sees
+   an error and leaves. Offer WhatsApp with their details already filled in so a
+   failed send still converts. Built with createElement + textContent, never
+   innerHTML, so the user's own input can never be parsed as markup. */
+const WA_NUMBER = '972552716456';
+let waFallbackEl = null;
+
+function hideWhatsAppFallback(){
+  if (waFallbackEl) { waFallbackEl.remove(); waFallbackEl = null; }
+}
+
+function showWhatsAppFallback(details){
+  hideWhatsAppFallback();
+  const msg = 'אהלן בניה, ניסיתי לשלוח טופס באתר והוא לא נשלח.\n\n'
+    + 'שם: ' + details.name + '\n'
+    + 'מייל: ' + details.email + '\n'
+    + 'טלפון: ' + details.phone
+    + (details.about ? '\n\n' + details.about : '');
+
+  const a = document.createElement('a');
+  a.href = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(msg);
+  a.target = '_blank';
+  a.rel = 'noopener noreferrer';
+  a.className = 'wa-fallback-btn';
+  a.textContent = 'שלחו לנו בוואטסאפ במקום ←';
+  errorMsg.appendChild(a);
+  waFallbackEl = a;
 }
 
 function lastSubmitAt(){
@@ -1339,7 +1392,8 @@ leadForm.addEventListener('submit', function(e){
       throw new Error('bad status');
     }
   }).catch(function(){
-    showFormError('משהו השתבש. נסו שוב או פנו אלינו בוואטסאפ.');
+    showFormError('משהו השתבש בשליחה. אל תוותרו — אפשר לשלוח לנו ישירות:');
+    showWhatsAppFallback({ name:name, email:email, phone:phone, about:about });
     submitBtn.disabled = false;
     submitText.textContent = 'לשיחת ייעוץ בחינם ←';
   });
