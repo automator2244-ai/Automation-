@@ -23,9 +23,9 @@
      by sha256, so editing that script would invalidate the hash and disable all
      JavaScript. Editing a meta tag does not touch the script, so the hash
      stays valid and these are safe to change by hand. -->
-<meta name="ez-worker-url" content="">
-<meta name="ez-turnstile-sitekey" content="">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; form-action 'none'; script-src 'sha256-ZlP7D0RHqKwTW+Tg2gjLeS7byUkj8DPEkLOrBycG43c=' https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://hook.us2.make.com https://*.workers.dev https://challenges.cloudflare.com; upgrade-insecure-requests">
+<meta name="ez-worker-url" content="https://ezpath-lead-proxy.automator2244.workers.dev/">
+<meta name="ez-turnstile-sitekey" content="0x4AAAAAAEsrvKKxyKrVFCeI">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; form-action 'none'; script-src 'sha256-bDIzBrOVk8WnG6HaqVqGw0ol1+k12fxPDLAsSHU73n0=' https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://ezpath-lead-proxy.automator2244.workers.dev https://challenges.cloudflare.com; upgrade-insecure-requests">
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/heebo-hebrew.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/heebo-latin.woff2" crossorigin>
 <style>
@@ -906,22 +906,22 @@ try {
   document.documentElement.style.display = 'none';
 }
 
-/* ===== CONFIG ===== */
-/* Direct Make webhook. Used only while the Worker is not yet configured; once
-   WORKER_URL is set this is never contacted from the browser and the address
-   can be removed from this file entirely. */
-const WEBHOOK_URL = "https://hook.us2.make.com/wg072f1vfo6vkxfhac9863wjdsqthspp";
-
+/* ===== CONFIG =====
+   The form posts to the Cloudflare Worker, never to Make directly. The Make
+   webhook URL lives only in the Worker's encrypted secrets and deliberately
+   does not appear anywhere in this file — that is the whole point of the proxy.
+   Both values below are public by design: the sitekey has to reach the browser
+   for Turnstile to render, and the Worker rejects any request whose Origin is
+   not this site. */
 function metaContent(name){
   const el = document.querySelector('meta[name="' + name + '"]');
   return el ? el.content.trim() : '';
 }
-const WORKER_URL = metaContent('ez-worker-url');
+const POST_URL = metaContent('ez-worker-url');
 const TURNSTILE_SITEKEY = metaContent('ez-turnstile-sitekey');
-/* Both must be present. A Worker without a sitekey would reject every
-   submission for a missing token, which is worse than not using it at all. */
-const SECURE_MODE = !!(WORKER_URL && TURNSTILE_SITEKEY);
-const POST_URL = SECURE_MODE ? WORKER_URL : WEBHOOK_URL;
+/* Both are required. Rather than silently falling back to an unprotected path,
+   a missing value disables the form and says so — failing closed. */
+const SECURE_MODE = !!(POST_URL && TURNSTILE_SITEKEY);
 /* All logos are self-hosted under assets/logos/ so the page makes zero
    third-party requests. Anything without a file falls back to a lettermark. */
 const PLATFORMS = [
@@ -1440,9 +1440,16 @@ leadForm.addEventListener('submit', function(e){
   if (phone.length > LIMITS.phone || !PHONE_RE.test(phone)) { showFormError('מספר הטלפון אינו תקין.'); return; }
   if (about.length > LIMITS.about) { showFormError('הטקסט ארוך מדי.'); return; }
 
-  // 5. Turnstile — only enforced in secure mode.
+  // 5. Fail closed: without config there is no protected path to submit to.
+  if (!SECURE_MODE) {
+    showFormError('הטופס אינו זמין כרגע. אפשר לפנות אלינו ישירות:');
+    showWhatsAppFallback({ name:name, email:email, phone:phone, about:about });
+    return;
+  }
+
+  // 6. Turnstile token must be present before we send anything.
   const token = turnstileToken();
-  if (SECURE_MODE && !token) {
+  if (!token) {
     showFormError('נא להשלים את אימות האבטחה מעל הכפתור.');
     return;
   }
@@ -1452,9 +1459,9 @@ leadForm.addEventListener('submit', function(e){
 
   const payload = {
     name:name, email:email, phone:phone, about:about,
-    source:'landing_page', timestamp:new Date().toISOString()
+    source:'landing_page', timestamp:new Date().toISOString(),
+    turnstile_token: token
   };
-  if (SECURE_MODE) payload.turnstile_token = token;
 
   fetch(POST_URL, {
     method:'POST',
