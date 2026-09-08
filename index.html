@@ -14,7 +14,18 @@
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; frame-src 'none'; form-action 'none'; script-src 'sha256-UC36a7yiT8yqAVTfPGPJDez0uuXPrmszWvMdwbaPvxI='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://hook.us2.make.com; upgrade-insecure-requests">
+<!-- ===== SECURE SUBMISSION CONFIG =====
+     Fill BOTH values to route the form through the Cloudflare Worker with a
+     Turnstile challenge. While either is empty the form posts straight to Make,
+     exactly as before, so the page is never broken by a half-finished setup.
+
+     These live in meta tags on purpose: the CSP pins the page's inline script
+     by sha256, so editing that script would invalidate the hash and disable all
+     JavaScript. Editing a meta tag does not touch the script, so the hash
+     stays valid and these are safe to change by hand. -->
+<meta name="ez-worker-url" content="">
+<meta name="ez-turnstile-sitekey" content="">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; form-action 'none'; script-src 'sha256-ZlP7D0RHqKwTW+Tg2gjLeS7byUkj8DPEkLOrBycG43c=' https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://hook.us2.make.com https://*.workers.dev https://challenges.cloudflare.com; upgrade-insecure-requests">
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/heebo-hebrew.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/heebo-latin.woff2" crossorigin>
 <style>
@@ -523,6 +534,7 @@ section{padding:120px 0;position:relative}
 .form-msg.success{background:var(--green-100);border:1px solid var(--green-400)}
 .form-msg.error{background:#fef2f2;border:1px solid #f87171;margin-top:16px}
 .form-msg .icon{font-size:48px;animation:bounceIn 0.6s var(--ease) forwards}
+.turnstile-box{display:flex;justify-content:center;margin-bottom:20px;min-height:65px}
 /* Rescue link shown when a submission fails, so the lead is not lost */
 .wa-fallback-btn{
   display:inline-block;margin-top:16px;padding:14px 28px;border-radius:50px;
@@ -836,6 +848,8 @@ section{padding:120px 0;position:relative}
           <textarea id="about" name="about" rows="4" maxlength="2000" placeholder=" "></textarea>
           <label for="about">ספרו לנו קצת על עצמכם</label>
         </div>
+        <!-- Turnstile mounts here only when both config meta tags are filled -->
+        <div id="turnstileBox" class="turnstile-box" hidden></div>
         <button type="submit" class="submit-btn magnetic" id="submitBtn">
           <span id="submitText">לשיחת ייעוץ בחינם ←</span>
         </button>
@@ -893,7 +907,21 @@ try {
 }
 
 /* ===== CONFIG ===== */
+/* Direct Make webhook. Used only while the Worker is not yet configured; once
+   WORKER_URL is set this is never contacted from the browser and the address
+   can be removed from this file entirely. */
 const WEBHOOK_URL = "https://hook.us2.make.com/wg072f1vfo6vkxfhac9863wjdsqthspp";
+
+function metaContent(name){
+  const el = document.querySelector('meta[name="' + name + '"]');
+  return el ? el.content.trim() : '';
+}
+const WORKER_URL = metaContent('ez-worker-url');
+const TURNSTILE_SITEKEY = metaContent('ez-turnstile-sitekey');
+/* Both must be present. A Worker without a sitekey would reject every
+   submission for a missing token, which is worse than not using it at all. */
+const SECURE_MODE = !!(WORKER_URL && TURNSTILE_SITEKEY);
+const POST_URL = SECURE_MODE ? WORKER_URL : WEBHOOK_URL;
 /* All logos are self-hosted under assets/logos/ so the page makes zero
    third-party requests. Anything without a file falls back to a lettermark. */
 const PLATFORMS = [
@@ -1293,6 +1321,45 @@ submitBtn.addEventListener('click', function(e){
    and are therefore bypassable by anyone reading this source — real enforcement
    lives server-side (Turnstile + rate limiting at the Worker). Defence in depth,
    not the last line of defence. */
+/* ===== TURNSTILE =====
+   Loaded only in secure mode, so the default page still makes zero third-party
+   requests. The widget renders explicitly (not auto) so the token lands in a
+   variable we control rather than a hidden input. */
+let turnstileWidgetId = null;
+let turnstileReady = false;
+
+function loadTurnstile(){
+  if (!SECURE_MODE) return;
+  const box = document.getElementById('turnstileBox');
+  box.hidden = false;
+
+  window.onTurnstileLoad = function(){
+    turnstileWidgetId = window.turnstile.render(box, {
+      sitekey: TURNSTILE_SITEKEY,
+      language: 'he',
+      callback: function(){ turnstileReady = true; },
+      'expired-callback': function(){ turnstileReady = false; },
+      'error-callback': function(){ turnstileReady = false; }
+    });
+  };
+
+  const s = document.createElement('script');
+  s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onTurnstileLoad&render=explicit';
+  s.async = true; s.defer = true;
+  document.head.appendChild(s);
+}
+loadTurnstile();
+
+function turnstileToken(){
+  if (!SECURE_MODE || !window.turnstile || turnstileWidgetId === null) return '';
+  try { return window.turnstile.getResponse(turnstileWidgetId) || ''; }
+  catch (_) { return ''; }
+}
+function resetTurnstile(){
+  if (!SECURE_MODE || !window.turnstile || turnstileWidgetId === null) return;
+  try { window.turnstile.reset(turnstileWidgetId); turnstileReady = false; } catch (_) {}
+}
+
 const FORM_LOADED_AT = Date.now();
 const MIN_FILL_MS = 3000;      // humans take longer than 3s to fill this form
 const RESUBMIT_COOLDOWN_MS = 60000;
@@ -1373,16 +1440,26 @@ leadForm.addEventListener('submit', function(e){
   if (phone.length > LIMITS.phone || !PHONE_RE.test(phone)) { showFormError('מספר הטלפון אינו תקין.'); return; }
   if (about.length > LIMITS.about) { showFormError('הטקסט ארוך מדי.'); return; }
 
+  // 5. Turnstile — only enforced in secure mode.
+  const token = turnstileToken();
+  if (SECURE_MODE && !token) {
+    showFormError('נא להשלים את אימות האבטחה מעל הכפתור.');
+    return;
+  }
+
   submitBtn.disabled = true;
   submitText.innerHTML = 'שולח...<span class="spinner"></span>';
 
-  fetch(WEBHOOK_URL, {
+  const payload = {
+    name:name, email:email, phone:phone, about:about,
+    source:'landing_page', timestamp:new Date().toISOString()
+  };
+  if (SECURE_MODE) payload.turnstile_token = token;
+
+  fetch(POST_URL, {
     method:'POST',
     headers:{'Content-Type':'application/json'},
-    body: JSON.stringify({
-      name:name, email:email, phone:phone, about:about,
-      source:'landing_page', timestamp:new Date().toISOString()
-    })
+    body: JSON.stringify(payload)
   }).then(function(res){
     if(res.ok){
       markSubmitted();
@@ -1392,6 +1469,8 @@ leadForm.addEventListener('submit', function(e){
       throw new Error('bad status');
     }
   }).catch(function(){
+    // A Turnstile token is single-use; it must be reset before a retry.
+    resetTurnstile();
     showFormError('משהו השתבש בשליחה. אל תוותרו — אפשר לשלוח לנו ישירות:');
     showWhatsAppFallback({ name:name, email:email, phone:phone, about:about });
     submitBtn.disabled = false;
