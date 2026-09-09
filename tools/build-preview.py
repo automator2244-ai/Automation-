@@ -65,7 +65,22 @@ def main() -> int:
         "function logoUrl(p){ return LOGO_DATA[p.icon] || ''; }",
     )
 
-    # 5. Turnstile cannot load under the Artifact CSP — show its footprint instead
+    # 5. The page's clickjacking guard must not run here.
+    #    Artifacts render inside an iframe, so the guard sees window.top !== self,
+    #    fails to break out cross-origin, and hides the document — blanking the
+    #    whole preview. It stays in index.html, where being framed really is
+    #    hostile; this preview is framed on purpose.
+    guard = re.search(
+        r"/\* ===== CLICKJACKING DEFENCE =====.*?\n\}\n", html, flags=re.S)
+    assert guard, "clickjacking block not found — has index.html changed shape?"
+    html = html.replace(
+        guard.group(0),
+        "/* Clickjacking guard removed for the preview: an Artifact is framed by\n"
+        "   design, and the guard would hide the document. It remains in the\n"
+        "   shipping page. */\n",
+    )
+
+    # 6. Turnstile cannot load under the Artifact CSP — show its footprint instead
     html = html.replace(
         '<div id="turnstileBox" class="turnstile-box" hidden></div>',
         '<div id="turnstileBox" class="turnstile-box">'
@@ -80,6 +95,9 @@ def main() -> int:
     assert "'assets/logos/' +" not in html, "the runtime logo path survived"
     assert 'src="assets/' not in html, "an asset src survived"
     assert 'src="bnaya.jpg"' not in html, "the photo reference survived"
+    # The failure this guards against is silent and total: a blank preview.
+    assert "window.top !== window.self" not in html, "the clickjacking guard survived"
+    assert "documentElement.style.display = 'none'" not in html, "the hide-document fallback survived"
 
     OUT.write_text(html, encoding="utf-8")
     print(f"wrote {OUT.name}  ({OUT.stat().st_size/1024:.0f} KB, {len(logos)} logos inlined)")
