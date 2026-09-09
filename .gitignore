@@ -1,0 +1,5 @@
+# Design skill installed for local use only. Must never be committed: with
+# .nojekyll in place GitHub Pages would serve these files on the live site.
+.agents/
+.claude/
+skills-lock.json
