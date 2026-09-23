@@ -76,7 +76,7 @@
     </div>
 
     <div class="tcarousel" id="tcarousel" role="region" aria-roledescription="carousel" aria-label="סרטוני המלצות">
-      <button class="tc-arrow tc-prev" type="button" aria-label="הסרטון הקודם">‹</button>
+      <button class="tc-arrow tc-left" type="button" aria-label="לסרטון שמשמאל">‹</button>
       <div class="tc-track">
         <!-- כדי להוסיף סרטון: להעתיק בלוק figure אחד, לשנות את הקבצים והשם. אין צורך לגעת בסקריפט. -->
         <figure class="tc-item">
@@ -87,7 +87,7 @@
         <figure class="tc-item"> ...testimonial-2... </figure>
         <figure class="tc-item"> ...testimonial-3... </figure>
       </div>
-      <button class="tc-arrow tc-next" type="button" aria-label="הסרטון הבא">›</button>
+      <button class="tc-arrow tc-right" type="button" aria-label="לסרטון שמימין">›</button>
       <div class="tc-dots" aria-hidden="true"></div>
     </div>
   </div>
