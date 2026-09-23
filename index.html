@@ -25,7 +25,7 @@
      stays valid and these are safe to change by hand. -->
 <meta name="ez-worker-url" content="https://ezpath-lead-proxy.automator2244.workers.dev/">
 <meta name="ez-turnstile-sitekey" content="0x4AAAAAAEsrvKKxyKrVFCeI">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; form-action 'none'; script-src 'sha256-bDIzBrOVk8WnG6HaqVqGw0ol1+k12fxPDLAsSHU73n0=' https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://ezpath-lead-proxy.automator2244.workers.dev https://challenges.cloudflare.com; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; form-action 'none'; script-src 'sha256-zJk8ECF5c+oI8BuxwztJhFWn0Pmw1qwYlDapxrIdG+Y=' https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://ezpath-lead-proxy.automator2244.workers.dev https://challenges.cloudflare.com; upgrade-insecure-requests">
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/heebo-hebrew.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/heebo-latin.woff2" crossorigin>
 <style>
@@ -631,7 +631,7 @@ section{padding:120px 0;position:relative}
     <div class="hero-tags">
       <span class="pill">⚙️ Make.com מומחה</span>
       <span class="pill">🤖 סוכני AI</span>
-      <span class="pill">📱 WhatsApp אוטומציה</span>
+      <span class="pill">📱 אוטומציות וואטסאפ</span>
     </div>
   </div>
   <div class="scroll-indicator" id="scrollIndicator">גללו<br>↓</div>
@@ -659,16 +659,16 @@ section{padding:120px 0;position:relative}
     <div class="services-grid">
       <div class="service-card" style="animation-delay:0s">
         <div class="reveal-bg"></div>
-        <div class="service-icon">🔄</div>
-        <h3>אוטומציית תהליכים</h3>
-        <p>חיבור בין מערכות, שליחת מסמכים אוטומטית, עדכוני סטטוס ללא מגע יד אדם</p>
+        <div class="service-icon">📊</div>
+        <h3>דשבורד לניהול העסק</h3>
+        <p>כל נתוני העסק במסך אחד: הכנסות, לידים ומשימות בזמן אמת, עם תובנות AI שעוזרות לכם לקבל החלטות נכונות</p>
       </div>
       <div class="service-card" style="animation-delay:0.1s">
         <div class="reveal-bg"></div>
         <span class="badge-hot">⭐ הכי מבוקש</span>
         <div class="service-icon">💬</div>
-        <h3>אוטומציית WhatsApp</h3>
-        <p>מענה מיידי 24/7, מסעות לקוח מותאמים אישית, הודעות דינמיות</p>
+        <h3>אוטומציות וואטסאפ</h3>
+        <p>מענה מיידי 24/7, מסעות לקוח מותאמים אישית, חיבור ישיר ל-CRM</p>
       </div>
       <div class="service-card" style="animation-delay:0.2s">
         <div class="reveal-bg"></div>
@@ -873,7 +873,7 @@ section{padding:120px 0;position:relative}
     <div class="footer-logo eng">EZ.Path.AI</div>
     <div class="footer-contact">
       <a href="tel:0552716456">📞 0552716456</a>
-      <a href="mailto:EZ.Path.AI@outlook.co.il">✉️ EZ.Path.AI@outlook.co.il</a>
+      <!--email_off--><a href="mailto:EZ.Path.AI@outlook.co.il">✉️ EZ.Path.AI@outlook.co.il</a><!--/email_off-->
     </div>
   </div>
 </footer>
@@ -1217,7 +1217,7 @@ const counterObserver = new IntersectionObserver(function(entries){
   entries.forEach(function(entry){
     if(entry.isIntersecting && !counterDone){
       counterDone = true;
-      const target = 12, duration = 2500, start = performance.now();
+      const target = 30, duration = 2500, start = performance.now();
       function tick(now){
         const t = Math.min(1, (now-start)/duration);
         const eased = 1 - Math.pow(1-t, 3);
