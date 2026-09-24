@@ -479,7 +479,7 @@ section{padding:120px 0;position:relative}
 .testimonials{background:#fff;overflow:hidden}
 .tcarousel{--tc-w:300px;position:relative;max-width:920px;margin:0 auto}
 .tc-track{
-  position:relative;height:calc(var(--tc-w) * 16 / 9 + 70px);
+  position:relative;height:calc(var(--tc-w) * 16 / 9 + 76px);
   touch-action:pan-y;user-select:none;-webkit-user-select:none;
 }
 .tc-item{
@@ -494,18 +494,17 @@ section{padding:120px 0;position:relative}
   transition:border-color 0.6s var(--ease),box-shadow 0.6s var(--ease);
 }
 .tc-media video{display:block;width:100%;height:100%;object-fit:cover;background:#000}
-.tc-placeholder{
-  width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;
-  background:linear-gradient(160deg,var(--green-100) 0%,var(--green-50) 100%);
-  color:var(--green-700);font-weight:700;font-size:17px;text-align:center;padding:24px;
-}
-.tc-placeholder span{font-size:54px;line-height:1}
 .tc-item figcaption{
-  margin-top:14px;text-align:center;opacity:0;transition:opacity 0.4s var(--ease);
-  display:flex;flex-direction:column;gap:2px;
+  margin-top:14px;opacity:0;transition:opacity 0.4s var(--ease);
+  display:flex;align-items:center;justify-content:center;gap:12px;
 }
-.tc-item figcaption strong{font-size:17px;color:var(--text-main)}
-.tc-item figcaption span{font-size:14px;color:var(--text-muted)}
+.tc-logo{
+  width:44px;height:44px;flex:none;border-radius:50%;object-fit:contain;
+  background:#fff;border:1px solid var(--green-200);padding:4px;
+}
+.tc-who{display:flex;flex-direction:column;gap:2px;text-align:right}
+.tc-who strong{font-size:17px;color:var(--text-main)}
+.tc-who span{font-size:14px;color:var(--text-muted)}
 .tc-item.is-center{transform:translateX(0) scale(1);opacity:1;z-index:3;pointer-events:auto}
 .tc-item.is-center .tc-media{
   border-color:var(--green-500);
@@ -899,26 +898,43 @@ section{padding:120px 0;position:relative}
     <div class="tcarousel" id="tcarousel" role="region" aria-roledescription="carousel" aria-label="סרטוני המלצות">
       <button class="tc-arrow tc-left" type="button" aria-label="לסרטון שמשמאל"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 5 8 12 15 19"></polyline></svg></button>
       <div class="tc-track">
-        <!-- הוספת סרטון: להעתיק בלוק figure אחד ולעדכן קבצים, שם ועסק. אין צורך לגעת בסקריפט.
-             כשהסרטון מגיע, מחליפים את ה-div של tc-placeholder בשורה:
-             <video src="assets/videos/testimonial-1.mp4" poster="assets/videos/testimonial-1.jpg" preload="none" playsinline controls></video> -->
+        <!-- הסדר כאן קובע את הגלריה: הראשון במרכז, השני מימין, האחרון משמאל.
+             הוספת סרטון: להעתיק בלוק figure אחד ולעדכן קבצים, שם, תפקיד ולוגו. אין צורך לגעת בסקריפט. -->
         <figure class="tc-item">
           <div class="tc-media">
-            <div class="tc-placeholder"><span>🎬</span>סרטון המלצה בקרוב</div>
+            <video src="assets/videos/testimonial-1.mp4" poster="assets/videos/testimonial-1.jpg" preload="none" playsinline controls></video>
           </div>
-          <figcaption><strong>לקוח 1</strong><span>שם העסק</span></figcaption>
+          <figcaption>
+            <img class="tc-logo" src="assets/logos/clients/alon-harmonica.png" alt="לוגו לומדים מפוחית עם אלון" width="44" height="44" loading="lazy">
+            <span class="tc-who"><strong>אלון קופרברג</strong><span>לומדים מפוחית עם אלון</span></span>
+          </figcaption>
         </figure>
         <figure class="tc-item">
           <div class="tc-media">
-            <div class="tc-placeholder"><span>🎬</span>סרטון המלצה בקרוב</div>
+            <video src="assets/videos/testimonial-2.mp4" poster="assets/videos/testimonial-2.jpg" preload="none" playsinline controls></video>
           </div>
-          <figcaption><strong>לקוח 2</strong><span>שם העסק</span></figcaption>
+          <figcaption>
+            <img class="tc-logo" src="assets/logos/clients/yahdav.png" alt="לוגו ארגון הנוער יחדיו" width="44" height="44" loading="lazy">
+            <span class="tc-who"><strong>קובי</strong><span>מנכ"ל ארגון הנוער יחדיו</span></span>
+          </figcaption>
         </figure>
         <figure class="tc-item">
           <div class="tc-media">
-            <div class="tc-placeholder"><span>🎬</span>סרטון המלצה בקרוב</div>
+            <video src="assets/videos/testimonial-3.mp4" poster="assets/videos/testimonial-3.jpg" preload="none" playsinline controls></video>
           </div>
-          <figcaption><strong>לקוח 3</strong><span>שם העסק</span></figcaption>
+          <figcaption>
+            <img class="tc-logo" src="assets/logos/clients/dj-opa.jpg" alt="לוגו DJ OPA" width="44" height="44" loading="lazy">
+            <span class="tc-who"><strong>אורי הולנדר</strong><span>DJ OPA</span></span>
+          </figcaption>
+        </figure>
+        <figure class="tc-item">
+          <div class="tc-media">
+            <video src="assets/videos/testimonial-4.mp4" poster="assets/videos/testimonial-4.jpg" preload="none" playsinline controls></video>
+          </div>
+          <figcaption>
+            <img class="tc-logo" src="assets/logos/clients/reim.png" alt="לוגו עמותת רעים" width="44" height="44" loading="lazy">
+            <span class="tc-who"><strong>דולב סופר</strong><span>מנכ"ל עמותת רעים</span></span>
+          </figcaption>
         </figure>
       </div>
       <button class="tc-arrow tc-right" type="button" aria-label="לסרטון שמימין"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 5 16 12 9 19"></polyline></svg></button>
