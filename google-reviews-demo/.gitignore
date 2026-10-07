@@ -1,0 +1,5 @@
+out/work-*/
+out/.*hf-transaction*/
+snapshots/
+renders/
+node_modules/
