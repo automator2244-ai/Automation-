@@ -18,7 +18,9 @@ import re
 import sys
 from pathlib import Path
 
-HTML = Path(__file__).resolve().parent.parent / "index.html"
+ROOT = Path(__file__).resolve().parent.parent
+# Optional argument: another page in the repo root, e.g. chat-demo.html.
+HTML = ROOT / (sys.argv[1] if len(sys.argv) > 1 else "index.html")
 
 
 def main() -> int:
