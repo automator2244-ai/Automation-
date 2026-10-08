@@ -1,3 +1,8 @@
+---
+name: ezpath-design-language
+description: The EZ.Path.AI brand design language (שפה עיצובית לעסק) for Bnaya's business automation and AI agents studio. Use it whenever creating or styling anything for EZ.Path.AI or Bnaya, or when the user asks for something "לפי השפה העיצובית שלי" / "in my brand style": websites, landing pages, app screens, social posts, stories, reels, video graphics, presentations, quotes, documents or copy. Covers colors (green scale and gradients), Heebo and Space Grotesk typography, spacing, rounded shapes, green glow shadows, components, background atmosphere, motion, emoji icons, Hebrew RTL copy voice, format adaptations and copy-ready CSS tokens.
+---
+
 # שפה עיצובית לעסק
 
 **EZ.Path.AI · אוטומציות וסוכני AI לעסקים קטנים ובינוניים בישראל**
@@ -6,16 +11,18 @@
 
 ---
 
-## 0. הוראות שימוש ל-Claude
+## 0. איך להשתמש בסקיל
 
-כשמבקשים ממך לעצב משהו לפי המסמך הזה:
+כשמבקשים ממך לעצב או לכתוב משהו עבור EZ.Path.AI, עבור בניה, או "לפי השפה העיצובית שלי":
 
-1. **הצבעים, הפונטים, הפינות והצללים** לקוחים מהמסמך בלבד. לא ממציאים צבע חדש.
-2. **השפה היא עברית ו-RTL.** כל פריסה מתחילה מימין.
-3. **הטון בכתיבה:** פנייה ישירה בגוף שני רבים ("אתם", "שלכם"), בגובה העיניים, בלי ז'רגון טכני.
-4. **אסור להשתמש במקף ארוך** בשום טקסט. משתמשים בפסיק, נקודה או נקודתיים.
-5. **התחושה הכללית:** ירוק, בהיר, אוורירי, טכנולוגי אבל חם ואנושי. "פחות עבודה, יותר צמיחה".
-6. אם המבקש נותן הוראה שסותרת את המסמך, ההוראה שלו גוברת.
+1. **צבעים, פונטים, פינות וצללים** לקוחים מהמסמך הזה בלבד. לא ממציאים צבע חדש. הטוקנים המוכנים נמצאים בסעיף 12.
+2. **עברית ו-RTL.** כל פריסה מתחילה מימין (`dir="rtl"`, `lang="he"`).
+3. **טון:** פנייה ישירה בגוף שני רבים ("אתם", "שלכם"), בגובה העיניים, בלי ז'רגון טכני. ראו סעיף 9.
+4. **אסור מקף ארוך** בשום טקסט. משתמשים בפסיק, נקודה או נקודתיים.
+5. **התחושה:** ירוק, בהיר, אוורירי, טכנולוגי אבל חם ואנושי. "פחות עבודה, יותר צמיחה".
+6. **לפי סוג התוצר:** אתר או אפליקציה: סעיפים 2 עד 7 ו-12. פוסט, סטורי, מצגת, סרטון או מסמך: סעיף 11. כתיבה: סעיף 9.
+7. לפני מסירה עוברים על רשימת הבדיקה בסעיף 13.
+8. אם המשתמש נותן הוראה שסותרת את המסמך, ההוראה שלו גוברת.
 
 ---
 
