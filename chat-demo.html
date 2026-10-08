@@ -289,9 +289,9 @@ section{padding:120px 0;position:relative}
 .canvas-tooltip.show{opacity:1}
 
 /* ============ CHAT DEMO ============ */
-.chat-demo{background:var(--white);padding:110px 0;position:relative;overflow:hidden}
-.chat-demo .container{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr 0.95fr;gap:64px;align-items:center}
-.cd-text h2{font-size:52px;font-weight:900;line-height:1.15;margin-bottom:22px;letter-spacing:-0.01em}
+.chat-demo{margin-top:72px;position:relative}
+.cd-grid{display:grid;grid-template-columns:1.05fr 0.95fr;gap:64px;align-items:center}
+.cd-text h2{font-size:44px;font-weight:900;line-height:1.15;margin-bottom:22px;letter-spacing:-0.01em}
 .cd-text h2 .grad{background:var(--gradient);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .cd-text p{font-size:19px;line-height:1.7;color:var(--text-muted);max-width:56ch;margin-bottom:32px}
 .cd-scene{justify-self:center;width:100%;max-width:380px}
@@ -340,9 +340,9 @@ section{padding:120px 0;position:relative}
 @keyframes cdTyping{0%{opacity:0}15%{opacity:1}85%{opacity:1}100%{opacity:0}}
 @keyframes cdDot{0%,100%{opacity:0.3}50%{opacity:1}}
 @media(max-width:900px){
-  .chat-demo{padding:72px 0}
-  .chat-demo .container{grid-template-columns:1fr;gap:40px}
-  .cd-text h2{font-size:34px}
+  .chat-demo{margin-top:56px}
+  .cd-grid{grid-template-columns:1fr;gap:40px}
+  .cd-text h2{font-size:30px}
   .cd-text p{font-size:17px}
 }
 @media (prefers-reduced-motion: reduce){
@@ -771,45 +771,6 @@ section{padding:120px 0;position:relative}
   <div class="scroll-indicator" id="scrollIndicator">גללו<br>↓</div>
 </section>
 
-<!-- CHAT DEMO -->
-<section class="chat-demo" id="chatDemo">
-  <div class="ambient-blob" style="width:420px;height:420px;background:rgba(34,197,94,0.08);top:-120px;left:-120px;animation-duration:23s"></div>
-  <div class="container">
-    <div class="cd-text">
-      <h2>ליד כתב לכם ב-<span class="grad eng">23:47</span>. הוא קיבל תשובה תוך 4 שניות.</h2>
-      <p>סוכן AI עונה ללקוחות שלכם בוואטסאפ, קובע פגישות ומעדכן את המערכות שלכם. גם כשאתם ישנים, בפגישה או בחופש.</p>
-      <a href="#form" class="btn-primary magnetic">לשיחת ייעוץ בחינם ←</a>
-    </div>
-    <div class="cd-scene" role="img" aria-label="הדגמה: שיחת וואטסאפ שסוכן AI עונה עליה אוטומטית וקובע תור">
-      <div class="cd-phone">
-        <div class="cd-screen">
-          <div class="cd-head">
-            <div class="cd-avatar" aria-hidden="true">ע</div>
-            <div><strong>העסק שלכם</strong><span>וואטסאפ עסקי</span></div>
-          </div>
-          <div class="cd-chat">
-            <div class="cd-msg cd-in cd-d1">היי, ראיתי את המודעה. אפשר לקבוע תור לשבוע הבא?<time>23:47</time></div>
-            <div class="cd-slot">
-              <div class="cd-typing cd-d2" aria-hidden="true"><i></i><i></i><i></i></div>
-              <div class="cd-msg cd-out cd-d3">היי! בשמחה. יש מקום ביום שלישי ב-10:00 או ברביעי ב-16:30. מה מתאים לך?<time>23:47</time></div>
-            </div>
-            <div class="cd-msg cd-in cd-d4">שלישי ב-10 מעולה<time>23:48</time></div>
-            <div class="cd-slot">
-              <div class="cd-typing cd-d5" aria-hidden="true"><i></i><i></i><i></i></div>
-              <div class="cd-msg cd-out cd-d6">קבעתי לך לשלישי ב-10:00. תזכורת תגיע אליך יום לפני.<time>23:48</time></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <ul class="cd-log">
-        <li class="cd-d7">הפגישה נוספה ליומן</li>
-        <li class="cd-d8">הליד נרשם ב-CRM</li>
-        <li class="cd-d9">סיכום מחכה לכם בבוקר</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
 <!-- PLATFORMS -->
 <section class="platforms">
   <div class="platforms-title">עובדים עם הכלים שכבר יש לכם</div>
@@ -875,6 +836,43 @@ section{padding:120px 0;position:relative}
           <span>🧠 למידה מהעסק שלכם</span>
           <span>⚡ תגובה תוך שניות</span>
           <span>🔗 מחובר לכל המערכות</span>
+        </div>
+      </div>
+    </div>
+    <!-- CHAT DEMO: the AI agent card above, shown in action -->
+    <div class="chat-demo" id="chatDemo">
+      <div class="cd-grid">
+        <div class="cd-text">
+          <h2>ליד כתב לכם ב-<span class="grad eng">23:47</span>. הוא קיבל תשובה תוך 4 שניות.</h2>
+          <p>סוכן AI עונה ללקוחות שלכם בוואטסאפ, קובע פגישות ומעדכן את המערכות שלכם. גם כשאתם ישנים, בפגישה או בחופש.</p>
+          <a href="#form" class="btn-primary magnetic">לשיחת ייעוץ בחינם ←</a>
+        </div>
+        <div class="cd-scene" role="img" aria-label="הדגמה: שיחת וואטסאפ שסוכן AI עונה עליה אוטומטית וקובע תור">
+          <div class="cd-phone">
+            <div class="cd-screen">
+              <div class="cd-head">
+                <div class="cd-avatar" aria-hidden="true">ע</div>
+                <div><strong>העסק שלכם</strong><span>וואטסאפ עסקי</span></div>
+              </div>
+              <div class="cd-chat">
+                <div class="cd-msg cd-in cd-d1">היי, ראיתי את המודעה. אפשר לקבוע תור לשבוע הבא?<time>23:47</time></div>
+                <div class="cd-slot">
+                  <div class="cd-typing cd-d2" aria-hidden="true"><i></i><i></i><i></i></div>
+                  <div class="cd-msg cd-out cd-d3">היי! בשמחה. יש מקום ביום שלישי ב-10:00 או ברביעי ב-16:30. מה מתאים לך?<time>23:47</time></div>
+                </div>
+                <div class="cd-msg cd-in cd-d4">שלישי ב-10 מעולה<time>23:48</time></div>
+                <div class="cd-slot">
+                  <div class="cd-typing cd-d5" aria-hidden="true"><i></i><i></i><i></i></div>
+                  <div class="cd-msg cd-out cd-d6">קבעתי לך לשלישי ב-10:00. תזכורת תגיע אליך יום לפני.<time>23:48</time></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ul class="cd-log">
+            <li class="cd-d7">הפגישה נוספה ליומן</li>
+            <li class="cd-d8">הליד נרשם ב-CRM</li>
+            <li class="cd-d9">סיכום מחכה לכם בבוקר</li>
+          </ul>
         </div>
       </div>
     </div>
