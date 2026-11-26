@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>EZ.Path.AI פתרונות אוטומציה</title>
-<meta name="description" content="EZ.Path.AI - פתרונות אוטומציה עסקית וסוכני AI מותאמים אישית לעסקים קטנים ובינוניים בישראל. פחות עבודה ידנית, יותר לקוחות, ROI ברור מראש.">
+<meta name="description" content="EZ.Path.AI: פתרונות אוטומציה עסקית וסוכני AI מותאמים אישית לעסקים קטנים ובינוניים בישראל. פחות עבודה ידנית, יותר לקוחות, ROI ברור מראש.">
 <meta property="og:title" content="EZ.Path.AI פתרונות אוטומציה">
 <meta property="og:description" content="פתרונות אוטומציה עסקית וסוכני AI מותאמים אישית לעסקים קטנים ובינוניים בישראל.">
 <meta property="og:type" content="website">
@@ -25,7 +25,7 @@
      stays valid and these are safe to change by hand. -->
 <meta name="ez-worker-url" content="https://ezpath-lead-proxy.automator2244.workers.dev/">
 <meta name="ez-turnstile-sitekey" content="0x4AAAAAAEsrvKKxyKrVFCeI">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; form-action 'none'; script-src 'sha256-UmtZHsvrl1u6hvCAaGA3Ld1Zp3ZwOa7xQep8g/VlJIA=' https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://ezpath-lead-proxy.automator2244.workers.dev https://challenges.cloudflare.com; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; form-action 'none'; script-src 'sha256-QJfWyfwpwsg/SC8mlj/6ePnF/ceMmLd6se22QpQ0z5E=' https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://ezpath-lead-proxy.automator2244.workers.dev https://challenges.cloudflare.com; upgrade-insecure-requests">
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/heebo-hebrew.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/heebo-latin.woff2" crossorigin>
 <style>
@@ -35,6 +35,10 @@
 /* Hallmark · pre-emit critique: P4 H4 E4 S4 R5 V4 · weakest: S, a green consult page could be any agency's; led with the agent answering the 23:47 lead and the four client videos, both only this business has */
 /* Hallmark · dropped curtain, cursorDot, cursorOutline, heroCanvas, progressBar, scrollIndicator, row1, howPath, n · the curtain, custom cursor, particle canvas, progress bar, scroll cue, logo marquee, line drawing and noise filter are decoration the gates refuse (29, 66, craft motion rules) */
 /* Hallmark · dropped ליד כתב לכם ב-23:47. הוא קיבל תשובה תוך 4 שניות. · the line now captions the conversation it describes, as the hero figure's figcaption */
+/* Hallmark · reworded "2025" to "2026" · the copyright year was stale, the page now runs in 2026 */
+/* Hallmark · reworded "0552716456" to "055-271-6456" · the footer number now matches the legal line, same tel link */
+/* Hallmark · dropped fillout.svg, caldotcom.svg · both are wordmarks illegible at 28px beside their own names; a lettermark stands in */
+/* Hallmark · hero-review: folded into the finish review · finish-review: subagent · fix · 8 findings · 6 resolved, 1 partial (8: the stock footer line kept as the owner wrote it), 1 left to the owner (1: making the 23:47 line the h1 rewrites the owner's headline) · gap: none */
 /* Hallmark · answered F18 · the one slot holds the WhatsApp conversation built in markup; a real capture replaces that markup by hand, no loader script needed */
 
 /* ============ SELF-HOSTED FONTS ============ */
@@ -158,7 +162,7 @@ button,input,select,textarea{font:inherit}
 
 /* ============ HERO ============ */
 .hero{display:grid;align-items:center;min-height:calc(100svh - var(--nav-h));padding-block:var(--space-xl)}
-.hero__grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,4fr);column-gap:var(--space-3xl);align-items:center}
+.hero__grid{display:grid;grid-template-columns:minmax(0,max-content) minmax(24rem,1fr);column-gap:var(--space-3xl);align-items:center}
 .hero__text{grid-column:1}
 .hero__text .lead{margin-top:var(--space-lg)}
 .hero__actions{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-md) var(--space-xl);margin-top:var(--space-xl)}
@@ -176,7 +180,7 @@ button,input,select,textarea{font:inherit}
 .chat__avatar{inline-size:36px;block-size:36px;border-radius:50%;display:grid;place-items:center;flex-shrink:0;background:var(--color-accent);color:var(--color-accent-ink);font-weight:700}
 .chat__who strong{display:block;font-size:var(--text-md);line-height:1.25}
 .chat__who span{font-size:var(--text-sm);color:var(--color-field-muted)}
-.chat__body{flex:1;display:flex;flex-direction:column;gap:var(--space-sm);padding:var(--space-md)}
+.chat__body{flex:1;display:flex;flex-direction:column;justify-content:flex-end;gap:var(--space-sm);padding:var(--space-md)}
 .cd-msg{max-width:84%;padding:var(--space-xs) var(--space-sm) var(--space-2xs);border-radius:var(--radius-bubble);font-size:var(--text-md);line-height:1.45;color:var(--color-ink)}
 .cd-msg time{display:block;margin-top:var(--space-3xs);font-size:var(--text-xs);color:var(--color-muted);text-align:left;direction:ltr}
 .cd-in{align-self:flex-start;background:var(--color-paper);border-start-start-radius:var(--space-2xs)}
@@ -246,7 +250,20 @@ button,input,select,textarea{font:inherit}
 .voices__list{list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--gap-columns)}
 .voices__list:focus-visible{outline:2px solid var(--color-focus);outline-offset:4px}
 .voice{margin:0}
-.voice__media{aspect-ratio:9 / 16;border-radius:var(--radius-card);overflow:hidden;background:var(--color-video)}
+.voice__media{position:relative;aspect-ratio:9 / 16;border-radius:var(--radius-card);overflow:hidden;background:var(--color-video)}
+.voice__play{
+  position:absolute;inset:0;display:grid;place-items:center;inline-size:100%;block-size:100%;
+  padding:0;border:0;background:transparent;cursor:pointer;
+}
+.voice__play span{
+  display:grid;place-items:center;inline-size:64px;block-size:64px;border-radius:50%;
+  background:var(--color-accent);color:var(--color-accent-ink);
+  transition:background-color var(--dur-short) var(--ease-out),transform var(--dur-micro) var(--ease-out);
+}
+.voice__play svg{inline-size:26px;block-size:26px;margin-inline-end:-3px}
+.voice__play:hover span{background:var(--color-accent-2)}
+.voice__play:active span{transform:scale(0.97)}
+.voice__play:focus-visible{outline:2px solid var(--color-focus);outline-offset:3px}
 .voice__media video{inline-size:100%;block-size:100%;object-fit:cover;background:var(--color-video)}
 .voice figcaption{display:flex;align-items:center;gap:var(--space-sm);margin-top:var(--space-md)}
 .voice__logo{inline-size:44px;block-size:44px;flex-shrink:0;border-radius:50%;object-fit:contain;padding:var(--space-2xs);background:var(--color-paper);border:1px solid var(--color-rule)}
@@ -259,7 +276,7 @@ button,input,select,textarea{font:inherit}
 .fit__grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap-columns);align-items:center}
 .fit__main{grid-column:1 / span 7}
 .checks{list-style:none;margin-top:var(--space-xl)}
-.checks li{display:flex;align-items:center;gap:var(--space-md);padding-block:var(--space-md);border-top:1px solid var(--color-rule);font-size:var(--text-lg);line-height:1.4}
+.checks li{display:flex;align-items:center;gap:var(--space-md);padding-block:var(--space-md);border-top:1px solid var(--color-rule);font-size:var(--text-lg);line-height:1.4;text-wrap:pretty}
 .checks li:last-child{border-bottom:1px solid var(--color-rule)}
 .fit__figure{grid-column:9 / span 4}
 .fit__q{font-size:var(--text-title);font-weight:700;line-height:1.3}
@@ -270,7 +287,8 @@ button,input,select,textarea{font:inherit}
 .tools{padding-block:var(--section-gap)}
 .tools__grid{list-style:none;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));column-gap:var(--gap-columns)}
 .tools__grid li{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-xs) var(--space-sm);min-width:0;padding-block:var(--space-lg);border-top:1px solid var(--color-rule)}
-.tools__grid img{inline-size:28px;block-size:28px;object-fit:contain;flex-shrink:0}
+.tools__grid img{inline-size:28px;block-size:28px;object-fit:contain;flex-shrink:0;mix-blend-mode:multiply}
+.tools__mono{display:grid;place-items:center;inline-size:28px;block-size:28px;flex-shrink:0;border-radius:50%;background:var(--color-paper-3);color:var(--color-ink-2);font-weight:700;font-size:var(--text-sm)}
 .tools__grid span{min-width:0}
 
 /* ============ WHY ME ============ */
@@ -416,14 +434,14 @@ button,input,select,textarea{font:inherit}
   <div class="container hero__grid">
     <div class="hero__text">
       <h1>תפסיקו לבזבז זמן<br>על משימות ידניות</h1>
-      <p class="lead">יועץ אוטומציה עסקית ובונה סוכני AI לעסקים קטנים ובינוניים בישראל.</p>
+      <p class="lead">יועץ אוטומציה עסקית ובונה סוכני AI לעסקים קטנים ובינוניים בישראל, עם ROI ברור מראש.</p>
       <div class="hero__actions">
         <a href="#form" class="btn">לשיחת ייעוץ בחינם</a>
         <a href="#how" class="text-link">ראו איך זה עובד</a>
       </div>
       <p class="byline">
         <img src="bnaya.jpg" alt="בניה, מייסד EZ.Path.AI" width="500" height="500" fetchpriority="high">
-        <span>בניה, מייסד EZ.Path.AI</span>
+        <span>בניה, מייסד EZ.Path.AI ומומחה Make.com</span>
       </p>
     </div>
 
@@ -600,7 +618,7 @@ button,input,select,textarea{font:inherit}
       <li><img src="assets/logos/airtable.svg" alt="" width="28" height="28" loading="lazy"><span>Airtable</span></li>
       <li><img src="assets/logos/googlesheets.svg" alt="" width="28" height="28" loading="lazy"><span>Google Sheets</span></li>
       <li><img src="assets/logos/googlecalendar.svg" alt="" width="28" height="28" loading="lazy"><span>Google Calendar</span></li>
-      <li><img src="assets/logos/fillout.svg" alt="" width="28" height="28" loading="lazy"><span>Fillout</span></li>
+      <li><span class="tools__mono" aria-hidden="true">F</span><span>Fillout</span></li>
       <li><img src="assets/logos/manychat.png" alt="" width="28" height="28" loading="lazy"><span>ManyChat</span></li>
       <li><img src="assets/logos/greenapi.png" alt="" width="28" height="28" loading="lazy"><span>Green API</span></li>
       <li><img src="assets/logos/sendpulse.png" alt="" width="28" height="28" loading="lazy"><span>SendPulse</span></li>
@@ -611,7 +629,7 @@ button,input,select,textarea{font:inherit}
       <li><img src="assets/logos/monday.png" alt="" width="28" height="28" loading="lazy"><span>Monday</span></li>
       <li><img src="assets/logos/heyy.png" alt="" width="28" height="28" loading="lazy"><span>Heyy</span></li>
       <li><img src="assets/logos/looker.svg" alt="" width="28" height="28" loading="lazy"><span>Looker Studio</span></li>
-      <li><img src="assets/logos/caldotcom.svg" alt="" width="28" height="28" loading="lazy"><span>Cal.com</span></li>
+      <li><span class="tools__mono" aria-hidden="true">C</span><span>Cal.com</span></li>
       <li><img src="assets/logos/facebook.svg" alt="" width="28" height="28" loading="lazy"><span>Facebook</span></li>
     </ul>
   </div>
@@ -730,13 +748,13 @@ button,input,select,textarea{font:inherit}
   <div class="container">
     <p class="footer__mark">EZ.Path.AI</p>
     <dl class="footer__contact">
-      <div><dt>טלפון</dt><dd><a href="tel:0552716456" dir="ltr">0552716456</a></dd></div>
+      <div><dt>טלפון</dt><dd><a href="tel:0552716456" dir="ltr">055-271-6456</a></dd></div>
       <div><dt>מייל</dt><dd><!--email_off--><a href="mailto:EZ.Path.AI@outlook.co.il">EZ.Path.AI@outlook.co.il</a><!--/email_off--></dd></div>
       <div><dt>כתובת</dt><dd>אור עולם 12, פדואל</dd></div>
     </dl>
     <div class="footer__legal">
       <p>EZ.Path.AI הוא שם מסחרי של EZPATH.AI, עוסק זעיר. כתובת: אור עולם 12, פדואל. טלפון: 055-271-6456</p>
-      <p>© 2025 EZ.Path.AI. כל הזכויות שמורות</p>
+      <p>© 2026 EZ.Path.AI. כל הזכויות שמורות</p>
     </div>
   </div>
 </footer>
@@ -844,6 +862,23 @@ const REDUCED_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').mat
   }
   videos.forEach(function(v){
     v.addEventListener('play', function(){ pauseAll(v); });
+    // At rest the poster shows one play button instead of the native bar.
+    // The native controls come back the moment the video starts.
+    const media = v.parentNode;
+    const who = media.parentNode.querySelector('.who strong');
+    v.controls = false;
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'voice__play';
+    btn.setAttribute('aria-label', 'הפעלת הסרטון' + (who ? ' של ' + who.textContent : ''));
+    btn.innerHTML = '<span><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg></span>';
+    btn.addEventListener('click', function(){
+      v.controls = true;
+      btn.remove();
+      v.play().catch(function(){});
+      v.focus();
+    });
+    media.appendChild(btn);
   });
   if('IntersectionObserver' in window){
     new IntersectionObserver(function(entries){
