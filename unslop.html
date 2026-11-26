@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<!-- Redesign preview of index.html, made with the unslop method by
+     Damir Sokolovsky (@heydamir, github.com/heydamir/unslop), CC BY 4.0.
+     Not indexed: the live page is still index.html. -->
+<title>EZ.Path.AI אוטומציות וסוכני AI לעסקים</title>
+<meta name="robots" content="noindex">
+<meta name="description" content="EZ.Path.AI: אוטומציות וסוכני AI לעסקים קטנים ובינוניים בישראל. סוכן שעונה ללקוחות בוואטסאפ, קובע פגישות ומעדכן את המערכות שלכם.">
+<link rel="canonical" href="https://ezpath-ai.com/">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<!-- Same secure submission config as index.html: the form posts to the
+     Cloudflare Worker behind a Turnstile challenge. -->
+<meta name="ez-worker-url" content="https://ezpath-lead-proxy.automator2244.workers.dev/">
+<meta name="ez-turnstile-sitekey" content="0x4AAAAAAEsrvKKxyKrVFCeI">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; form-action 'none'; script-src 'sha256-CInGTkf1DmJM3AKS8jroURAr+4sQ/d7iKxGqDh2nvtk=' https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://ezpath-lead-proxy.automator2244.workers.dev https://challenges.cloudflare.com; upgrade-insecure-requests">
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/heebo-hebrew.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/heebo-latin.woff2" crossorigin>
+<style>
+/* ============ FONTS ============ */
+@font-face{font-family:'Heebo';font-style:normal;font-weight:100 900;font-display:swap;src:url(assets/fonts/heebo-hebrew.woff2) format('woff2');unicode-range:U+0307-0308, U+0590-05FF, U+200C-2010, U+20AA, U+25CC, U+FB1D-FB4F}
+@font-face{font-family:'Heebo';font-style:normal;font-weight:100 900;font-display:swap;src:url(assets/fonts/heebo-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Space Grotesk';font-style:normal;font-weight:300 700;font-display:swap;src:url(assets/fonts/space-grotesk-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+
+/* ============ TOKENS ============
+   World: a business owner's phone late at night. Neutrals carry a faint
+   green-grey tint, the one accent is a deep WhatsApp-like green that holds
+   4.5:1 with white text. The only rich colour lives inside the chat. */
+:root{
+  --bg:#f6f7f4;
+  --card:#ffffff;
+  --raised:#eef0eb;
+  --line:rgba(23,26,22,0.08);
+  --line-strong:rgba(23,26,22,0.14);
+  --text:#171a16;
+  --text-2:#4d5449;
+  --text-3:#646b60;
+  --accent:#15803d;
+  --accent-strong:#116632;
+  --accent-soft:rgba(21,128,61,0.10);
+  --ink:#131612;
+  --ink-2:#1b1f1a;
+  --ink-line:rgba(255,255,255,0.08);
+  --ink-text:#eef1ec;
+  --ink-text-2:#b4bcb0;
+  --ink-text-3:#8d9689;
+  --ink-accent:#5cc98a;
+  --mono:ui-monospace,'SFMono-Regular',Menlo,Consolas,monospace;
+  --ease:cubic-bezier(0.22,1,0.36,1);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:'Heebo',sans-serif;font-size:16px;line-height:1.6;
+  color:var(--text);background:var(--bg);
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+h1,h2,h3{font-weight:500;line-height:1.2;letter-spacing:0}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer}
+img,svg{display:block}
+img{max-width:100%}
+ul,ol{list-style:none}
+.num{font-variant-numeric:tabular-nums}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.icon{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.icon-16{width:16px;height:16px}
+.container{max-width:1200px;margin:0 auto;padding:0 32px}
+section{scroll-margin-top:64px}
+@media(max-width:768px){.container{padding:0 20px}}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+
+/* ============ BUTTONS ============ */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  height:48px;padding:0 20px;border-radius:10px;border:1px solid transparent;
+  font-size:16px;font-weight:500;white-space:nowrap;
+  transition:background-color 150ms var(--ease),border-color 150ms var(--ease),transform 150ms var(--ease);
+}
+.btn:active{transform:scale(0.98)}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:var(--accent-strong)}
+.btn-secondary{background:var(--card);color:var(--text);border-color:var(--line-strong)}
+.btn-secondary:hover{background:var(--raised)}
+.btn-sm{height:36px;padding:0 16px;font-size:14px;border-radius:8px}
+
+/* ============ NAVBAR ============ */
+.navbar{
+  position:sticky;top:0;z-index:100;height:64px;
+  background:var(--bg);border-bottom:1px solid var(--line);
+}
+.nav-inner{height:64px;display:flex;align-items:center;justify-content:space-between}
+.wordmark{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:18px;color:var(--text);direction:ltr}
+
+/* ============ HERO ============ */
+.hero{padding:64px 0 96px;min-height:calc(100svh - 64px);display:flex;align-items:center}
+.hero .container{width:100%}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:96px;align-items:center}
+.byline{display:flex;align-items:center;gap:12px;margin-bottom:32px}
+.byline img{width:48px;height:48px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 1px var(--line-strong)}
+.byline strong{display:block;font-size:15px;font-weight:500;line-height:1.4}
+.byline span{display:block;font-size:14px;color:var(--text-3);line-height:1.4}
+.hero h1{font-size:56px;line-height:1.12;max-width:13em}
+.hero h1 .time{color:var(--accent);font-variant-numeric:tabular-nums}
+.hero .lead{font-size:19px;line-height:1.7;color:var(--text-2);max-width:34rem;margin-top:24px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:40px}
+.hero-copy > *{animation:rise 480ms var(--ease) both}
+.hero-copy > :nth-child(2){animation-delay:50ms}
+.hero-copy > :nth-child(3){animation-delay:100ms}
+.hero-copy > :nth-child(4){animation-delay:150ms}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* ---- the phone: the one rich moment on the page ---- */
+.phone{
+  width:100%;max-width:340px;justify-self:center;
+  background:#161815;border-radius:40px;padding:10px;
+  box-shadow:0 24px 48px -20px rgba(20,24,18,0.35),0 2px 6px rgba(20,24,18,0.08);
+}
+.screen{border-radius:30px;overflow:hidden;background:#efeae2}
+.chat-head{display:flex;align-items:center;gap:12px;padding:14px 16px;background:#f7f8f5;border-bottom:1px solid rgba(11,20,26,0.06)}
+.chat-avatar{width:36px;height:36px;border-radius:50%;background:#dde5d9;color:#2c3a29;display:grid;place-items:center;font-weight:500;font-size:15px;flex:none}
+.chat-head strong{display:block;font-size:15px;font-weight:500;line-height:1.3;color:#111b21}
+.chat-head span{display:block;font-size:12px;line-height:1.3;color:#667781}
+.chat{display:flex;flex-direction:column;gap:8px;padding:16px 12px 24px;min-height:356px}
+.msg{
+  max-width:84%;padding:8px 10px 6px;border-radius:10px;
+  font-size:15px;line-height:1.45;color:#111b21;
+  box-shadow:0 1px 0.5px rgba(11,20,26,0.13);
+}
+.msg time{display:block;margin-top:2px;font-family:var(--mono);font-size:11px;color:#667781;text-align:left;direction:ltr}
+.msg-in{align-self:flex-start;background:#fff;border-start-start-radius:2px}
+.msg-out{background:#d9fdd3;border-start-end-radius:2px}
+.slot{display:grid;justify-items:end;align-items:end}
+.slot > *{grid-area:1/1}
+.typing{display:flex;gap:4px;padding:12px 14px;background:#d9fdd3;border-radius:10px;opacity:0}
+.typing i{width:6px;height:6px;border-radius:50%;background:#5f8a63;animation:dot 900ms ease-in-out infinite}
+.typing i:nth-child(2){animation-delay:150ms}
+.typing i:nth-child(3){animation-delay:300ms}
+/* The sequence waits hidden only once scripting has started it; without
+   JavaScript every message is visible. */
+.phone.wait .msg{opacity:0;transform:translateY(6px)}
+.phone.play .msg{animation:msgIn 350ms var(--ease) forwards}
+.phone.play .typing{animation:typing 1100ms var(--ease) forwards}
+.d1{animation-delay:400ms !important}
+.d2{animation-delay:1100ms !important}
+.d3{animation-delay:2200ms !important}
+.d4{animation-delay:3400ms !important}
+.d5{animation-delay:4000ms !important}
+.d6{animation-delay:5100ms !important}
+@keyframes msgIn{to{opacity:1;transform:none}}
+@keyframes typing{0%{opacity:0}15%{opacity:1}85%{opacity:1}100%{opacity:0}}
+@keyframes dot{0%,100%{opacity:0.3}50%{opacity:1}}
+
+@media(max-width:960px){
+  .hero{min-height:0;padding:48px 0 64px}
+  .hero-grid{grid-template-columns:1fr;gap:56px}
+  .hero h1{font-size:38px;line-height:1.15}
+  .hero .lead{font-size:17px}
+  .byline{margin-bottom:24px}
+  .hero-actions{margin-top:32px}
+  .hero-actions .btn{flex:1 1 auto}
+}
+
+/* ============ SECTIONS ============ */
+.band{padding:96px 0;border-top:1px solid var(--line)}
+.band-white{background:var(--card)}
+@media(max-width:768px){.band{padding:64px 0}}
+.head{margin-bottom:48px;max-width:40rem}
+.head h2{font-size:36px;line-height:1.2}
+.head p{font-size:17px;color:var(--text-2);margin-top:12px}
+@media(max-width:768px){.head h2{font-size:28px}.head{margin-bottom:32px}}
+
+/* ============ TOOLS ============ */
+.tools{padding:40px 0;border-top:1px solid var(--line)}
+.tools-inner{display:grid;grid-template-columns:240px minmax(0,1fr);gap:32px;align-items:center}
+.tools-title{font-size:15px;color:var(--text-2)}
+.tools ul{display:flex;flex-wrap:wrap;gap:12px 28px}
+.tools li{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--text-2);white-space:nowrap}
+.tools li img{width:20px;height:20px;object-fit:contain}
+.tools li span{direction:ltr}
+@media(max-width:768px){.tools-inner{grid-template-columns:1fr;gap:20px}.tools ul{gap:12px 20px}}
+
+/* ============ SERVICES ============ */
+.svc-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px 32px}
+.svc{border-top:1px solid var(--line-strong);padding-top:24px}
+.svc .icon{color:var(--text-3);margin-bottom:16px}
+.svc h3{font-size:18px;display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 12px}
+.svc h3 small{font-size:13px;font-weight:500;color:var(--accent)}
+.svc p{font-size:15px;line-height:1.65;color:var(--text-2);margin-top:8px}
+@media(max-width:900px){.svc-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.svc-grid{grid-template-columns:1fr;gap:32px}}
+
+.agent{
+  margin-top:80px;background:var(--ink);color:var(--ink-text);border-radius:20px;padding:48px;
+  display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:48px;align-items:center;
+}
+.agent-label{font-size:13px;color:var(--ink-text-3)}
+.agent h3{font-size:30px;line-height:1.25;margin-top:8px}
+.agent p{font-size:16px;line-height:1.7;color:var(--ink-text-2);margin-top:16px;max-width:36rem}
+.agent-points{display:flex;flex-wrap:wrap;gap:8px 24px;margin-top:24px}
+.agent-points li{display:flex;align-items:center;gap:8px;font-size:15px;color:var(--ink-text)}
+.agent-points .icon{width:16px;height:16px;color:var(--ink-accent)}
+.log{background:var(--ink-2);border:1px solid var(--ink-line);border-radius:14px;padding:8px 20px}
+.log-title{font-size:13px;color:var(--ink-text-3);padding:12px 0 8px}
+.log li{display:flex;align-items:center;gap:16px;min-height:48px;border-top:1px solid var(--ink-line);font-size:15px}
+.log time{font-family:var(--mono);font-size:13px;color:var(--ink-text-3);direction:ltr;min-width:40px}
+@media(max-width:900px){.agent{grid-template-columns:1fr;padding:32px 24px;gap:32px;margin-top:56px}.agent h3{font-size:24px}}
+
+/* ============ FOR WHO ============ */
+.split{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:64px;align-items:start}
+.split .head{margin-bottom:0}
+.checklist li{display:flex;align-items:center;gap:12px;padding:16px 0;border-bottom:1px solid var(--line);font-size:17px}
+.checklist li:first-child{border-top:1px solid var(--line)}
+.checklist .icon{color:var(--accent);width:18px;height:18px}
+@media(max-width:900px){.split{grid-template-columns:1fr;gap:32px}}
+
+/* ============ WHY ============ */
+.why-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:40px 48px}
+.why{border-top:1px solid var(--line-strong);padding-top:24px}
+.why h3{font-size:20px}
+.why p{font-size:16px;line-height:1.7;color:var(--text-2);margin-top:8px;max-width:34rem}
+@media(max-width:768px){.why-grid{grid-template-columns:1fr;gap:32px}}
+
+/* ============ HOW ============ */
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:32px}
+.step{border-top:1px solid var(--line-strong);padding-top:20px}
+.step .mono{font-size:13px;color:var(--text-3)}
+.step h3{font-size:18px;margin-top:12px}
+.step p{font-size:15px;line-height:1.65;color:var(--text-2);margin-top:8px}
+@media(max-width:900px){.steps{grid-template-columns:1fr 1fr;gap:32px}}
+@media(max-width:600px){.steps{grid-template-columns:1fr;gap:24px}}
+
+/* ============ TESTIMONIALS ============ */
+/* The side cards sit partly outside the carousel; clip them so they never
+   widen the page on a phone. */
+#testimonials{overflow:hidden}
+.tcarousel{--tc-w:300px;position:relative;max-width:920px;margin:0 auto}
+.tc-track{position:relative;height:calc(var(--tc-w) * 16 / 9 + 76px);touch-action:pan-y;user-select:none;-webkit-user-select:none}
+.tc-item{
+  position:absolute;top:0;left:50%;width:var(--tc-w);margin:0 0 0 calc(var(--tc-w) / -2);
+  transform:scale(0.7);opacity:0;z-index:1;pointer-events:none;
+  transition:transform 400ms var(--ease),opacity 400ms var(--ease);
+}
+.tc-media{position:relative;aspect-ratio:9/16;border-radius:16px;overflow:hidden;background:#1b1f1a;box-shadow:0 0 0 1px var(--line-strong)}
+.tc-media video{display:block;width:100%;height:100%;object-fit:cover;background:#000}
+.tc-item figcaption{margin-top:16px;opacity:0;transition:opacity 300ms var(--ease);display:flex;align-items:center;justify-content:center;gap:12px}
+.tc-logo{width:40px;height:40px;flex:none;border-radius:50%;object-fit:contain;background:#fff;box-shadow:0 0 0 1px var(--line-strong);padding:4px}
+.tc-who{display:flex;flex-direction:column;text-align:start}
+.tc-who strong{font-size:16px;font-weight:500;line-height:1.4}
+.tc-who span{font-size:14px;color:var(--text-3);line-height:1.4}
+.tc-item.is-center{transform:none;opacity:1;z-index:3;pointer-events:auto}
+.tc-item.is-center .tc-media{box-shadow:0 0 0 1px var(--line-strong),0 16px 40px -16px rgba(20,24,18,0.3)}
+.tc-item.is-center figcaption{opacity:1}
+.tc-item.is-left,.tc-item.is-right{opacity:0.45;z-index:2;pointer-events:auto;cursor:pointer}
+.tc-item.is-left{transform:translateX(-70%) scale(0.82)}
+.tc-item.is-right{transform:translateX(70%) scale(0.82)}
+.tc-item.is-left:hover,.tc-item.is-right:hover{opacity:0.7}
+.tc-item:not(.is-center) .tc-media::after{content:"";position:absolute;inset:0}
+.tc-arrow{
+  position:absolute;top:calc(var(--tc-w) * 8 / 9);transform:translateY(-50%);z-index:4;
+  width:44px;height:44px;border-radius:50%;border:1px solid var(--line-strong);
+  background:var(--card);color:var(--text-2);display:grid;place-items:center;
+  transition:background-color 150ms var(--ease),color 150ms var(--ease);
+}
+.tc-arrow:hover{background:var(--raised);color:var(--text)}
+.tc-arrow svg{width:20px;height:20px}
+.tc-left{left:0}
+.tc-right{right:0}
+.tc-dots{display:flex;justify-content:center;gap:8px;margin-top:20px}
+.tc-dot{width:8px;height:8px;border-radius:4px;border:0;padding:0;background:var(--line-strong);transition:width 300ms var(--ease),background-color 300ms var(--ease)}
+.tc-dot.active{width:20px;background:var(--accent)}
+.tcarousel.tc-single .tc-arrow,.tcarousel.tc-single .tc-dots{display:none}
+@media(max-width:600px){
+  .tcarousel{--tc-w:min(62vw,300px)}
+  .tc-arrow{width:40px;height:40px}
+  .tc-left{left:-4px}
+  .tc-right{right:-4px}
+}
+
+/* ============ FORM ============ */
+.contact-alt{margin-top:32px;display:flex;flex-direction:column;gap:12px;font-size:15px;color:var(--text-2)}
+.contact-alt a{display:inline-flex;align-items:center;gap:8px;color:var(--text);width:max-content}
+.contact-alt a:hover{color:var(--accent)}
+.contact-alt .icon{width:18px;height:18px;color:var(--text-3)}
+.form-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:32px;box-shadow:0 8px 24px rgba(20,24,18,0.06)}
+@media(max-width:600px){.form-card{padding:24px 20px}}
+.field{margin-bottom:20px}
+.field label{display:block;font-size:14px;font-weight:500;color:var(--text-2);margin-bottom:8px}
+.field label em{font-style:normal;color:var(--text-3);font-weight:400}
+.field input,.field textarea{
+  width:100%;background:var(--card);border:1px solid var(--line-strong);border-radius:10px;
+  padding:0 14px;height:48px;color:var(--text);font:inherit;font-size:16px;
+  transition:border-color 150ms var(--ease),box-shadow 150ms var(--ease);
+}
+.field textarea{height:auto;min-height:112px;padding:12px 14px;resize:vertical;line-height:1.6}
+.field input[type=email],.field input[type=tel]{direction:ltr;text-align:right}
+.field input:focus,.field textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.hp-field{position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden;opacity:0;pointer-events:none}
+.turnstile-box{display:flex;justify-content:center;margin-bottom:20px;min-height:65px}
+.submit-btn{width:100%;margin-top:4px}
+.submit-btn:disabled{opacity:0.7;cursor:not-allowed}
+.spinner{width:16px;height:16px;border:2px solid rgba(255,255,255,0.4);border-top-color:#fff;border-radius:50%;display:inline-block;animation:spin 700ms linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.form-msg{display:none;border-radius:12px;padding:24px}
+.form-msg.success{text-align:center}
+.form-msg.success .icon{width:40px;height:40px;color:var(--accent);margin:0 auto 12px;stroke-width:1.5}
+.form-msg.success p{font-size:18px;font-weight:500}
+.form-msg.error{background:#fdf3f2;border:1px solid #f1c9c5;margin-top:16px;padding:16px}
+.form-msg.error p{color:#a8281e;font-size:15px}
+.wa-fallback-btn{
+  display:inline-flex;align-items:center;gap:8px;margin-top:12px;height:44px;padding:0 16px;border-radius:10px;
+  background:var(--accent);color:#fff;font-weight:500;font-size:15px;
+  transition:background-color 150ms var(--ease);
+}
+.wa-fallback-btn:hover{background:var(--accent-strong)}
+
+/* ============ FOOTER ============ */
+.footer{background:var(--ink);color:var(--ink-text-2);padding:48px 0 32px}
+.footer-inner{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:32px}
+.footer .wordmark{color:var(--ink-text)}
+.footer-contact{display:flex;flex-direction:column;gap:8px;font-size:15px}
+.footer-contact a,.footer-contact span{display:inline-flex;align-items:center;gap:8px}
+.footer-contact a:hover{color:var(--ink-text)}
+.footer-contact .icon{width:16px;height:16px;color:var(--ink-text-3)}
+.footer-legal{margin-top:40px;padding-top:20px;border-top:1px solid var(--ink-line);font-size:13px;line-height:1.7;color:var(--ink-text-3);display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px}
+
+/* ============ WHATSAPP FLOAT ============ */
+.wa-btn{
+  position:fixed;bottom:24px;left:24px;z-index:90;width:56px;height:56px;border-radius:50%;background:#25d366;
+  display:grid;place-items:center;box-shadow:0 8px 24px rgba(20,24,18,0.18);
+  transition:transform 150ms var(--ease);
+}
+.wa-btn:active{transform:scale(0.96)}
+@media(max-width:600px){.wa-btn{bottom:16px;left:16px;width:52px;height:52px}}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:1ms !important;animation-delay:0ms !important;transition-duration:1ms !important}
+  .phone.wait .msg{opacity:1;transform:none}
+  .typing{display:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-arrow-left" viewBox="0 0 24 24"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></symbol>
+  <symbol id="i-arrow-down" viewBox="0 0 24 24"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-check-circle" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></symbol>
+  <symbol id="i-dashboard" viewBox="0 0 24 24"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></symbol>
+  <symbol id="i-message" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></symbol>
+  <symbol id="i-funnel" viewBox="0 0 24 24"><path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="m9 16 2 2 4-4"/></symbol>
+  <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></symbol>
+</svg>
+
+<!-- NAVBAR -->
+<header class="navbar">
+  <div class="container nav-inner">
+    <a href="#hero" class="wordmark" aria-label="EZ.Path.AI, לראש הדף">EZ.Path.AI</a>
+    <a href="#form" class="btn btn-primary btn-sm">לשיחת ייעוץ בחינם</a>
+  </div>
+</header>
+
+<main>
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <div class="byline">
+          <img src="bnaya.jpg" alt="בניה, מייסד EZ.Path.AI" width="48" height="48" fetchpriority="high">
+          <div>
+            <strong>בניה, מייסד EZ.Path.AI</strong>
+            <span>אוטומציות וסוכני AI לעסקים קטנים ובינוניים בישראל</span>
+          </div>
+        </div>
+        <h1>ליד כתב לכם ב-<span class="time">23:47</span><br>וקיבל תשובה תוך 4 שניות</h1>
+        <p class="lead">סוכן AI עונה ללקוחות שלכם בוואטסאפ, קובע פגישות ומעדכן את המערכות שלכם. גם כשאתם ישנים, בפגישה או בחופש.</p>
+        <div class="hero-actions">
+          <a href="#form" class="btn btn-primary">לשיחת ייעוץ בחינם<svg class="icon icon-16" aria-hidden="true"><use href="#i-arrow-left"/></svg></a>
+          <a href="#how" class="btn btn-secondary">איך זה עובד<svg class="icon icon-16" aria-hidden="true"><use href="#i-arrow-down"/></svg></a>
+        </div>
+      </div>
+
+      <div class="phone" id="phone" role="img" aria-label="הדגמה: שיחת וואטסאפ שסוכן AI עונה עליה אוטומטית וקובע תור">
+        <div class="screen">
+          <div class="chat-head">
+            <div class="chat-avatar" aria-hidden="true">ע</div>
+            <div><strong>העסק שלכם</strong><span>וואטסאפ עסקי</span></div>
+          </div>
+          <div class="chat">
+            <div class="msg msg-in d1">היי, ראיתי את המודעה. אפשר לקבוע תור לשבוע הבא?<time>23:47</time></div>
+            <div class="slot">
+              <div class="typing d2" aria-hidden="true"><i></i><i></i><i></i></div>
+              <div class="msg msg-out d3">היי, בשמחה. יש מקום ביום שלישי ב-10:00 או ברביעי ב-16:30. מה מתאים לך?<time>23:47</time></div>
+            </div>
+            <div class="msg msg-in d4">שלישי ב-10 מעולה<time>23:48</time></div>
+            <div class="slot">
+              <div class="typing d5" aria-hidden="true"><i></i><i></i><i></i></div>
+              <div class="msg msg-out d6">קבעתי לך לשלישי ב-10:00. תזכורת תגיע אליך יום לפני.<time>23:48</time></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section class="tools" aria-label="כלים">
+  <div class="container tools-inner">
+    <p class="tools-title">אני עובד עם הכלים שכבר יש לכם</p>
+    <ul>
+      <li><img src="assets/logos/make.svg" alt="" width="20" height="20" loading="lazy"><span>Make.com</span></li>
+      <li><img src="assets/logos/whatsapp.svg" alt="" width="20" height="20" loading="lazy"><span>WhatsApp</span></li>
+      <li><img src="assets/logos/airtable.svg" alt="" width="20" height="20" loading="lazy"><span>Airtable</span></li>
+      <li><img src="assets/logos/googlesheets.svg" alt="" width="20" height="20" loading="lazy"><span>Google Sheets</span></li>
+      <li><img src="assets/logos/googlecalendar.svg" alt="" width="20" height="20" loading="lazy"><span>Google Calendar</span></li>
+      <li><img src="assets/logos/fillout.svg" alt="" width="20" height="20" loading="lazy"><span>Fillout</span></li>
+      <li><img src="assets/logos/manychat.png" alt="" width="20" height="20" loading="lazy"><span>ManyChat</span></li>
+      <li><img src="assets/logos/greenapi.png" alt="" width="20" height="20" loading="lazy"><span>Green API</span></li>
+      <li><img src="assets/logos/sendpulse.png" alt="" width="20" height="20" loading="lazy"><span>SendPulse</span></li>
+      <li><img src="assets/logos/n8n.svg" alt="" width="20" height="20" loading="lazy"><span>n8n</span></li>
+      <li><img src="assets/logos/openai.png" alt="" width="20" height="20" loading="lazy"><span>ChatGPT</span></li>
+      <li><img src="assets/logos/claude.svg" alt="" width="20" height="20" loading="lazy"><span>Claude AI</span></li>
+      <li><img src="assets/logos/lovable.png" alt="" width="20" height="20" loading="lazy"><span>Lovable</span></li>
+      <li><img src="assets/logos/monday.png" alt="" width="20" height="20" loading="lazy"><span>Monday</span></li>
+      <li><img src="assets/logos/heyy.png" alt="" width="20" height="20" loading="lazy"><span>Heyy</span></li>
+      <li><img src="assets/logos/looker.svg" alt="" width="20" height="20" loading="lazy"><span>Looker Studio</span></li>
+      <li><img src="assets/logos/caldotcom.svg" alt="" width="20" height="20" loading="lazy"><span>Cal.com</span></li>
+      <li><img src="assets/logos/facebook.svg" alt="" width="20" height="20" loading="lazy"><span>Facebook</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="band band-white" id="services">
+  <div class="container">
+    <div class="head">
+      <h2>מה אני בונה בשבילכם</h2>
+      <p>כל פתרון נבנה לפי הצרכים של העסק שלכם, לא מוצר מדף</p>
+    </div>
+    <div class="svc-grid">
+      <article class="svc">
+        <svg class="icon" aria-hidden="true"><use href="#i-message"/></svg>
+        <h3>אוטומציות וואטסאפ <small>הכי מבוקש</small></h3>
+        <p>מענה מיידי 24/7, מסעות לקוח מותאמים אישית וחיבור ישיר ל-CRM</p>
+      </article>
+      <article class="svc">
+        <svg class="icon" aria-hidden="true"><use href="#i-dashboard"/></svg>
+        <h3>דשבורד לניהול העסק</h3>
+        <p>כל נתוני העסק במסך אחד: הכנסות, לידים ומשימות בזמן אמת, עם תובנות AI שעוזרות לקבל החלטות</p>
+      </article>
+      <article class="svc">
+        <svg class="icon" aria-hidden="true"><use href="#i-funnel"/></svg>
+        <h3>ניהול לידים חכם</h3>
+        <p>קליטה אוטומטית מכל מקור, ניתוב לפי סוג הפנייה ומסע מליד ועד לקוח</p>
+      </article>
+      <article class="svc">
+        <svg class="icon" aria-hidden="true"><use href="#i-star"/></svg>
+        <h3>איסוף חוות דעת</h3>
+        <p>בקשת ביקורת שנשלחת אוטומטית בזמן הנכון, וטיפול במשוב שלילי לפני שהוא מתפרסם</p>
+      </article>
+      <article class="svc">
+        <svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg>
+        <h3>תיאום פגישות אוטומטי</h3>
+        <p>סנכרון יומן, תזכורות ואישורי הגעה, בלי טלפונים מיותרים</p>
+      </article>
+      <article class="svc">
+        <svg class="icon" aria-hidden="true"><use href="#i-link"/></svg>
+        <h3>אינטגרציות</h3>
+        <p>סנכרון נתונים בין כל המערכות שלכם, ודוחות שמתעדכנים בזמן אמת</p>
+      </article>
+    </div>
+
+    <div class="agent">
+      <div>
+        <span class="agent-label">חדש</span>
+        <h3>סוכן AI שעובד בשבילכם 24/7</h3>
+        <p>סוכן שמותאם לעסק שלכם: עונה ללקוחות, מסווג פניות, מחלק משימות, מנהל משא ומתן ראשוני ומזמין תורים. הכל אוטומטית.</p>
+        <ul class="agent-points">
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>לומד את העסק שלכם</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>עונה תוך שניות</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>מחובר לכל המערכות</li>
+        </ul>
+      </div>
+      <div class="log">
+        <p class="log-title">מה קרה אחרי השיחה של 23:47</p>
+        <ul>
+          <li><time>23:48</time>הפגישה נוספה ליומן</li>
+          <li><time>23:48</time>הליד נרשם ב-CRM</li>
+          <li><time>07:00</time>סיכום מחכה לכם בבוקר</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOR WHO -->
+<section class="band" id="forwho">
+  <div class="container split">
+    <div class="head">
+      <h2>למי זה מתאים</h2>
+      <p>כמה שעות בזבזתם השבוע על עבודה ידנית?</p>
+    </div>
+    <ul class="checklist">
+      <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>עסק שעונה ידנית לכל ליד</li>
+      <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>עסק שמאבד לקוחות כי לא חוזרים אליהם מהר מספיק</li>
+      <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>מי שמבזבז שעות על העברת מידע בין מערכות</li>
+      <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>עסק שיש לו לידים אבל אין לו זמן לטפל בהם</li>
+      <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>מי שרוצה לגדול בלי לגייס עוד עובדים</li>
+    </ul>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="band band-white" id="whyus">
+  <div class="container">
+    <div class="head">
+      <h2>למה לעבוד איתי</h2>
+    </div>
+    <div class="why-grid">
+      <article class="why">
+        <h3>שותף לדרך, לא רק ספק</h3>
+        <p>אני לא בונה, שולח חשבונית ונעלם. אני כאן לאורך זמן, לתמיכה, לשדרוגים ולהתאמות כשהעסק שלכם גדל.</p>
+      </article>
+      <article class="why">
+        <h3>פתרונות פשוטים שעובדים</h3>
+        <p>מקסימום תוצאות עם מינימום סיבוכים. לפעמים אוטומציה פשוטה עושה את כל ההבדל, ואין צורך ביותר מזה.</p>
+      </article>
+      <article class="why">
+        <h3>ידע שנשאר אצלכם</h3>
+        <p>הדרכה אישית וסרטוני הדרכה, כדי שתבינו את המערכת ותוכלו לעשות בה שינויים בעצמכם.</p>
+      </article>
+      <article class="why">
+        <h3>שקיפות מלאה בתמחור</h3>
+        <p>אתם יודעים בדיוק על מה אתם משלמים, בלי הפתעות. יש פתרונות מדורגים שמתאימים לכל תקציב.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- HOW -->
+<section class="band" id="how">
+  <div class="container">
+    <div class="head">
+      <h2>איך זה עובד</h2>
+    </div>
+    <ol class="steps">
+      <li class="step">
+        <span class="mono">01</span>
+        <h3>פגישת אפיון</h3>
+        <p>נבין את התהליכים בעסק שלכם ונמצא איפה הכי כואב</p>
+      </li>
+      <li class="step">
+        <span class="mono">02</span>
+        <h3>תכנון הפתרון</h3>
+        <p>מתכננים אוטומציה שמותאמת לכם, ואתם רואים את התוכנית לפני שמתחילים</p>
+      </li>
+      <li class="step">
+        <span class="mono">03</span>
+        <h3>הקמה ובדיקות</h3>
+        <p>בונים, מחברים ובודקים שהכל עובד לפני שהמערכת עוברת אליכם</p>
+      </li>
+      <li class="step">
+        <span class="mono">04</span>
+        <h3>מעקב ותמיכה</h3>
+        <p>אחרי ההקמה אני ממשיך ללוות אתכם וזמין לכל שאלה ושיפור</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="band band-white" id="testimonials">
+  <div class="container">
+    <div class="head">
+      <h2>מה הלקוחות אומרים</h2>
+      <p>בעלי עסקים שכבר חוסכים שעות כל שבוע, במילים שלהם</p>
+    </div>
+    <div class="tcarousel" id="tcarousel" role="region" aria-roledescription="carousel" aria-label="סרטוני המלצות">
+      <button class="tc-arrow tc-left" type="button" aria-label="לסרטון שמשמאל"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 5 8 12 15 19"></polyline></svg></button>
+      <div class="tc-track">
+        <figure class="tc-item">
+          <div class="tc-media">
+            <video src="assets/videos/testimonial-1.mp4" poster="assets/videos/testimonial-1.jpg" preload="none" playsinline controls></video>
+          </div>
+          <figcaption>
+            <img class="tc-logo" src="assets/logos/clients/alon-harmonica.png" alt="לוגו לומדים מפוחית עם אלון" width="40" height="40" loading="lazy">
+            <span class="tc-who"><strong>אלון קופרברג</strong><span>לומדים מפוחית עם אלון</span></span>
+          </figcaption>
+        </figure>
+        <figure class="tc-item">
+          <div class="tc-media">
+            <video src="assets/videos/testimonial-2.mp4" poster="assets/videos/testimonial-2.jpg" preload="none" playsinline controls></video>
+          </div>
+          <figcaption>
+            <img class="tc-logo" src="assets/logos/clients/yahdav.png" alt="לוגו ארגון הנוער יחדיו" width="40" height="40" loading="lazy">
+            <span class="tc-who"><strong>קובי</strong><span>מנכ"ל ארגון הנוער יחדיו</span></span>
+          </figcaption>
+        </figure>
+        <figure class="tc-item">
+          <div class="tc-media">
+            <video src="assets/videos/testimonial-3.mp4" poster="assets/videos/testimonial-3.jpg" preload="none" playsinline controls></video>
+          </div>
+          <figcaption>
+            <img class="tc-logo" src="assets/logos/clients/dj-opa.jpg" alt="לוגו DJ OPA" width="40" height="40" loading="lazy">
+            <span class="tc-who"><strong>אורי הולנדר</strong><span>DJ OPA</span></span>
+          </figcaption>
+        </figure>
+        <figure class="tc-item">
+          <div class="tc-media">
+            <video src="assets/videos/testimonial-4.mp4" poster="assets/videos/testimonial-4.jpg" preload="none" playsinline controls></video>
+          </div>
+          <figcaption>
+            <img class="tc-logo" src="assets/logos/clients/reim.png" alt="לוגו עמותת רעים" width="40" height="40" loading="lazy">
+            <span class="tc-who"><strong>דולב סופר</strong><span>מנכ"ל עמותת רעים</span></span>
+          </figcaption>
+        </figure>
+      </div>
+      <button class="tc-arrow tc-right" type="button" aria-label="לסרטון שמימין"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 5 16 12 9 19"></polyline></svg></button>
+      <div class="tc-dots" aria-hidden="true"></div>
+    </div>
+  </div>
+</section>
+
+<!-- FORM -->
+<section class="band" id="form">
+  <div class="container split">
+    <div>
+      <div class="head">
+        <h2>פגישת אפיון ללא עלות</h2>
+        <p>השאירו פרטים ואחזור אליכם בהקדם</p>
+      </div>
+      <div class="contact-alt">
+        <span>מעדיפים לדבר ישירות?</span>
+        <a href="https://wa.me/972552716456?text=אהלן%20בניה%0Aאשמח%20לשמוע%20עוד%20פרטים" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-message"/></svg>הודעה בוואטסאפ</a>
+        <a href="tel:0552716456"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg><span class="num" dir="ltr">055-271-6456</span></a>
+      </div>
+    </div>
+    <div class="form-card" id="formCard">
+      <form id="leadForm" novalidate>
+        <!-- Honeypot: hidden from humans, bots fill it in. -->
+        <div class="hp-field" aria-hidden="true">
+          <label for="company_website">אל תמלאו שדה זה</label>
+          <input type="text" id="company_website" name="company_website" tabindex="-1" autocomplete="off">
+        </div>
+        <div class="field">
+          <label for="name">שם מלא</label>
+          <input type="text" id="name" name="name" required maxlength="100" autocomplete="name">
+        </div>
+        <div class="field">
+          <label for="email">מייל</label>
+          <input type="email" id="email" name="email" required maxlength="150" autocomplete="email">
+        </div>
+        <div class="field">
+          <label for="phone">טלפון</label>
+          <input type="tel" id="phone" name="phone" required maxlength="30" autocomplete="tel">
+        </div>
+        <div class="field">
+          <label for="about">ספרו קצת על העסק <em>(לא חובה)</em></label>
+          <textarea id="about" name="about" rows="4" maxlength="2000"></textarea>
+        </div>
+        <div id="turnstileBox" class="turnstile-box" hidden></div>
+        <button type="submit" class="btn btn-primary submit-btn" id="submitBtn">
+          <span id="submitText">לשיחת ייעוץ בחינם</span>
+        </button>
+      </form>
+      <div class="form-msg success" id="successMsg">
+        <svg class="icon" aria-hidden="true"><use href="#i-check-circle"/></svg>
+        <p>תודה, קיבלתי את הפנייה ואחזור אליכם בהקדם</p>
+      </div>
+      <div class="form-msg error" id="errorMsg" role="alert">
+        <p>משהו השתבש, נסו שוב</p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <span class="wordmark">EZ.Path.AI</span>
+      <div class="footer-contact">
+        <a href="tel:0552716456"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg><span class="num" dir="ltr">055-271-6456</span></a>
+        <!--email_off--><a href="mailto:EZ.Path.AI@outlook.co.il"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg><span dir="ltr">EZ.Path.AI@outlook.co.il</span></a><!--/email_off-->
+        <span><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg>אור עולם 12, פדואל</span>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <span>EZ.Path.AI הוא שם מסחרי של EZPATH.AI, עוסק זעיר. כתובת: אור עולם 12, פדואל. טלפון: <span class="num" dir="ltr">055-271-6456</span></span>
+      <span>© 2025 EZ.Path.AI. כל הזכויות שמורות</span>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-btn" href="https://wa.me/972552716456?text=אהלן%20בניה%0Aאשמח%20לשמוע%20עוד%20פרטים" target="_blank" rel="noopener" aria-label="שליחת הודעה בוואטסאפ">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.2h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm5.8 14.07c-.24.68-1.4 1.3-1.93 1.35-.5.05-1.02.24-3.42-.72-2.9-1.16-4.76-4.11-4.9-4.3-.14-.19-1.17-1.56-1.17-2.97 0-1.41.74-2.1 1-2.39.26-.28.57-.35.76-.35.19 0 .38 0 .55.01.18.01.42-.07.65.5.24.58.81 2 .88 2.15.07.15.12.32.02.51-.1.19-.15.31-.3.48-.15.17-.31.38-.45.51-.15.15-.3.31-.13.6.17.29.75 1.24 1.61 2 1.11.99 2.04 1.3 2.33 1.45.29.15.46.12.63-.07.17-.19.72-.84.91-1.13.19-.29.38-.24.63-.14.26.1 1.64.77 1.92.91.29.14.48.21.55.33.07.12.07.68-.17 1.36z"/></svg>
+</a>
+
+<script>
+(function(){
+'use strict';
+
+/* ===== CLICKJACKING DEFENCE (same as index.html) ===== */
+try {
+  if (window.top !== window.self) {
+    window.top.location = window.self.location;
+  }
+} catch (_) {
+  document.documentElement.style.display = 'none';
+}
+
+/* ===== CONFIG =====
+   The form posts to the Cloudflare Worker, never to Make directly. Both
+   values are public by design and read from meta tags, so changing them
+   never changes this script or its CSP hash. */
+function metaContent(name){
+  const el = document.querySelector('meta[name="' + name + '"]');
+  return el ? el.content.trim() : '';
+}
+const POST_URL = metaContent('ez-worker-url');
+const TURNSTILE_SITEKEY = metaContent('ez-turnstile-sitekey');
+const SECURE_MODE = !!(POST_URL && TURNSTILE_SITEKEY);
+
+/* ===== CHAT DEMO =====
+   Messages stay visible without JavaScript; with it, they wait until the
+   phone is on screen and then play once. */
+(function(){
+  const phone = document.getElementById('phone');
+  if (!phone || !('IntersectionObserver' in window)) return;
+  phone.classList.add('wait');
+  const obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if (entry.isIntersecting){
+        phone.classList.add('play');
+        obs.disconnect();
+      }
+    });
+  }, { threshold:0.2 });
+  obs.observe(phone);
+})();
+
+/* ===== TURNSTILE ===== */
+let turnstileWidgetId = null;
+
+function loadTurnstile(){
+  if (!SECURE_MODE) return;
+  const box = document.getElementById('turnstileBox');
+  box.hidden = false;
+  window.onTurnstileLoad = function(){
+    turnstileWidgetId = window.turnstile.render(box, {
+      sitekey: TURNSTILE_SITEKEY,
+      language: 'he'
+    });
+  };
+  const s = document.createElement('script');
+  s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onTurnstileLoad&render=explicit';
+  s.async = true; s.defer = true;
+  document.head.appendChild(s);
+}
+loadTurnstile();
+
+function turnstileToken(){
+  if (!SECURE_MODE || !window.turnstile || turnstileWidgetId === null) return '';
+  try { return window.turnstile.getResponse(turnstileWidgetId) || ''; }
+  catch (_) { return ''; }
+}
+function resetTurnstile(){
+  if (!SECURE_MODE || !window.turnstile || turnstileWidgetId === null) return;
+  try { window.turnstile.reset(turnstileWidgetId); } catch (_) {}
+}
+
+/* ===== FORM =====
+   Same checks as index.html: honeypot, timing, client-side cooldown and
+   validation. Real enforcement lives at the Worker. */
+const leadForm = document.getElementById('leadForm');
+const submitBtn = document.getElementById('submitBtn');
+const submitText = document.getElementById('submitText');
+const successMsg = document.getElementById('successMsg');
+const errorMsg = document.getElementById('errorMsg');
+const errorMsgText = errorMsg.querySelector('p');
+
+const FORM_LOADED_AT = Date.now();
+const MIN_FILL_MS = 3000;
+const RESUBMIT_COOLDOWN_MS = 60000;
+const LIMITS = { name:100, email:150, phone:30, about:2000 };
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/;
+const PHONE_RE = /^[0-9+()\-\s]{7,30}$/;
+const WA_NUMBER = '972552716456';
+let waFallbackEl = null;
+
+function hideWhatsAppFallback(){
+  if (waFallbackEl) { waFallbackEl.remove(); waFallbackEl = null; }
+}
+function showFormError(msg){
+  errorMsgText.textContent = msg;
+  errorMsg.style.display = 'block';
+  hideWhatsAppFallback();
+}
+/* If sending fails, offer WhatsApp with the details already filled in, so
+   the lead is not lost. textContent only, never innerHTML. */
+function showWhatsAppFallback(details){
+  hideWhatsAppFallback();
+  const msg = 'אהלן בניה, ניסיתי לשלוח טופס באתר והוא לא נשלח.\n\n'
+    + 'שם: ' + details.name + '\n'
+    + 'מייל: ' + details.email + '\n'
+    + 'טלפון: ' + details.phone
+    + (details.about ? '\n\n' + details.about : '');
+  const a = document.createElement('a');
+  a.href = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(msg);
+  a.target = '_blank';
+  a.rel = 'noopener noreferrer';
+  a.className = 'wa-fallback-btn';
+  a.textContent = 'לשלוח לי בוואטסאפ במקום';
+  errorMsg.appendChild(a);
+  waFallbackEl = a;
+}
+
+function lastSubmitAt(){
+  try { return parseInt(sessionStorage.getItem('ez_last_submit') || '0', 10); }
+  catch(_){ return 0; }
+}
+function markSubmitted(){
+  try { sessionStorage.setItem('ez_last_submit', String(Date.now())); } catch(_){}
+}
+
+function setSending(on){
+  submitBtn.disabled = on;
+  submitText.textContent = on ? 'שולח' : 'לשיחת ייעוץ בחינם';
+  if (on){
+    const sp = document.createElement('span');
+    sp.className = 'spinner';
+    submitText.appendChild(document.createTextNode(' '));
+    submitText.appendChild(sp);
+  }
+}
+
+leadForm.addEventListener('submit', function(e){
+  e.preventDefault();
+  errorMsg.style.display = 'none';
+
+  if (document.getElementById('company_website').value !== '') return;
+  if (Date.now() - FORM_LOADED_AT < MIN_FILL_MS) return;
+  if (Date.now() - lastSubmitAt() < RESUBMIT_COOLDOWN_MS) {
+    showFormError('כבר קיבלתי את הפנייה שלכם, ואחזור אליכם בהקדם.');
+    return;
+  }
+
+  const name  = document.getElementById('name').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const phone = document.getElementById('phone').value.trim();
+  const about = document.getElementById('about').value.trim();
+
+  if (!name || !email || !phone) { showFormError('נא למלא שם, מייל וטלפון.'); return; }
+  if (name.length  > LIMITS.name)  { showFormError('השם ארוך מדי.'); return; }
+  if (email.length > LIMITS.email || !EMAIL_RE.test(email)) { showFormError('כתובת המייל לא תקינה.'); return; }
+  if (phone.length > LIMITS.phone || !PHONE_RE.test(phone)) { showFormError('מספר הטלפון לא תקין.'); return; }
+  if (about.length > LIMITS.about) { showFormError('הטקסט ארוך מדי.'); return; }
+
+  if (!SECURE_MODE) {
+    showFormError('הטופס לא זמין כרגע. אפשר לפנות אליי ישירות:');
+    showWhatsAppFallback({ name:name, email:email, phone:phone, about:about });
+    return;
+  }
+
+  const token = turnstileToken();
+  if (!token) {
+    showFormError('נא להשלים את אימות האבטחה מעל הכפתור.');
+    return;
+  }
+
+  setSending(true);
+
+  const payload = {
+    name:name, email:email, phone:phone, about:about,
+    source:'landing_page_unslop', timestamp:new Date().toISOString(),
+    turnstile_token: token
+  };
+
+  fetch(POST_URL, {
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body: JSON.stringify(payload)
+  }).then(function(res){
+    if (res.ok){
+      markSubmitted();
+      leadForm.style.display = 'none';
+      successMsg.style.display = 'block';
+    } else {
+      throw new Error('bad status');
+    }
+  }).catch(function(){
+    resetTurnstile();
+    showFormError('השליחה לא הצליחה. אפשר לשלוח לי את הפרטים ישירות:');
+    showWhatsAppFallback({ name:name, email:email, phone:phone, about:about });
+    setSending(false);
+  });
+});
+
+/* ===== TESTIMONIALS CAROUSEL =====
+   Items are read from the HTML, so adding a video never touches this script.
+   Directions are physical screen sides, not RTL. */
+(function(){
+  const root = document.getElementById('tcarousel');
+  if (!root) return;
+  const track = root.querySelector('.tc-track');
+  const items = Array.prototype.slice.call(track.querySelectorAll('.tc-item'));
+  const n = items.length;
+  if (!n) return;
+  if (n < 2) root.classList.add('tc-single');
+  let current = 0;
+
+  const dotsWrap = root.querySelector('.tc-dots');
+  const dots = items.map(function(_, i){
+    const d = document.createElement('button');
+    d.type = 'button'; d.className = 'tc-dot'; d.tabIndex = -1;
+    d.addEventListener('click', function(){ current = i; render(); });
+    dotsWrap.appendChild(d);
+    return d;
+  });
+
+  function pauseAll(){
+    root.querySelectorAll('video').forEach(function(v){ v.pause(); });
+  }
+
+  function render(){
+    pauseAll();
+    items.forEach(function(item, i){
+      let d = ((i - current) % n + n) % n;
+      if (d > n / 2) d -= n;
+      item.classList.toggle('is-center', d === 0);
+      item.classList.toggle('is-left', d === -1);
+      item.classList.toggle('is-right', d === 1);
+      const off = d !== 0;
+      item.setAttribute('aria-hidden', off ? 'true' : 'false');
+      item.querySelectorAll('video').forEach(function(v){
+        v.controls = !off;
+        v.tabIndex = off ? -1 : 0;
+      });
+      dots[i].classList.toggle('active', !off);
+    });
+  }
+
+  function go(step){
+    if (n < 2) return;
+    current = (current + step + n) % n;
+    render();
+  }
+
+  root.querySelector('.tc-left').addEventListener('click', function(){ go(-1); });
+  root.querySelector('.tc-right').addEventListener('click', function(){ go(1); });
+
+  let swiped = false;
+  items.forEach(function(item){
+    item.addEventListener('click', function(e){
+      if (swiped){ e.preventDefault(); return; }
+      if (item.classList.contains('is-left')) go(-1);
+      else if (item.classList.contains('is-right')) go(1);
+    });
+  });
+
+  root.addEventListener('keydown', function(e){
+    if (e.key === 'ArrowLeft'){ e.preventDefault(); go(-1); }
+    else if (e.key === 'ArrowRight'){ e.preventDefault(); go(1); }
+  });
+
+  let startX = null, startY = 0;
+  track.addEventListener('pointerdown', function(e){
+    startX = e.clientX; startY = e.clientY; swiped = false;
+  });
+  track.addEventListener('pointerup', function(e){
+    if (startX === null) return;
+    const dx = e.clientX - startX, dy = e.clientY - startY;
+    startX = null;
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)){
+      swiped = true;
+      go(dx > 0 ? -1 : 1);
+      setTimeout(function(){ swiped = false; }, 0);
+    }
+  });
+  track.addEventListener('pointercancel', function(){ startX = null; });
+
+  let wheelLock = false;
+  track.addEventListener('wheel', function(e){
+    if (Math.abs(e.deltaX) <= Math.abs(e.deltaY) || Math.abs(e.deltaX) < 10) return;
+    e.preventDefault();
+    if (wheelLock) return;
+    wheelLock = true;
+    setTimeout(function(){ wheelLock = false; }, 600);
+    go(e.deltaX > 0 ? 1 : -1);
+  }, { passive:false });
+
+  new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){ if (!entry.isIntersecting) pauseAll(); });
+  }).observe(root);
+
+  render();
+})();
+
+})();
+</script>
+</body>
+</html>
