@@ -25,12 +25,12 @@
      stays valid and these are safe to change by hand. -->
 <meta name="ez-worker-url" content="https://ezpath-lead-proxy.automator2244.workers.dev/">
 <meta name="ez-turnstile-sitekey" content="0x4AAAAAAEsrvKKxyKrVFCeI">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; form-action 'none'; script-src 'sha256-ZGqW2Vny25Fj6JGAw7iIc7jRcBo2eAbSFN8a1sPdO9A=' https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://ezpath-lead-proxy.automator2244.workers.dev https://challenges.cloudflare.com; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; object-src 'none'; form-action 'none'; script-src 'sha256-aOotERqb0u0p4zfMSJxVXw26FRFg+4yD+zCA+6WPZEg=' https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://ezpath-lead-proxy.automator2244.workers.dev https://challenges.cloudflare.com; upgrade-insecure-requests">
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/heebo-hebrew.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/heebo-latin.woff2" crossorigin>
 <style>
 /* Hallmark · shape: a consult page (Hanging|Asymmetric spans|Hairline|Solid|Tightly cropped|None) · genre: modern-minimal · theme: brand, a tangerine signal added beside the pine at the owner's request · redesign: full · job: hire
- * paper: oklch(98.6% 0.005 160) · accent: oklch(76% 0.15 58) · display: Heebo · body: Heebo · hero: Stage · nav: edge-aligned on the pine field, the wordmark and one quiet action · footer: mast, the wordmark over the contacts and the legal line · signature: a lead writes at 23:47 and the WhatsApp agent answers and books the slot, said in the headline and played once beside it
+ * paper: oklch(98.6% 0.005 160) · accent: oklch(76% 0.15 58) · display: Heebo · body: Heebo · hero: Stage · nav: edge-aligned on the pine field, the wordmark, three links and one quiet action · footer: mast, the wordmark over the contacts and the legal line · signature: a lead writes at 23:47 and the WhatsApp agent answers and books the slot, said in the headline and played once beside it
  * axes: paper/grotesk/green+tangerine · posture: full-palette (field: pine for the hero, the form and the footer · signal: tangerine on the one primary control, tags and numerals · seal: the brand green on checks and the chat) · contrast: pass · fold: pass · v2.0.0 */
 /* Hallmark · pre-emit critique: P4 H5 E4 S5 R4 V4 · weakest: R, two colours and two dark bands; the tangerine stays on controls, tags and numerals and never floods a surface */
 /* Hallmark · dropped curtain, cursorDot, cursorOutline, heroCanvas, progressBar, scrollIndicator, row1, howPath, n · the curtain, custom cursor, particle canvas, progress bar, scroll cue, logo marquee, line drawing and noise filter are decoration the gates refuse (29, 66, craft motion rules) */
@@ -38,6 +38,8 @@
 /* Hallmark · copy rewritten with the owner's consent: one voice (Bnaya in the first person, the reader as "you" plural), one name for the offer (פגישת אפיון), the 23:47 line promoted to the headline */
 /* Hallmark · reworded "תפסיקו לבזבז זמן על משימות ידניות", "מה אנחנו בונים בשבילכם?", "אינטגרציות מתקדמות", "סוכן חכם שעובד בשבילך 24/7", "למה לעבוד איתי?", "פתרונות חכמים, לא מסובכים", "ידע שנשאר איתכם", "שקיפות מלאה בתמחור", "בניית הפתרון", "מעקב ותמיכה", "מה אומרים עלינו?", "פגישת אפיון ללא עלות", "2025", "0552716456" · the owner asked for a copy pass: one voice, one name for the offer, heads that say what the section shows, the stale year and the phone format fixed */
 /* Hallmark · dismissed 3 · the six services carry a line icon inline with the heading, no tile, no coin; the columns are text items, not icon cards */
+/* Hallmark · dropped counter, 30, חדש · the counted figure was never measured and the new tag never dated; the counter's question now heads the pain section and the form's free-text field */
+/* Hallmark · reworded "ניהול לידים חכם", "תיאום פגישות אוטומטי", "למי זה מתאים?", "שותף לדרך, לא רק ספק", "איך זה עובד?" · the research pass: heads that say what the section shows, the stock adjectives cut */
 /* Hallmark · answered F18 · the one slot holds the WhatsApp conversation built in markup; a real capture replaces that markup by hand, no loader script needed */
 
 /* ============ SELF-HOSTED FONTS ============ */
@@ -56,7 +58,7 @@
   --text-hero:clamp(2.125rem, 3vw + 1rem, 3.5rem);
   --text-section:clamp(2rem, 2.5vw + 1rem, 3.5rem); --text-title:clamp(1.25rem, 0.75vw + 0.875rem, 1.625rem); --text-lead:clamp(1.125rem, 0.35vw + 1rem, 1.375rem);
   --text-figure:clamp(6rem, 12vw + 1rem, 11rem);
-  --text-mark:clamp(3rem, 9vw, 8rem);
+  --text-mark:clamp(2.5rem, 6vw, 5rem);
   --ease-out:cubic-bezier(0.16, 1, 0.3, 1); --ease-in:cubic-bezier(0.7, 0, 0.84, 0); --ease-in-out:cubic-bezier(0.65, 0, 0.35, 1);
   --dur-micro:120ms; --dur-short:220ms; --dur-long:420ms;
   --container:1440px; --gutter:64px; --gap-columns:32px; --section-gap-s:120px; --section-gap:144px; --section-gap-l:176px;
@@ -83,6 +85,7 @@
   --color-accent-ink:oklch(24% 0.04 165);
   --color-accent-deep:oklch(56% 0.16 45);
   --color-accent-soft:oklch(95.5% 0.03 70);
+  --color-rule-warm:oklch(86% 0.04 65);
   --color-focus:oklch(56% 0.17 45);
   --color-focus-field:oklch(80% 0.15 60);
 
@@ -167,7 +170,14 @@ button,input,select,textarea{font:inherit}
 
 /* ============ NAV ============ */
 .nav{position:sticky;top:0;z-index:var(--z-sticky-nav);border-block-end:1px solid var(--color-field-rule)}
-.nav__inner{display:flex;align-items:center;justify-content:space-between;gap:var(--space-md);min-height:var(--nav-h)}
+.nav__inner{display:flex;align-items:center;gap:var(--space-md);min-height:var(--nav-h)}
+.nav__links{display:flex;align-items:center;gap:var(--space-xl);margin-inline-start:auto;margin-inline-end:var(--space-lg)}
+.nav__links a{color:var(--color-field-ink);text-decoration:none;white-space:nowrap}
+.nav__links a:hover{text-decoration:underline;text-underline-offset:0.25em}
+.nav__links a:active{opacity:0.8}
+.nav__links a:focus-visible{outline:2px solid var(--color-focus);outline-offset:4px}
+.nav .btn--quiet{margin-inline-start:auto}
+.nav__links + .btn--quiet{margin-inline-start:0}
 .wordmark{
   font:700 1.5rem/1 var(--font-outlier);letter-spacing:-0.01em;direction:ltr;
   color:var(--color-field-ink);text-decoration:none;white-space:nowrap;
@@ -176,13 +186,22 @@ button,input,select,textarea{font:inherit}
 .wordmark:focus-visible{outline:2px solid var(--color-focus);outline-offset:4px}
 
 /* ============ HERO ============ */
-.hero{display:grid;align-items:center;min-height:calc(100svh - var(--nav-h));padding-block:var(--space-2xl)}
+.hero{display:grid;align-items:center;min-height:calc(100svh - var(--nav-h));padding-block:var(--space-xl)}
 .hero__grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(20rem,28rem);column-gap:var(--space-3xl);align-items:center}
 .hero__text{grid-column:1}
 .hero__text .lead{margin-top:var(--space-lg)}
 .hero__actions{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-md) var(--space-xl);margin-top:var(--space-xl)}
-.byline{display:flex;align-items:center;gap:var(--space-sm);margin-top:var(--space-lg);color:var(--color-field-muted)}
-.byline img{inline-size:52px;block-size:52px;border-radius:50%;object-fit:cover;flex-shrink:0}
+.terms{margin-top:var(--space-md);font-size:var(--text-sm);color:var(--color-field-muted);max-width:52ch}
+.hero__meta{grid-column:1 / -1;display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-md) var(--space-2xl);margin-top:var(--space-xl);padding-top:var(--space-lg);border-top:1px solid var(--color-field-rule)}
+.byline{display:flex;align-items:center;gap:var(--space-sm);color:var(--color-field-muted)}
+.byline img{inline-size:44px;block-size:44px;border-radius:50%;object-fit:cover;flex-shrink:0}
+.proof{display:flex;align-items:center;gap:var(--space-sm);min-height:44px;color:var(--color-field-ink);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:0.25em}
+.proof:hover{color:var(--color-accent)}
+.proof:active{opacity:0.8}
+.proof:focus-visible{outline:2px solid var(--color-focus);outline-offset:4px}
+.proof__logos{display:flex}
+.proof__logos img{inline-size:36px;block-size:36px;padding:var(--space-3xs);border-radius:50%;object-fit:contain;background:var(--color-paper);border:2px solid var(--color-field)}
+.proof__logos img + img{margin-inline-start:calc(-1 * var(--space-xs))}
 
 /* The agent at work: a WhatsApp conversation built in markup, in a slot a
    real capture can replace. */
@@ -193,7 +212,7 @@ button,input,select,textarea{font:inherit}
 .chat__who strong{display:block;font-size:var(--text-md);line-height:1.25}
 .chat__who span{font-size:var(--text-sm);color:var(--color-seal-soft)}
 .chat__body{display:flex;flex-direction:column;gap:var(--space-sm);padding:var(--space-md)}
-.chat__day{align-self:center;padding:var(--space-3xs) var(--space-sm);border-radius:var(--radius-pill);background:var(--color-paper);color:var(--color-muted);font-size:var(--text-sm)}
+.chat__day{align-self:center;padding:var(--space-3xs) var(--space-sm);border-radius:6px;background:var(--color-paper);color:var(--color-muted);font-size:var(--text-sm)}
 .cd-msg{max-width:84%;padding:var(--space-xs) var(--space-sm) var(--space-2xs);border-radius:var(--radius-bubble);font-size:var(--text-md);line-height:1.45;color:var(--color-ink)}
 .cd-msg time{display:block;margin-top:var(--space-3xs);font-size:var(--text-xs);color:var(--color-muted);text-align:left;direction:ltr}
 .cd-in{align-self:flex-start;background:var(--color-paper);border-start-start-radius:var(--space-2xs)}
@@ -224,6 +243,7 @@ button,input,select,textarea{font:inherit}
 .js .cd-play .cd-d7{animation-delay:5.9s}
 .js .cd-play .cd-d8{animation-delay:6.3s}
 .js .cd-play .cd-d9{animation-delay:6.7s}
+.chat__demo{margin-inline-start:auto;padding:var(--space-3xs) var(--space-sm);border:1px solid var(--color-seal-soft);border-radius:6px;font-size:var(--text-sm);color:var(--color-seal-ink)}
 @keyframes cdIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 @keyframes cdTyping{0%{opacity:0}15%{opacity:1}85%{opacity:1}100%{opacity:0}}
 @keyframes cdDot{from{opacity:0.3}to{opacity:1}}
@@ -250,7 +270,7 @@ button,input,select,textarea{font:inherit}
 .svc-lead__title h3{font-size:var(--text-2xl);line-height:1.15}
 .svc-lead__body{grid-column:7 / span 6;display:grid;gap:var(--space-lg)}
 .svc-lead__body p{color:var(--color-ink-2)}
-.points{list-style:none;display:flex;flex-wrap:wrap;gap:var(--space-sm) var(--space-xl)}
+.points{list-style:none;display:grid;gap:var(--space-sm)}
 .points li{display:flex;align-items:center;gap:var(--space-xs);font-weight:700}
 .svc-list{list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-2xl) var(--gap-columns);margin-top:var(--space-2xl)}
 .svc-list li{padding-top:var(--space-lg);border-top:1px solid var(--color-rule)}
@@ -263,17 +283,17 @@ button,input,select,textarea{font:inherit}
 .voices__list:focus-visible{outline:2px solid var(--color-focus);outline-offset:4px}
 .voice{margin:0}
 .voice__media{position:relative;aspect-ratio:9 / 16;border-radius:var(--radius-card);overflow:hidden;background:var(--color-video)}
-.voice__media video{inline-size:100%;block-size:100%;object-fit:cover;background:var(--color-video)}
+.voice__media video{inline-size:100%;block-size:100%;object-fit:cover;background:var(--color-video);cursor:pointer}
 .voice__play{
-  position:absolute;inset:0;display:grid;place-items:center;inline-size:100%;block-size:100%;
-  padding:0;border:0;background:transparent;cursor:pointer;
+  position:absolute;inset-block-end:var(--space-md);inset-inline-start:var(--space-md);
+  padding:0;border:0;border-radius:var(--radius-pill);background:transparent;cursor:pointer;
 }
 .voice__play span{
-  display:grid;place-items:center;inline-size:64px;block-size:64px;border-radius:50%;
-  background:var(--color-accent);color:var(--color-accent-ink);
+  display:inline-flex;align-items:center;gap:var(--space-xs);min-height:44px;padding:0 var(--space-md) 0 var(--space-sm);border-radius:var(--radius-pill);
+  background:var(--color-accent);color:var(--color-accent-ink);font-weight:700;font-variant-numeric:tabular-nums;
   transition:background-color var(--dur-short) var(--ease-out),transform var(--dur-micro) var(--ease-out);
 }
-.voice__play svg{inline-size:26px;block-size:26px;margin-inline-end:-3px}
+.voice__play svg{inline-size:20px;block-size:20px}
 .voice__play:hover span{background:var(--color-accent-2)}
 .voice__play:active span{transform:scale(0.97)}
 .voice__play:focus-visible{outline:2px solid var(--color-focus);outline-offset:3px}
@@ -283,26 +303,30 @@ button,input,select,textarea{font:inherit}
 .who strong{font-size:var(--text-lg);line-height:1.3}
 .who span{font-size:var(--text-md);color:var(--color-muted)}
 
-/* ============ FOR WHO (warm band) ============ */
-.fit{padding-block:var(--section-gap-s);background:var(--color-accent-soft)}
-.fit__grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap-columns);align-items:center}
-.fit__main{grid-column:1 / span 7}
-.checks{list-style:none;margin-top:var(--space-xl)}
-.checks li{display:flex;align-items:center;gap:var(--space-md);padding-block:var(--space-md);border-top:1px solid var(--color-rule);font-size:var(--text-lg);line-height:1.4;text-wrap:pretty}
-.checks li:last-child{border-bottom:1px solid var(--color-rule)}
-.fit__figure{grid-column:9 / span 4}
-.fit__q{font-size:var(--text-title);font-weight:700;line-height:1.3}
-.fit__num{margin-top:var(--space-md);font:700 var(--text-figure)/0.9 var(--font-display);letter-spacing:-0.03em;font-variant-numeric:tabular-nums;color:var(--color-accent-deep)}
-.fit__label{margin-top:var(--space-md);font-size:var(--text-lg);color:var(--color-ink-2)}
+/* ============ PAIN (warm band) ============ */
+.pain{padding-block:var(--section-gap-s);background:var(--color-accent-soft)}
+.pain__grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap-columns);align-items:start}
+.pain h2{grid-column:1 / span 5}
+.pain__body{grid-column:7 / span 6}
+.pain__list{list-style:none}
+.pain__list li{padding-block:var(--space-md);border-top:1px solid var(--color-rule-warm);font-size:var(--text-lg);line-height:1.45;text-wrap:pretty}
+.pain__list li:last-child{border-bottom:1px solid var(--color-rule-warm)}
+.pain__close{margin-top:var(--space-lg);font-weight:700;text-wrap:pretty}
+.pain__close a{color:var(--color-ink);white-space:nowrap;text-decoration-thickness:1px;text-underline-offset:0.2em}
+.pain__close a:hover{text-decoration-thickness:2px}
+.pain__close a:focus-visible{outline:2px solid var(--color-focus);outline-offset:2px}
 
-/* ============ TOOLS ============ */
-.tools{padding-block:var(--section-gap)}
-.tools__grid{list-style:none;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));column-gap:var(--gap-columns)}
-.tools__grid li{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-xs) var(--space-sm);min-width:0;padding-block:var(--space-lg);border-top:1px solid var(--color-rule)}
-.tools__grid img{inline-size:28px;block-size:28px;object-fit:contain;flex-shrink:0;mix-blend-mode:multiply}
-.tools__grid span{min-width:0}
-.tools__mono{display:grid;place-items:center;inline-size:28px;block-size:28px;flex-shrink:0;border-radius:50%;background:var(--color-paper-3);color:var(--color-ink-2);font-weight:700;font-size:var(--text-sm)}
-.tools__grid .tag{padding-inline:var(--space-xs)}
+/* ============ TOOLS (inside services) ============ */
+.tools{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap-columns);row-gap:var(--space-lg);margin-top:var(--space-3xl)}
+.tools__head{grid-column:1 / span 3}
+.tools__head p{margin-top:var(--space-xs);color:var(--color-ink-2)}
+.tools__rows{grid-column:5 / -1}
+.tools__rows div{display:grid;grid-template-columns:minmax(0,8.5rem) minmax(0,1fr);gap:var(--space-xs) var(--space-lg);align-items:center;padding-block:var(--space-sm);border-top:1px solid var(--color-rule)}
+.tools__rows div:last-child{border-bottom:1px solid var(--color-rule)}
+.tools__rows dt{font-size:var(--text-sm);color:var(--color-muted)}
+.tools__rows dd{display:flex;flex-wrap:wrap;gap:var(--space-xs) var(--space-lg)}
+.tools__rows dd span{display:inline-flex;align-items:center;gap:var(--space-xs);white-space:nowrap}
+.tools__rows img{inline-size:22px;block-size:22px;object-fit:contain;flex-shrink:0;mix-blend-mode:multiply}
 
 /* ============ ABOUT ============ */
 .about{padding-block:var(--section-gap-s);background:var(--color-paper-2)}
@@ -316,18 +340,35 @@ button,input,select,textarea{font:inherit}
 .about__item p{margin-top:var(--space-xs);color:var(--color-ink-2)}
 
 /* ============ HOW ============ */
-.how{padding-block:var(--section-gap) var(--section-gap-l)}
+.how{padding-block:var(--section-gap)}
 .steps{list-style:none;counter-reset:step;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--space-2xl) var(--gap-columns)}
 .steps li{counter-increment:step;padding-top:var(--space-lg);border-top:2px solid var(--color-ink)}
 .steps li::before{content:counter(step);display:block;margin-bottom:var(--space-lg);font:700 var(--text-display-s)/1 var(--font-display);font-variant-numeric:tabular-nums;color:var(--color-accent-deep)}
 .steps p{margin-top:var(--space-sm);color:var(--color-ink-2)}
+
+/* ============ FAQ ============ */
+.faq{padding-block:0 var(--section-gap)}
+.faq__grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap-columns);align-items:start}
+.faq h2{grid-column:1 / span 4}
+.faq__list{grid-column:6 / -1;border-top:1px solid var(--color-rule)}
+.faq details{border-bottom:1px solid var(--color-rule)}
+.faq summary{display:flex;justify-content:space-between;align-items:center;gap:var(--space-md);min-height:64px;padding-block:var(--space-md);font-size:var(--text-title);font-weight:700;line-height:1.3;cursor:pointer;list-style:none}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";flex-shrink:0;font-weight:400;font-size:1.4em;line-height:1;color:var(--color-accent-deep)}
+.faq details[open] summary::after{content:"\2212"}
+.faq summary:hover{color:var(--color-ink-2)}
+.faq summary:focus-visible{outline:2px solid var(--color-focus);outline-offset:2px}
+.faq details p{max-width:62ch;padding-block-end:var(--space-lg);color:var(--color-ink-2)}
 
 /* ============ FORM (pine band) ============ */
 .contact{padding-block:var(--section-gap-s)}
 .contact__grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap-columns);align-items:start}
 .contact__head{grid-column:1 / span 5;position:sticky;top:calc(var(--nav-h) + var(--space-xl))}
 .contact__head .lead{margin-top:var(--space-md)}
-.direct{margin-top:var(--space-2xl);display:grid;gap:var(--space-md)}
+.next{list-style:none;counter-reset:n;display:grid;gap:var(--space-sm);margin-top:var(--space-xl)}
+.next li{counter-increment:n;display:flex;align-items:center;gap:var(--space-sm)}
+.next li::before{content:counter(n);display:grid;place-items:center;flex-shrink:0;inline-size:28px;block-size:28px;border-radius:50%;background:var(--color-accent);color:var(--color-accent-ink);font-weight:700;font-size:var(--text-sm)}
+.direct{margin-top:var(--space-xl);display:grid;gap:var(--space-md)}
 .direct div{padding-top:var(--space-md);border-top:1px solid var(--color-field-rule)}
 .direct dt{font-size:var(--text-sm);color:var(--color-field-muted)}
 .direct dd{margin-top:var(--space-2xs);font-size:var(--text-lg);font-weight:700}
@@ -376,17 +417,16 @@ button,input,select,textarea{font:inherit}
 .footer__contact a:hover{text-decoration:underline}
 .footer__legal{display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--space-sm) var(--space-xl);margin-top:var(--space-3xl);padding-top:var(--space-lg);border-top:1px solid var(--color-field-rule);font-size:var(--text-sm);color:var(--color-field-muted)}
 
-/* ============ WHATSAPP ============ */
-.wa{
-  position:fixed;inset-block-end:var(--space-lg);inset-inline-end:var(--space-lg);z-index:var(--z-sticky);
-  display:grid;place-items:center;inline-size:56px;block-size:56px;border-radius:50%;
-  background:var(--color-seal);color:var(--color-seal-ink);
-  transition:background-color var(--dur-short) var(--ease-out),transform var(--dur-micro) var(--ease-out);
-}
-.wa:hover{background:var(--color-seal-deep)}
-.wa:active{transform:translateY(1px)}
-.wa:focus-visible{outline:2px solid var(--color-focus);outline-offset:3px}
-.wa svg{inline-size:30px;block-size:30px}
+/* ============ MOBILE ACTION BAR ============
+   Fixed to the bottom on phones. The script moves it aside while the form
+   or the footer is on screen; without a script it simply stays. */
+.mbar{display:none}
+.mbar.is-away{transform:translateY(110%);visibility:hidden;transition:transform var(--dur-short) var(--ease-in),visibility 0s linear var(--dur-short)}
+.mbar__wa{display:inline-flex;align-items:center;justify-content:center;gap:var(--space-xs);min-height:52px;padding:0 var(--space-md);border:1px solid var(--color-field-muted);border-radius:var(--radius-pill);color:var(--color-field-ink);font-weight:700;text-decoration:none;white-space:nowrap}
+.mbar__wa svg{inline-size:20px;block-size:20px}
+.mbar__wa:hover{background:var(--color-field-2)}
+.mbar__wa:active{opacity:0.85}
+.mbar__wa:focus-visible{outline:2px solid var(--color-focus);outline-offset:2px}
 
 /* ============ SMALLER SCREENS ============ */
 @media (max-width:60rem){
@@ -395,6 +435,7 @@ button,input,select,textarea{font:inherit}
   .hero__grid{grid-template-columns:minmax(0,1fr)}
   .hero__text,.agent{grid-column:1}
   .agent{margin-top:var(--space-2xl);max-inline-size:30rem}
+  .hero__meta{grid-column:1;margin-top:var(--space-xl)}
   .head h2,.head .lead,.head--stack h2,.head--stack .lead{grid-column:1 / -1}
   .head{align-items:start}
   .svc-lead{padding:var(--space-xl) var(--space-lg)}
@@ -405,9 +446,15 @@ button,input,select,textarea{font:inherit}
     overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;padding-bottom:var(--space-md);
   }
   .voices__list > li{scroll-snap-align:start}
-  .fit__main,.fit__figure{grid-column:1 / -1}
-  .fit__figure{margin-top:var(--space-2xl)}
-  .tools__grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .nav__links{display:none}
+  .pain h2,.pain__body{grid-column:1 / -1}
+  .pain__body{margin-top:var(--space-xl)}
+  .tools__head,.tools__rows{grid-column:1 / -1}
+  .faq h2,.faq__list{grid-column:1 / -1}
+  .faq__list{margin-top:var(--space-xl)}
+  body{padding-bottom:calc(76px + env(safe-area-inset-bottom, 0px))}
+  .mbar{position:fixed;inset-inline:0;bottom:0;z-index:var(--z-sticky);display:flex;transition:transform var(--dur-short) var(--ease-out),visibility 0s linear;align-items:center;gap:var(--space-sm);padding:var(--space-sm) var(--gutter) calc(var(--space-sm) + env(safe-area-inset-bottom, 0px));background:var(--color-field);border-top:1px solid var(--color-field-rule);--color-focus:var(--color-focus-field)}
+  .mbar .btn{flex:1}
   .about__photo,.about__body{grid-column:1 / -1}
   .about__photo{max-inline-size:26rem;margin-bottom:var(--space-xl)}
   .steps{grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -421,19 +468,16 @@ button,input,select,textarea{font:inherit}
   :root{--gutter:16px;--section-gap-s:56px;--section-gap:72px;--section-gap-l:96px;--gap-columns:16px;--nav-h:60px}
   .wordmark{font-size:1.125rem}
   .svc-list,.about__list,.steps{grid-template-columns:minmax(0,1fr)}
-  .tools__grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .tools__rows div{grid-template-columns:minmax(0,1fr)}
   .footer__legal{flex-direction:column}
-  .wa{inline-size:52px;block-size:52px}
 }
 @media (prefers-reduced-motion: reduce){
   html{scroll-behavior:auto}
-  .btn,.text-link,.wa,.voice__play span{transition:none}
+  .btn,.text-link,.voice__play span{transition:none}
   *,*::before,*::after{animation-duration:0.01ms !important;animation-iteration-count:1 !important;transition-duration:0.01ms !important}
 }
 </style>
 </head>
-<body>
-
 <svg class="sprite" width="0" height="0" aria-hidden="true" focusable="false">
   <symbol id="i-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="currentColor"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" style="stroke:var(--color-seal-ink)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4.5 19.5l1.2-3.6A7.5 7.5 0 1 1 8.6 18.6z"/><path d="M9 11.5h6M9 8.5h4"/></symbol>
@@ -448,6 +492,11 @@ button,input,select,textarea{font:inherit}
 <header class="nav on-field" id="navbar">
   <div class="container nav__inner">
     <a class="wordmark" href="#hero" aria-label="EZ.Path.AI, לראש הדף">EZ.Path.AI</a>
+    <nav class="nav__links" aria-label="ניווט באתר">
+      <a href="#how">איך זה עובד</a>
+      <a href="#faq">שאלות</a>
+      <a href="https://wa.me/972552716456?text=אהלן%20בניה%0Aאשמח%20לשמוע%20עוד%20פרטים" target="_blank" rel="noopener">וואטסאפ</a>
+    </nav>
     <a href="#form" class="btn btn--quiet">קבעו פגישה</a>
   </div>
 </header>
@@ -459,23 +508,20 @@ button,input,select,textarea{font:inherit}
   <div class="container hero__grid">
     <div class="hero__text">
       <h1>ליד כתב לכם ב-23:47.<br>הוא קיבל תשובה תוך&nbsp;4&nbsp;שניות.</h1>
-      <p class="lead">אני בונה לעסקים קטנים ובינוניים אוטומציות וסוכני AI שחוסכים עבודה ידנית, עם ROI ברור עוד לפני שמתחילים.</p>
+      <p class="lead">אני בונה לעסקים קטנים ובינוניים סוכני AI ואוטומציות שעונים ללקוחות, קובעים תורים ומעדכנים את המערכות, גם כשאתם לא ליד הטלפון.</p>
       <div class="hero__actions">
         <a href="#form" class="btn">קבעו פגישת אפיון חינם</a>
-        <a href="#how" class="text-link">איך זה עובד</a>
+        <a href="https://wa.me/972552716456?text=אהלן%20בניה%0Aאשמח%20לשמוע%20עוד%20פרטים" class="text-link" target="_blank" rel="noopener">או כתבו לי בוואטסאפ</a>
       </div>
-      <p class="byline">
-        <img src="bnaya.jpg" alt="בניה, מייסד EZ.Path.AI" width="500" height="500" fetchpriority="high">
-        <span>בניה, מייסד EZ.Path.AI ומומחה Make.com</span>
-      </p>
+      <p class="terms">הפגישה ללא עלות. לפני שמתחילים לבנות, תדעו מה זה יעלה ומה זה יחסוך.</p>
     </div>
 
-    <!-- CHAT DEMO: the AI agent shown in action -->
     <figure class="agent" id="chatDemo">
       <div class="chat" data-slot="agent-chat" data-alt="שיחת וואטסאפ שסוכן AI עונה עליה וקובע תור" role="img" aria-label="הדגמה: ליד כותב בוואטסאפ ב-23:47, וסוכן AI עונה לו תוך שניות, קובע לו תור, מוסיף את הפגישה ליומן ורושם את הליד ב-CRM">
         <div class="chat__head">
           <span class="chat__avatar" aria-hidden="true">ע</span>
           <span class="chat__who"><strong>העסק שלכם</strong><span>וואטסאפ עסקי</span></span>
+          <span class="chat__demo">הדגמה</span>
         </div>
         <div class="chat__body">
           <span class="chat__day">היום</span>
@@ -497,6 +543,38 @@ button,input,select,textarea{font:inherit}
         </ul>
       </div>
     </figure>
+    <div class="hero__meta">
+      <p class="byline">
+        <img src="bnaya.jpg" alt="בניה, מייסד EZ.Path.AI" width="500" height="500" fetchpriority="high">
+        <span>בניה, מייסד EZ.Path.AI</span>
+      </p>
+      <a class="proof" href="#testimonials">
+        <span class="proof__logos" aria-hidden="true">
+          <img src="assets/logos/clients/alon-harmonica.png" alt="" width="36" height="36">
+          <img src="assets/logos/clients/yahdav.png" alt="" width="36" height="36">
+          <img src="assets/logos/clients/dj-opa.jpg" alt="" width="36" height="36">
+          <img src="assets/logos/clients/reim.png" alt="" width="36" height="36">
+        </span>
+        <span>ארבעה לקוחות מספרים בווידאו</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- PAIN -->
+<section class="pain" id="forwho">
+  <div class="container pain__grid">
+    <h2>כמה שעות בזבזתם השבוע על עבודה ידנית?</h2>
+    <div class="pain__body">
+      <ul class="pain__list">
+        <li>כל פנייה מחכה שמישהו יתפנה לענות לה.</li>
+        <li>לקוחות הולכים לאיבוד, כי לא חוזרים אליהם מספיק מהר.</li>
+        <li>אותם פרטים מוקלדים שוב ושוב: בוואטסאפ, בגיליון וב-CRM.</li>
+        <li>יש לידים, אבל אין זמן לטפל בהם.</li>
+        <li>רוצים לגדול, בלי לגייס עוד עובדים.</li>
+      </ul>
+      <p class="pain__close">אם אחד מאלה קורה אצלכם, זה בדיוק מה שבודקים בפגישת האפיון. <a href="#form">לקביעת פגישה</a></p>
+    </div>
   </div>
 </section>
 
@@ -511,14 +589,13 @@ button,input,select,textarea{font:inherit}
     <article class="svc-lead">
       <div class="svc-lead__title">
         <h3>סוכן AI שעובד בשבילכם 24/7</h3>
-        <span class="tag">חדש</span>
       </div>
       <div class="svc-lead__body">
         <p>סוכן שמכיר את העסק שלכם ועונה ללקוחות בוואטסאפ: מסווג פניות, מחלק משימות, מנהל מו״מ ראשוני וקובע תורים. גם כשאתם ישנים, בפגישה או בחופש.</p>
         <ul class="points">
           <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>לומד את העסק שלכם</li>
           <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>עונה תוך שניות</li>
-          <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>מחובר לכל המערכות</li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>מחובר למערכות שכבר יש לכם</li>
         </ul>
       </div>
     </article>
@@ -526,45 +603,96 @@ button,input,select,textarea{font:inherit}
     <ul class="svc-list">
       <li>
         <div class="svc-title"><svg class="ico-line" aria-hidden="true"><use href="#i-chat"/></svg><h3>אוטומציות וואטסאפ</h3><span class="tag">הכי מבוקש</span></div>
-        <p>מענה מיידי 24/7, מסעות לקוח מותאמים אישית וחיבור ישיר ל-CRM.</p>
+        <p>לקוח כותב בוואטסאפ ומקבל תשובה מיד, והשיחה נרשמת ב-CRM בלי שמישהו יעתיק אותה.</p>
       </li>
       <li>
-        <div class="svc-title"><svg class="ico-line" aria-hidden="true"><use href="#i-leads"/></svg><h3>ניהול לידים חכם</h3></div>
-        <p>כל ליד נקלט אוטומטית, מכל מקור, ומנותב למקום הנכון עד שהוא הופך ללקוח.</p>
+        <div class="svc-title"><svg class="ico-line" aria-hidden="true"><use href="#i-leads"/></svg><h3>ניהול לידים</h3></div>
+        <p>ליד מהאתר, מפייסבוק או מוואטסאפ נרשם לבד במקום אחד, ומגיע למי שצריך לטפל בו.</p>
       </li>
       <li>
-        <div class="svc-title"><svg class="ico-line" aria-hidden="true"><use href="#i-calendar"/></svg><h3>תיאום פגישות אוטומטי</h3></div>
-        <p>סנכרון יומן, תזכורות ואישורי הגעה, בלי טלפונים מיותרים.</p>
+        <div class="svc-title"><svg class="ico-line" aria-hidden="true"><use href="#i-calendar"/></svg><h3>תיאום פגישות</h3></div>
+        <p>פגישה שנקבעה נכנסת ליומן, והלקוח מקבל תזכורת ואישור הגעה בלי שתצטרכו להתקשר.</p>
       </li>
       <li>
         <div class="svc-title"><svg class="ico-line" aria-hidden="true"><use href="#i-star"/></svg><h3>איסוף חוות דעת</h3></div>
-        <p>בקשה לביקורת שנשלחת בזמן הנכון, פי 3-5 יותר ביקורות וטיפול מסודר במשוב שלילי.</p>
+        <p>בקשה לביקורת יוצאת בזמן הנכון, ומשוב שלילי מקבל טיפול מסודר במקום להיעלם.</p>
       </li>
       <li>
         <div class="svc-title"><svg class="ico-line" aria-hidden="true"><use href="#i-chart"/></svg><h3>דשבורד לניהול העסק</h3></div>
-        <p>הכנסות, לידים ומשימות במסך אחד ובזמן אמת, עם תובנות AI שעוזרות לקבל החלטות.</p>
+        <p>הכנסות, לידים ומשימות במסך אחד שמתעדכן לבד. בלי לבנות דוח בסוף החודש.</p>
       </li>
       <li>
         <div class="svc-title"><svg class="ico-line" aria-hidden="true"><use href="#i-link"/></svg><h3>חיבור בין מערכות</h3></div>
-        <p>הנתונים עוברים לבד בין כל המערכות שלכם, והדוחות מתעדכנים בזמן אמת.</p>
+        <p>פרט שמוקלד פעם אחת עובר לבד לכל מערכת שצריכה אותו.</p>
       </li>
     </ul>
+
+    <div class="tools" id="tools">
+      <div class="tools__head">
+        <h3>עובד עם הכלים שכבר יש לכם</h3>
+        <p>לא צריך להחליף מערכות. אני מחבר את מה שכבר עובד אצלכם.</p>
+      </div>
+      <dl class="tools__rows">
+        <div>
+          <dt>ערוצים ללקוחות</dt>
+          <dd>
+            <span><img src="assets/logos/whatsapp.svg" alt="" width="22" height="22" loading="lazy">WhatsApp</span>
+            <span><img src="assets/logos/facebook.svg" alt="" width="22" height="22" loading="lazy">Facebook</span>
+            <span><img src="assets/logos/manychat.png" alt="" width="22" height="22" loading="lazy">ManyChat</span>
+            <span><img src="assets/logos/greenapi.png" alt="" width="22" height="22" loading="lazy">Green API</span>
+            <span><img src="assets/logos/heyy.png" alt="" width="22" height="22" loading="lazy">Heyy</span>
+            <span><img src="assets/logos/sendpulse.png" alt="" width="22" height="22" loading="lazy">SendPulse</span>
+          </dd>
+        </div>
+        <div>
+          <dt>איפה המידע נשמר</dt>
+          <dd>
+            <span><img src="assets/logos/airtable.svg" alt="" width="22" height="22" loading="lazy">Airtable</span>
+            <span><img src="assets/logos/googlesheets.svg" alt="" width="22" height="22" loading="lazy">Google Sheets</span>
+            <span><img src="assets/logos/monday.png" alt="" width="22" height="22" loading="lazy">Monday</span>
+          </dd>
+        </div>
+        <div>
+          <dt>יומן וטפסים</dt>
+          <dd>
+            <span><img src="assets/logos/googlecalendar.svg" alt="" width="22" height="22" loading="lazy">Google Calendar</span>
+            <span>Cal.com</span>
+            <span>Fillout</span>
+          </dd>
+        </div>
+        <div>
+          <dt>מה שמחבר הכל</dt>
+          <dd>
+            <span><img src="assets/logos/make.svg" alt="" width="22" height="22" loading="lazy">Make.com</span>
+            <span><img src="assets/logos/n8n.svg" alt="" width="22" height="22" loading="lazy">n8n</span>
+          </dd>
+        </div>
+        <div>
+          <dt>AI ודוחות</dt>
+          <dd>
+            <span><img src="assets/logos/openai.png" alt="" width="22" height="22" loading="lazy">ChatGPT</span>
+            <span><img src="assets/logos/claude.svg" alt="" width="22" height="22" loading="lazy">Claude AI</span>
+            <span><img src="assets/logos/lovable.png" alt="" width="22" height="22" loading="lazy">Lovable</span>
+            <span><img src="assets/logos/looker.svg" alt="" width="22" height="22" loading="lazy">Looker Studio</span>
+          </dd>
+        </div>
+      </dl>
+    </div>
   </div>
 </section>
 
 <!-- TESTIMONIALS -->
 <section class="voices" id="testimonials">
   <div class="container">
-    <div class="head">
-      <h2>לקוחות מספרים</h2>
-      <p class="lead">בעלי עסקים שכבר חוסכים שעות בכל שבוע, במילים שלהם.</p>
+    <div class="head head--stack">
+      <h2>ארבעה לקוחות, במילים שלהם</h2>
     </div>
-    <!-- הוספת סרטון: להעתיק בלוק li אחד ולעדכן קבצים, שם, תפקיד ולוגו. אין צורך לגעת בסקריפט. -->
+    <!-- הוספת סרטון: להעתיק בלוק li אחד ולעדכן קבצים, אורך (data-duration), שם, תפקיד ולוגו. אין צורך לגעת בסקריפט. -->
     <ul class="voices__list" id="tcarousel" aria-label="סרטוני המלצות" tabindex="0">
       <li>
         <figure class="voice">
           <div class="voice__media">
-            <video src="assets/videos/testimonial-1.mp4" poster="assets/videos/testimonial-1.jpg" preload="none" playsinline controls></video>
+            <video src="assets/videos/testimonial-1.mp4" poster="assets/videos/testimonial-1.jpg" preload="none" playsinline controls data-duration="1:08"></video>
           </div>
           <figcaption>
             <img class="voice__logo" src="assets/logos/clients/alon-harmonica.png" alt="לוגו לומדים מפוחית עם אלון" width="44" height="44" loading="lazy">
@@ -575,7 +703,7 @@ button,input,select,textarea{font:inherit}
       <li>
         <figure class="voice">
           <div class="voice__media">
-            <video src="assets/videos/testimonial-2.mp4" poster="assets/videos/testimonial-2.jpg" preload="none" playsinline controls></video>
+            <video src="assets/videos/testimonial-2.mp4" poster="assets/videos/testimonial-2.jpg" preload="none" playsinline controls data-duration="0:54"></video>
           </div>
           <figcaption>
             <img class="voice__logo" src="assets/logos/clients/yahdav.png" alt="לוגו ארגון הנוער יחדיו" width="44" height="44" loading="lazy">
@@ -586,7 +714,7 @@ button,input,select,textarea{font:inherit}
       <li>
         <figure class="voice">
           <div class="voice__media">
-            <video src="assets/videos/testimonial-3.mp4" poster="assets/videos/testimonial-3.jpg" preload="none" playsinline controls></video>
+            <video src="assets/videos/testimonial-3.mp4" poster="assets/videos/testimonial-3.jpg" preload="none" playsinline controls data-duration="0:23"></video>
           </div>
           <figcaption>
             <img class="voice__logo" src="assets/logos/clients/dj-opa.jpg" alt="לוגו DJ OPA" width="44" height="44" loading="lazy">
@@ -597,7 +725,7 @@ button,input,select,textarea{font:inherit}
       <li>
         <figure class="voice">
           <div class="voice__media">
-            <video src="assets/videos/testimonial-4.mp4" poster="assets/videos/testimonial-4.jpg" preload="none" playsinline controls></video>
+            <video src="assets/videos/testimonial-4.mp4" poster="assets/videos/testimonial-4.jpg" preload="none" playsinline controls data-duration="0:33"></video>
           </div>
           <figcaption>
             <img class="voice__logo" src="assets/logos/clients/reim.png" alt="לוגו עמותת רעים" width="44" height="44" loading="lazy">
@@ -605,57 +733,6 @@ button,input,select,textarea{font:inherit}
           </figcaption>
         </figure>
       </li>
-    </ul>
-  </div>
-</section>
-
-<!-- FOR WHO -->
-<section class="fit" id="forwho">
-  <div class="container fit__grid">
-    <div class="fit__main">
-      <h2>למי זה מתאים?</h2>
-      <ul class="checks">
-        <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>אתם עונים ידנית לכל ליד</li>
-        <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>לקוחות הולכים לאיבוד כי לא חוזרים אליהם מספיק מהר</li>
-        <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>שעות הולכות על העברת מידע בין מערכות</li>
-        <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>יש לידים, אבל אין זמן לטפל בהם</li>
-        <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>אתם רוצים לגדול בלי לגייס עוד עובדים</li>
-      </ul>
-    </div>
-    <div class="fit__figure">
-      <p class="fit__q">כמה שעות בזבזתם השבוע על עבודה ידנית?</p>
-      <p class="fit__num" id="counter">30</p>
-      <p class="fit__label">שעות שיכולתם לחסוך עם אוטומציה</p>
-    </div>
-  </div>
-</section>
-
-<!-- TOOLS -->
-<section class="tools" id="tools">
-  <div class="container">
-    <div class="head head--stack">
-      <h2>עובד עם הכלים שכבר יש לכם</h2>
-      <p class="lead">לא צריך להחליף מערכות. אני מחבר את מה שכבר עובד אצלכם.</p>
-    </div>
-    <ul class="tools__grid">
-      <li><img src="assets/logos/make.svg" alt="" width="28" height="28" loading="lazy"><span>Make.com</span><span class="tag">מומחה</span></li>
-      <li><img src="assets/logos/whatsapp.svg" alt="" width="28" height="28" loading="lazy"><span>WhatsApp</span></li>
-      <li><img src="assets/logos/airtable.svg" alt="" width="28" height="28" loading="lazy"><span>Airtable</span></li>
-      <li><img src="assets/logos/googlesheets.svg" alt="" width="28" height="28" loading="lazy"><span>Google Sheets</span></li>
-      <li><img src="assets/logos/googlecalendar.svg" alt="" width="28" height="28" loading="lazy"><span>Google Calendar</span></li>
-      <li><span class="tools__mono" aria-hidden="true">F</span><span>Fillout</span></li>
-      <li><img src="assets/logos/manychat.png" alt="" width="28" height="28" loading="lazy"><span>ManyChat</span></li>
-      <li><img src="assets/logos/greenapi.png" alt="" width="28" height="28" loading="lazy"><span>Green API</span></li>
-      <li><img src="assets/logos/sendpulse.png" alt="" width="28" height="28" loading="lazy"><span>SendPulse</span></li>
-      <li><img src="assets/logos/n8n.svg" alt="" width="28" height="28" loading="lazy"><span>n8n</span></li>
-      <li><img src="assets/logos/openai.png" alt="" width="28" height="28" loading="lazy"><span>ChatGPT</span></li>
-      <li><img src="assets/logos/claude.svg" alt="" width="28" height="28" loading="lazy"><span>Claude AI</span></li>
-      <li><img src="assets/logos/lovable.png" alt="" width="28" height="28" loading="lazy"><span>Lovable</span></li>
-      <li><img src="assets/logos/monday.png" alt="" width="28" height="28" loading="lazy"><span>Monday</span></li>
-      <li><img src="assets/logos/heyy.png" alt="" width="28" height="28" loading="lazy"><span>Heyy</span></li>
-      <li><img src="assets/logos/looker.svg" alt="" width="28" height="28" loading="lazy"><span>Looker Studio</span></li>
-      <li><span class="tools__mono" aria-hidden="true">C</span><span>Cal.com</span></li>
-      <li><img src="assets/logos/facebook.svg" alt="" width="28" height="28" loading="lazy"><span>Facebook</span></li>
     </ul>
   </div>
 </section>
@@ -668,22 +745,22 @@ button,input,select,textarea{font:inherit}
     </figure>
     <div class="about__body">
       <h2>נעים מאוד, אני בניה</h2>
-      <p class="lead">יועץ אוטומציה עסקית ובונה סוכני AI לעסקים קטנים ובינוניים בישראל. ככה אני עובד:</p>
+      <p class="lead">יועץ אוטומציה עסקית, בונה סוכני AI ומומחה Make.com. אני עובד עם עסקים קטנים ובינוניים בישראל, וככה זה נראה:</p>
       <div class="about__list">
         <div class="about__item">
-          <h3>שותף לדרך, לא רק ספק</h3>
-          <p>אני לא בונה, שולח חשבונית ונעלם. אני כאן לאורך זמן: לתמיכה, לשדרוגים ולהתאמות כשהעסק גדל.</p>
+          <h3>אחרי ההשקה אני עדיין כאן</h3>
+          <p>אני לא בונה, שולח חשבונית ונעלם. אני זמין לתמיכה, לשדרוגים ולהתאמות כשהעסק גדל.</p>
         </div>
         <div class="about__item">
-          <h3>פשוט, לא מסובך</h3>
-          <p>מקסימום תוצאה עם מינימום סיבוכים. לפעמים אוטומציה פשוטה עושה פלאים, ואין צורך ביותר מזה.</p>
+          <h3>אם פשוט מספיק, תקבלו פשוט</h3>
+          <p>לפעמים אוטומציה אחת קטנה פותרת את רוב הבעיה, ואין סיבה לבנות יותר מזה.</p>
         </div>
         <div class="about__item">
-          <h3>ידע שנשאר אצלכם</h3>
+          <h3>תוכלו לשנות לבד</h3>
           <p>הדרכה אישית וסרטוני הדרכה, כדי שתבינו את המערכת ותוכלו לשנות בה דברים בעצמכם.</p>
         </div>
         <div class="about__item">
-          <h3>מחיר שקוף</h3>
+          <h3>המחיר ידוע לפני שמתחילים</h3>
           <p>אתם יודעים בדיוק על מה אתם משלמים, בלי הפתעות. יש פתרונות מדורגים לכל תקציב.</p>
         </div>
       </div>
@@ -695,8 +772,7 @@ button,input,select,textarea{font:inherit}
 <section class="how" id="how">
   <div class="container">
     <div class="head head--stack">
-      <h2>איך זה עובד?</h2>
-      <p class="lead">מהשיחה הראשונה ועד שהכל רץ לבד.</p>
+      <h2>מהשיחה הראשונה ועד שהכל רץ</h2>
     </div>
     <ol class="steps">
       <li>
@@ -704,18 +780,47 @@ button,input,select,textarea{font:inherit}
         <p>מכירים את העסק, עוברים על התהליכים ומזהים איפה הכי כואב.</p>
       </li>
       <li>
-        <h3>תכנון</h3>
-        <p>מתכננים פתרון מותאם עם ROI ברור, לפני שמתחילים לבנות.</p>
+        <h3>תוכנית ומחיר</h3>
+        <p>מתכננים פתרון מותאם, ותדעו מה הוא יחסוך ומה הוא יעלה לפני שמתחילים לבנות.</p>
       </li>
       <li>
         <h3>הקמה ובדיקות</h3>
         <p>בונים, מחברים ובודקים עד שהכל עובד חלק. רק אז זה עובר אליכם.</p>
       </li>
       <li>
-        <h3>ליווי ותמיכה</h3>
-        <p>אחרי ההשקה אני זמין לכל שאלה, תיקון ושיפור.</p>
+        <h3>ליווי אחרי ההשקה</h3>
+        <p>אני זמין לכל שאלה, תיקון ושיפור, גם אחרי שהמערכת עולה.</p>
       </li>
     </ol>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="container faq__grid">
+    <h2>שאלות לפני שמתחילים</h2>
+    <div class="faq__list">
+      <details>
+        <summary>כמה זה עולה?</summary>
+        <p>בפגישת האפיון נבין מה צריך, ותקבלו מחיר לפני שמתחילים לבנות. יש פתרונות מדורגים לכל תקציב, ואין הפתעות בדרך.</p>
+      </details>
+      <details>
+        <summary>אתה עובד לבד. מה קורה אם לא תהיה זמין?</summary>
+        <p>אתם מקבלים הדרכה אישית וסרטוני הדרכה, כך שאפשר לשנות דברים בלי לחכות לי. ואחרי ההשקה אני זמין לשאלות, לתיקונים ולשיפורים.</p>
+      </details>
+      <details>
+        <summary>צריך להחליף מערכות?</summary>
+        <p>לא. אני מחבר את הכלים שכבר עובדים אצלכם, כמו וואטסאפ, Google Sheets, Monday או Airtable.</p>
+      </details>
+      <details>
+        <summary>העסק שלי קטן. זה מתאים לי?</summary>
+        <p>כן. לפעמים אוטומציה אחת פשוטה חוסכת את רוב העבודה הידנית, ואין צורך ביותר מזה.</p>
+      </details>
+      <details>
+        <summary>מה קורה בפגישת האפיון?</summary>
+        <p>מכירים את העסק, עוברים על התהליכים ומזהים איפה הכי כואב. משם מתכננים פתרון, ותקבלו מחיר לפני שמתחילים לבנות.</p>
+      </details>
+    </div>
   </div>
 </section>
 
@@ -724,7 +829,12 @@ button,input,select,textarea{font:inherit}
   <div class="container contact__grid">
     <div class="contact__head">
       <h2>פגישת אפיון, ללא עלות</h2>
-      <p class="lead">השאירו פרטים ואחזור אליכם בהקדם.</p>
+      <p class="lead">השאירו פרטים ואחזור אליכם לתאם.</p>
+      <ol class="next">
+        <li>אחזור אליכם לתאם את הפגישה.</li>
+        <li>בפגישה נעבור על התהליכים ונזהה איפה הכי כואב.</li>
+        <li>תקבלו תוכנית ומחיר, לפני שמתחילים לבנות.</li>
+      </ol>
       <dl class="direct">
         <div><dt>מעדיפים וואטסאפ?</dt><dd><a href="https://wa.me/972552716456?text=אהלן%20בניה%0Aאשמח%20לשמוע%20עוד%20פרטים" target="_blank" rel="noopener">שלחו לי הודעה</a></dd></div>
         <div><dt>או בטלפון</dt><dd><a href="tel:0552716456" dir="ltr">055-271-6456</a></dd></div>
@@ -744,25 +854,25 @@ button,input,select,textarea{font:inherit}
           <input type="text" id="name" name="name" required maxlength="100" autocomplete="name">
         </div>
         <div class="field">
-          <label for="email">מייל</label>
-          <input type="email" id="email" name="email" required maxlength="150" autocomplete="email" inputmode="email" dir="ltr">
-        </div>
-        <div class="field">
           <label for="phone">טלפון</label>
           <input type="tel" id="phone" name="phone" required maxlength="30" autocomplete="tel" inputmode="tel" dir="ltr">
         </div>
         <div class="field">
-          <label for="about">ספרו לי קצת על העסק <span>(לא חובה)</span></label>
+          <label for="email">מייל</label>
+          <input type="email" id="email" name="email" required maxlength="150" autocomplete="email" inputmode="email" dir="ltr">
+        </div>
+        <div class="field">
+          <label for="about">כמה שעות בשבוע הולכות אצלכם על עבודה ידנית, ועל מה? <span>(לא חובה)</span></label>
           <textarea id="about" name="about" rows="4" maxlength="2000"></textarea>
         </div>
         <!-- Turnstile mounts here only when both config meta tags are filled -->
         <div id="turnstileBox" class="turnstile-box" hidden></div>
         <button type="submit" class="btn" id="submitBtn">
-          <span id="submitText">שלחו ואחזור אליכם</span>
+          <span id="submitText">שלחו, ואחזור לתאם פגישה</span>
         </button>
       </form>
       <div class="form-msg success" id="successMsg" role="status">
-        <p>תודה! קיבלתי את הפרטים ואחזור אליכם בהקדם.</p>
+        <p>תודה! קיבלתי את הפרטים ואחזור אליכם לתאם את הפגישה.</p>
       </div>
       <div class="form-msg error" id="errorMsg" role="alert">
         <p>משהו השתבש, נסו שוב.</p>
@@ -780,7 +890,7 @@ button,input,select,textarea{font:inherit}
     <dl class="footer__contact">
       <div><dt>טלפון</dt><dd><a href="tel:0552716456" dir="ltr">055-271-6456</a></dd></div>
       <div><dt>מייל</dt><dd><!--email_off--><a href="mailto:EZ.Path.AI@outlook.co.il">EZ.Path.AI@outlook.co.il</a><!--/email_off--></dd></div>
-      <div><dt>כתובת</dt><dd>אור עולם 12, פדואל</dd></div>
+      <div><dt>וואטסאפ</dt><dd><a href="https://wa.me/972552716456?text=אהלן%20בניה%0Aאשמח%20לשמוע%20עוד%20פרטים" target="_blank" rel="noopener">שלחו הודעה</a></dd></div>
     </dl>
     <div class="footer__legal">
       <p>EZ.Path.AI הוא שם מסחרי של EZPATH.AI, עוסק זעיר. כתובת: אור עולם 12, פדואל. טלפון: 055-271-6456</p>
@@ -789,10 +899,14 @@ button,input,select,textarea{font:inherit}
   </div>
 </footer>
 
-<!-- WHATSAPP -->
-<a class="wa" href="https://wa.me/972552716456?text=אהלן%20בניה%0Aאשמח%20לשמוע%20עוד%20פרטים" target="_blank" rel="noopener" aria-label="שלחו לי הודעה בוואטסאפ">
-  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.2h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm5.8 14.07c-.24.68-1.4 1.3-1.93 1.35-.5.05-1.02.24-3.42-.72-2.9-1.16-4.76-4.11-4.9-4.3-.14-.19-1.17-1.56-1.17-2.97 0-1.41.74-2.1 1-2.39.26-.28.57-.35.76-.35.19 0 .38 0 .55.01.18.01.42-.07.65.5.24.58.81 2 .88 2.15.07.15.12.32.02.51-.1.19-.15.31-.3.48-.15.17-.31.38-.45.51-.15.15-.3.31-.13.6.17.29.75 1.24 1.61 2 1.11.99 2.04 1.3 2.33 1.45.29.15.46.12.63-.07.17-.19.72-.84.91-1.13.19-.29.38-.24.63-.14.26.1 1.64.77 1.92.91.29.14.48.21.55.33.07.12.07.68-.17 1.36z"/></svg>
-</a>
+<!-- MOBILE ACTION BAR: fixed to the bottom of the screen on phones; it steps aside over the form and the footer -->
+<div class="mbar">
+  <a class="mbar__wa" href="https://wa.me/972552716456?text=אהלן%20בניה%0Aאשמח%20לשמוע%20עוד%20פרטים" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.2h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm5.8 14.07c-.24.68-1.4 1.3-1.93 1.35-.5.05-1.02.24-3.42-.72-2.9-1.16-4.76-4.11-4.9-4.3-.14-.19-1.17-1.56-1.17-2.97 0-1.41.74-2.1 1-2.39.26-.28.57-.35.76-.35.19 0 .38 0 .55.01.18.01.42-.07.65.5.24.58.81 2 .88 2.15.07.15.12.32.02.51-.1.19-.15.31-.3.48-.15.17-.31.38-.45.51-.15.15-.3.31-.13.6.17.29.75 1.24 1.61 2 1.11.99 2.04 1.3 2.33 1.45.29.15.46.12.63-.07.17-.19.72-.84.91-1.13.19-.29.38-.24.63-.14.26.1 1.64.77 1.92.91.29.14.48.21.55.33.07.12.07.68-.17 1.36z"/></svg>וואטסאפ
+  </a>
+  <a class="btn" href="#form">קבעו פגישת אפיון</a>
+</div>
+
 
 <script>
 (function(){
@@ -853,33 +967,7 @@ const REDUCED_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').mat
   obs.observe(demo.querySelector('.chat') || demo);
 })();
 
-/* ===== 2. COUNTER =====
-   The number lives in the HTML (#counter), so changing it never touches this
-   script or the CSP hash. With motion allowed it counts up once in view. */
-(function(){
-  const counterEl = document.getElementById('counter');
-  if(!counterEl || REDUCED_MOTION || !('IntersectionObserver' in window)) return;
-  const target = parseInt(counterEl.textContent, 10);
-  if(!target) return;
-  counterEl.textContent = '0';
-  const counterObserver = new IntersectionObserver(function(entries){
-    entries.forEach(function(entry){
-      if(!entry.isIntersecting) return;
-      counterObserver.disconnect();
-      const duration = 1200, start = performance.now();
-      function tick(now){
-        const t = Math.min(1, (now-start)/duration);
-        const eased = 1 - Math.pow(1-t, 3);
-        counterEl.textContent = Math.round(eased*target);
-        if(t<1) requestAnimationFrame(tick);
-      }
-      requestAnimationFrame(tick);
-    });
-  }, { threshold:0.5 });
-  counterObserver.observe(counterEl);
-})();
-
-/* ===== 3. TESTIMONIAL VIDEOS =====
+/* ===== 2. TESTIMONIAL VIDEOS =====
    One video plays at a time, and all of them stop when the section leaves the
    screen. Videos are read from the HTML, so adding one never touches this
    script (and never changes the CSP hash). */
@@ -900,14 +988,19 @@ const REDUCED_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').mat
     const btn = document.createElement('button');
     btn.type = 'button';
     btn.className = 'voice__play';
-    btn.setAttribute('aria-label', 'הפעלת הסרטון' + (who ? ' של ' + who.textContent : ''));
+    const length = v.getAttribute('data-duration') || '';
+    btn.setAttribute('aria-label', 'הפעלת הסרטון' + (who ? ' של ' + who.textContent : '') + (length ? ', ' + length + ' דקות' : ''));
     btn.innerHTML = '<span><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg></span>';
-    btn.addEventListener('click', function(){
+    if (length) btn.firstChild.appendChild(document.createTextNode(length));
+    function start(){
+      if (v.controls) return;
       v.controls = true;
       btn.remove();
       v.play().catch(function(){});
       v.focus();
-    });
+    }
+    btn.addEventListener('click', start);
+    v.addEventListener('click', start);
     media.appendChild(btn);
   });
   if('IntersectionObserver' in window){
@@ -917,13 +1010,29 @@ const REDUCED_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').mat
   }
 })();
 
+/* ===== 3. MOBILE ACTION BAR =====
+   Steps aside while the hero's own buttons, the form or the footer are on
+   screen, where its two actions are already in view. */
+(function(){
+  const bar = document.querySelector('.mbar');
+  if(!bar || !('IntersectionObserver' in window)) return;
+  const seen = new Set();
+  const obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting) seen.add(entry.target); else seen.delete(entry.target);
+    });
+    bar.classList.toggle('is-away', seen.size > 0);
+  }, { threshold:0.05 });
+  [document.querySelector('.hero__actions'), document.getElementById('form'), document.querySelector('.footer')].forEach(function(el){ if(el) obs.observe(el); });
+})();
+
 /* ===== 4. FORM ===== */
 const leadForm = document.getElementById('leadForm');
 const submitBtn = document.getElementById('submitBtn');
 const submitText = document.getElementById('submitText');
 const successMsg = document.getElementById('successMsg');
 const errorMsg = document.getElementById('errorMsg');
-const SUBMIT_LABEL = 'שלחו ואחזור אליכם';
+const SUBMIT_LABEL = 'שלחו, ואחזור לתאם פגישה';
 
 /* ===== FORM ABUSE PROTECTION =====
    These checks stop naive bots and malformed payloads. They run in the browser
@@ -1053,12 +1162,12 @@ leadForm.addEventListener('submit', function(e){
   const about = document.getElementById('about').value.trim();
 
   // 4. Validation. A failed check marks and focuses the field it is about.
-  if (!name)  { showFormError('נא למלא שם, מייל וטלפון.', 'name'); return; }
-  if (!email) { showFormError('נא למלא שם, מייל וטלפון.', 'email'); return; }
-  if (!phone) { showFormError('נא למלא שם, מייל וטלפון.', 'phone'); return; }
+  if (!name)  { showFormError('נא למלא שם, טלפון ומייל.', 'name'); return; }
+  if (!phone) { showFormError('נא למלא שם, טלפון ומייל.', 'phone'); return; }
+  if (!email) { showFormError('נא למלא שם, טלפון ומייל.', 'email'); return; }
   if (name.length  > LIMITS.name)  { showFormError('השם ארוך מדי.', 'name'); return; }
-  if (email.length > LIMITS.email || !EMAIL_RE.test(email)) { showFormError('כתובת המייל לא תקינה.', 'email'); return; }
   if (phone.length > LIMITS.phone || !PHONE_RE.test(phone)) { showFormError('מספר הטלפון לא תקין.', 'phone'); return; }
+  if (email.length > LIMITS.email || !EMAIL_RE.test(email)) { showFormError('כתובת המייל לא תקינה.', 'email'); return; }
   if (about.length > LIMITS.about) { showFormError('הטקסט ארוך מדי.', 'about'); return; }
 
   // 5. Fail closed: without config there is no protected path to submit to.
